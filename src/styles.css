@@ -93,7 +93,7 @@ section{padding:120px 5vw}.solutions{background:linear-gradient(180deg,var(--bg)
   text-decoration: none;
   color: #111;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
   position: relative;
   transition: color 0.2s;
 }
@@ -185,3 +185,11 @@ footer .ftLogo{height:64px;width:auto;display:block}
 
 /* 10 nav items: keep the desktop nav on one line */
 @media(min-width:1280px){.nav nav.desktop-nav{gap:clamp(14px,1.45vw,28px)}.desktop-nav a{white-space:nowrap;font-size:clamp(13px,.95vw,14px)}}
+
+/* NAVBAR VISUAL REFRESH (typography/spacing/active state only) */
+@media(min-width:951px){
+.nav nav.desktop-nav{align-items:center;gap:clamp(14px,2vw,34px)}
+.nav nav.desktop-nav a{font-family:'DM Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(13px,1vw,15px);letter-spacing:.02em;color:#1c2a22;padding:8px 2px;white-space:nowrap;line-height:1}
+.nav nav.desktop-nav a:hover,.nav nav.desktop-nav a.on{color:#217340}
+.nav nav.desktop-nav a.on::after{left:50%;right:auto;width:22px;height:1.5px;margin-left:-11px;bottom:-1px;border-radius:2px;background:#217340}
+}

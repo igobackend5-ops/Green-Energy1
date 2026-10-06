@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-import Industries from './Industries.jsx';
 import './about.css';
 
 const S = { fill: 'none', stroke: 'currentColor', strokeWidth: 1.7, strokeLinecap: 'round', strokeLinejoin: 'round' };
@@ -78,7 +77,7 @@ export default function AboutPage({ onQuote, onContact }) {
     <div className="ab" ref={root}>
       {/* 1. HERO */}
       <section className="abHero" aria-labelledby="abH1">
-        <img className="abHeroImg" src="/about/a2-hero.jpg" alt="iGo Green Energy building surrounded by greenery with wind turbines" />
+        <img className="abHeroImg" src="/about/a3-office.jpg" width="1795" height="876" alt="iGo Green Energy office building with rooftop solar panels and biogas plant" />
         <div className="abWrap abHeroIn">
           <div className="abHeroCopy abRv">
             <p className="abEyebrow">ABOUT US</p>
@@ -154,27 +153,8 @@ export default function AboutPage({ onQuote, onContact }) {
                 <div className="abSolBody">
                   <h3><span className="abIc"><Ic /></span>{s.title}</h3>
                   <p>{s.text}</p>
-                  <button type="button" className="abPill" onClick={onContact}>Learn More <I.arrow /></button>
                 </div>
               </article>
-            ); })}
-          </div>
-        </div>
-      </section>
-
-      {/* 6. WHY */}
-      <section className="abBlock abWhy">
-        <div className="abWrap abWhyGrid">
-          <div className="abRv">
-            <p className="abEyebrow abLine">WHY iGO GREEN ENERGY <span /></p>
-            <h2>More Than Solutions.<br />A Long-Term Partner.</h2>
-            <p className="abBody">We go beyond installation. We deliver complete, reliable and customized solutions with continuous support, helping you reduce costs, improve efficiency and achieve a lasting positive impact.</p>
-          </div>
-          <div className="abWhyItems">
-            {WHY.map((w, i) => { const Ic = I[w.icon]; return (
-              <div className="abWhyItem abRv" key={w.title} style={{ '--d': `${0.07 * i}s` }}>
-                <span className="abIc"><Ic /></span><div><h3>{w.title}</h3><p>{w.text}</p></div>
-              </div>
             ); })}
           </div>
         </div>
@@ -196,30 +176,23 @@ export default function AboutPage({ onQuote, onContact }) {
         </div>
       </section>
 
-      {/* 8. FOUR ELEMENTS */}
-      <section className="abBlock abElem">
-        <div className="abWrap">
-          <div className="abHead abRv">
-            <div><p className="abEyebrow abLine">OUR CORE VALUES <span /></p><h2>The Four Elements</h2><p className="abSub">Guided by nature. Driven by purpose.</p></div>
-            <p className="abHeadP">Our values are the foundation of everything we do. They guide our decisions, shape our culture and inspire us to create a better tomorrow.</p>
+      {/* 6. WHY */}
+      <section className="abBlock abWhy">
+        <div className="abWrap abWhyGrid">
+          <div className="abRv">
+            <p className="abEyebrow abLine">WHY iGO GREEN ENERGY <span /></p>
+            <h2>More Than Solutions.<br />A Long-Term Partner.</h2>
+            <p className="abBody">We go beyond installation. We deliver complete, reliable and customized solutions with continuous support, helping you reduce costs, improve efficiency and achieve a lasting positive impact.</p>
           </div>
-          <div className="abCards4">
-            {ELEMENTS.map((e, i) => { const Ic = I[e.icon]; return (
-              <article className={`abEl abEl--${e.key} abRv`} key={e.key} style={{ '--d': `${0.1 * i}s` }}>
-                <img src={e.img} alt={`${e.name} — ${e.value}`} loading="lazy" />
-                <div className="abElBody">
-                  <span className="abElIc"><Ic /></span>
-                  <h3>{e.name}</h3><b>{e.value}</b>
-                  <p>{e.text}</p>
-                </div>
-              </article>
+          <div className="abWhyItems">
+            {WHY.map((w, i) => { const Ic = I[w.icon]; return (
+              <div className="abWhyItem abRv" key={w.title} style={{ '--d': `${0.07 * i}s` }}>
+                <span className="abIc"><Ic /></span><div><h3>{w.title}</h3><p>{w.text}</p></div>
+              </div>
             ); })}
           </div>
         </div>
       </section>
-
-      {/* 9. WHO WE SERVE — existing section, unchanged */}
-      <Industries onSelect={onContact} />
 
       {/* 10. APPROACH */}
       <section className="abApproach">
@@ -248,7 +221,6 @@ export default function AboutPage({ onQuote, onContact }) {
             <p className="abEyebrow abLine">OUR COMMITMENT <span /></p>
             <h2 id="abCtaT">We Don’t Just Install Systems.</h2>
             <p className="abBody">We build relationships that last and a future that is cleaner, greener and brighter for the next generation.</p>
-            <button type="button" className="abBtn" onClick={onQuote}>Get a Smart Quote <I.arrow /></button>
           </div>
           <p className="abScript" aria-label="Go Green. Go Smart. Go iGo."><span>Go Green.</span><span>Go Smart,</span><span>Go iGo.</span><I.leaf className="abScriptLeaf" /></p>
         </div>

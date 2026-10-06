@@ -5,12 +5,11 @@ const NAV_ITEMS = [
   { label: 'About Us', path: '/about' },
   { label: 'Services', path: '/services' },
   { label: 'Projects', path: '/projects' },
-  { label: 'Testimonials / Clients', path: '/testimonials' },
-  { label: 'Learnerships', path: '/learnerships' },
-  { label: 'Careers', path: '/careers' },
+  { label: 'Leadership', path: '/leadership' },
   { label: 'Blogs', path: '/blogs' },
-  { label: 'Contact Us', path: '/contact' },
   { label: 'FAQ', path: '/faq' },
+  { label: 'Careers', path: '/careers' },
+  { label: 'Contact Us', path: '/contact' },
 ];
 
 export default function Navbar({ onQuoteClick }) {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { CapabilityMatrix, HowTogether, SmartTools, SolarComplete } from './svSections.jsx';
+import { SolarProductsList, SolarProjectsList, openSolarChoice } from './SolarChoice.jsx';
 import { Link, go, useReveal, Ic, Head, Sec, ServiceHero, Cta, ToolCard, Check, Flow, Turbine } from './common.jsx';
 
 const IMG = { solar: '/solutions/solar.jpg', wind: '/solutions/wind.jpg', biogas: '/solutions/biogas.jpg', water: '/solutions/water.jpg' };
@@ -23,7 +24,17 @@ export function ServicesPage({ onQuote }) {
     <div ref={ref} className="pg pgServices">
       <div className="svHero">
         <div className="svLeaf l1" aria-hidden="true" /><div className="svLeaf l2" aria-hidden="true" /><div className="svLeaf l3" aria-hidden="true" />
-        <div className="svVis" aria-hidden="true"><img src="/services-hero.jpg" alt="" /><i className="svBlade" /></div>
+        <div className="svVis" aria-hidden="true"><img src="/services-hero.jpg" srcSet="/services-hero.jpg 1148w, /services-hero@2x.jpg 2296w" sizes="(max-width: 760px) 100vw, 64vw" alt="" decoding="async" /><i className="svBlade" />
+          <svg className="svPins" viewBox="0 0 1148 764" preserveAspectRatio="xMinYMid slice" shapeRendering="geometricPrecision">
+            <defs><filter id="svPinSh" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="3" stdDeviation="4" floodColor="#0b3d13" floodOpacity=".28" /></filter></defs>
+            <g filter="url(#svPinSh)" fill="#fff"><circle cx="748" cy="258" r="42" /><circle cx="538" cy="429" r="42" /><circle cx="275" cy="573" r="42" /><circle cx="951" cy="594" r="42" /></g>
+            <g fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3">
+              <g transform="translate(748 258)" stroke="#1e8a4c"><path d="M0 -3V24M-9 24H9" /><circle cx="0" cy="-5" r="3" fill="#1e8a4c" /><path d="M0 -8C-1 -15 -3 -20 -4 -25C0 -22 1 -16 1 -8zM3 -4C10 -3 15 0 20 4C14 5 8 3 3 -3zM-3 -3C-9 0 -14 4 -17 10C-11 10 -6 6 -3 -2z" fill="#1e8a4c" strokeWidth="1.2" /></g>
+              <g transform="translate(538 429)" stroke="#2f9c3c"><path d="M-17 15C-17 -8 -2 -19 18 -19C18 3 6 17 -13 15" strokeWidth="3.2" /><path d="M-17 17C-8 6 0 -2 10 -9" strokeWidth="3" /><path d="M-3 4C2 4 6 2 9 -1" strokeWidth="2.4" /></g>
+              <g transform="translate(275 573)" stroke="#1673b8"><path d="M-22 12L-14 -10H22L14 12zM-18 1H18M-8 -10L-12 12M2 -10L-1 12M12 -10L8 12" strokeWidth="2.6" /><path d="M-14 -20L-14 -15M0 -22V-17M14 -20V-15" stroke="#2f9c3c" strokeWidth="2.4" /><path d="M0 12V24" stroke="#2f9c3c" strokeWidth="2.4" /></g>
+              <g transform="translate(951 594)" stroke="#1792c8"><path d="M0 -26C10 -12 18 -3 18 7A18 18 0 0 1 -18 7C-18 -3 -10 -12 0 -26z" fill="#2aa7dc" stroke="#1792c8" strokeWidth="2" /><path d="M-8 8A8 8 0 0 0 0 16" stroke="#fff" strokeWidth="3" /></g>
+            </g>
+          </svg></div>
         <svg className="svWave" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 62C140 40 300 66 460 60C560 56 640 40 760 30L760 100L0 100Z" fill="#dff1dc" opacity=".7" /><path d="M0 74C150 56 300 80 460 74C560 70 650 58 760 52L760 100L0 100Z" fill="#14522f" /></svg>
         <div className="svIn">
           <div className="svCopy">
@@ -51,7 +62,9 @@ export function ServicesPage({ onQuote }) {
               <div className="svcImg"><img src={IMG[c.k]} alt={c.t} loading="lazy" /><span><Ic n={c.ic} size={22} /></span></div>
               <div className="svcBody"><h3>{c.t}</h3><p>{c.d}</p>
                 <div className="svcCap"><small>KEY CAPABILITY</small><b>{c.cap}</b></div>
-                <Link to={'/services/' + c.k} className="pgLink">Explore Service <Ic n="arrow" size={16} /></Link></div>
+                {c.k === 'solar'
+                  ? <a href="/services/solar" className="pgLink" onClick={(e) => { e.preventDefault(); openSolarChoice(); }}>Explore Service <Ic n="arrow" size={16} /></a>
+                  : <Link to={'/services/' + c.k} className="pgLink">Explore Service <Ic n="arrow" size={16} /></Link>}</div>
             </article>
           ))}
         </div>
@@ -78,7 +91,7 @@ const SOLAR_STEPS = [
   { t: 'Testing and Commissioning', d: 'Performance testing, safety checks, and grid connection.' },
   { t: 'Handover and Support', d: 'Training, monitoring setup, and warranty and AMC support.' },
 ];
-export function SolarPage({ onQuote }) {
+export function SolarPage({ onQuote, noHero }) {
   const ref = useReveal();
   const solutions = [['Solar Design & Consultation', 'Site assessment, energy-needs analysis, and system design for the best performance and savings.', 'sun'], ['Installation & Commissioning', 'Professional installation, testing, and commissioning of solar systems.', 'tool'], ['Maintenance & AMC', 'Regular servicing, monitoring, and annual maintenance contracts.', 'shield'], ['Government Subsidy & Documentation Assistance', 'Help with applicable subsidies, approvals, and paperwork.', 'doc'], ['Customized Solar Solutions', "Systems tailored to each customer's site, energy needs, and budget.", 'grid']];
   const segs = [['Residential Solar', 'home', 'Rooftop systems for homes, villas, apartments, and housing societies that cut electricity bills and give energy independence.'], ['Commercial Solar', 'build', 'Systems for offices, shops, malls, hotels, hospitals, and schools that reduce operating costs and improve sustainability credentials.'], ['Industrial Solar', 'factory', 'High-capacity systems for factories, manufacturing units, and warehouses that lower power costs and support long-term energy security.']];
@@ -86,8 +99,8 @@ export function SolarPage({ onQuote }) {
   const benefits = [['Lower Electricity Bills', 'Cut power costs significantly and enjoy a quick payback on your investment.'], ['Clean Energy', 'Reduce your carbon footprint with pollution-free power from the sun.'], ['Energy Independence', 'Reduce reliance on the grid, with battery backup options for uninterrupted power.'], ['Low Maintenance, Long Life', 'Durable systems designed to perform for up to 25 years with minimal upkeep.'], ['Subsidies and Tax Benefits', 'Take advantage of applicable government incentives, with our documentation support.'], ['Higher Property Value', 'A solar-powered property is more attractive and more valuable.']];
   return (
     <div ref={ref} className="pg th-solar">
-      <ServiceHero eyebrow="SOLAR ENERGY" title="Power Your Future with" em="Solar Energy" fx="fxSolar" plain img="/solar-hero.jpg" alt="Technicians in hard hats installing solar panels on a commercial rooftop" onQuote={onQuote}
-        text="Complete, end-to-end solar solutions from 1 kW to 5 MW and above, for homes, businesses and industries." />
+      {!noHero && <ServiceHero eyebrow="SOLAR ENERGY" title="Power Your Future with" em="Solar Energy" fx="fxSolar" plain img="/solar-hero.jpg" alt="Technicians in hard hats installing solar panels on a commercial rooftop" onQuote={onQuote}
+        text="Complete, end-to-end solar solutions from 1 kW to 5 MW and above, for homes, businesses and industries." />}
 
       <SolarComplete onQuote={onQuote} />
 
