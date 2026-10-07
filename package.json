@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "cd \"igo-green-energy-website (1)\\igo-green-energy\" && npm run dev",
     "dev:all": "cd \"igo-green-energy-website (1)\\igo-green-energy\" && npm run dev:all",
-    "install": "cd \"igo-green-energy-website (1)\\igo-green-energy\" && npm install"
+    "install": "cd \"igo-green-energy-website (1)\\igo-green-energy\" && npm install",
+    "build": "cd \"igo-green-energy-website (1)\\igo-green-energy\" && npm run build"
   }
 }
