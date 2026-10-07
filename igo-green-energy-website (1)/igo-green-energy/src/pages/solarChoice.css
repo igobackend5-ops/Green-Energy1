@@ -1,0 +1,37 @@
+/* Solar chooser pop-up + shared Solar products/projects lists */
+.sc{position:fixed;inset:0;z-index:1100;background:rgba(6,35,26,.62);backdrop-filter:blur(6px);display:grid;place-items:center;padding:20px;opacity:0;transition:opacity .22s ease}
+.sc.on{opacity:1}
+.scBox{width:min(980px,100%);max-height:min(88vh,860px);display:flex;flex-direction:column;background:#fff;border-radius:26px;box-shadow:0 30px 80px rgba(0,0,0,.35);overflow:hidden;transform:translateY(22px) scale(.98);transition:transform .22s ease;font-family:'DM Sans',sans-serif;color:#0e1f17}
+.sc.on .scBox{transform:none}
+.scHead{flex:none;display:flex;align-items:center;gap:16px;padding:22px 28px;border-bottom:1px solid #e3ebdc;background:linear-gradient(135deg,#f3faf0,#fff)}
+.scHead>div{flex:1;min-width:0}
+.scEye{margin:0 0 4px;font-size:11px;font-weight:700;letter-spacing:.25em;color:#1e7b39}
+.scHead h2{margin:0;font:800 clamp(1.3rem,2.4vw,1.8rem)/1.15 Manrope,'DM Sans',sans-serif;color:#0b3d13}
+.scX,.scBack{flex:none;border:0;cursor:pointer;font-family:inherit}
+.scX{width:42px;height:42px;border-radius:50%;background:#eef3ea;color:#0b3d13;display:grid;place-items:center;transition:transform .2s}
+.scX:hover{transform:rotate(90deg)}
+.scBack{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:999px;background:#eef7ea;color:#0b3d13;font-weight:700;font-size:14px}
+.scBody{overflow-y:auto;padding:26px 28px 30px;overscroll-behavior:contain}
+.scLead{margin:0 0 18px;color:#4d6358;font-size:1.02rem}
+.scPick{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.scOpt{display:flex;flex-direction:column;align-items:flex-start;gap:8px;text-align:left;padding:28px;border-radius:22px;border:1px solid #dbe6dc;border-left:5px solid #1e7b39;background:#fff;box-shadow:0 8px 22px rgba(11,61,19,.07);cursor:pointer;font-family:inherit;transition:transform .25s,box-shadow .25s,background .25s}
+.scOpt:hover,.scOpt:focus-visible{transform:translateY(-4px);box-shadow:0 16px 34px rgba(11,61,19,.15);background:#f6fbf3}
+.scOi{width:58px;height:58px;border-radius:50%;background:#e4f3dd;color:#1b6b2c;display:grid;place-items:center;margin-bottom:6px}
+.scOpt b{font:800 1.5rem Manrope,'DM Sans',sans-serif;color:#0b3d13}
+.scOpt small{color:#52665b;font-size:.92rem}
+.scGo{margin-top:10px;display:inline-flex;align-items:center;gap:8px;font-weight:700;color:#1e7b39}
+.scFull{margin:22px auto 0;display:flex;align-items:center;gap:8px;background:none;border:0;color:#1e7b39;font:700 .95rem 'DM Sans',sans-serif;cursor:pointer;text-decoration:underline;text-underline-offset:4px}
+.scGroups{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:start}
+.scGroup{background:#fff;border:1px solid #dbe6dc;border-left:4px solid #1e7b39;border-radius:20px;padding:20px;box-shadow:0 6px 18px rgba(11,61,19,.06)}
+.scGroup h3{display:flex;align-items:center;gap:10px;margin:0 0 14px;font:700 1.05rem/1.25 Manrope,'DM Sans',sans-serif;color:#0b3d13}
+.scGroup h3 small{margin-left:auto;background:#e4f3dd;color:#1b6b2c;font:700 12px 'DM Sans',sans-serif;padding:3px 9px;border-radius:99px}
+.scGi{flex:none;width:34px;height:34px;border-radius:50%;background:#e4f3dd;color:#1b6b2c;display:grid;place-items:center}
+.scGroup ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;counter-reset:n}
+.scGroup li{counter-increment:n;display:flex;align-items:center;gap:10px;padding:9px 12px;background:#f1f8ee;border-radius:12px;font-size:.92rem;line-height:1.3}
+.scGroup li:before{content:counter(n);flex:none;width:24px;height:24px;border-radius:50%;background:#1e7b39;color:#fff;font-size:12px;font-weight:700;display:grid;place-items:center}
+.scQuote{grid-column:1/-1;justify-self:start;display:inline-flex;align-items:center;gap:10px;margin-top:6px;padding:14px 26px;border:0;border-radius:999px;background:#b8f45b;color:#0b3d13;font:700 15px 'DM Sans',sans-serif;cursor:pointer}
+@media(max-width:900px){.scGroups{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.sc{padding:0;place-items:end stretch}.scBox{max-height:92vh;border-radius:22px 22px 0 0}.scHead{padding:16px 18px}.scBody{padding:18px}.scPick,.scGroups{grid-template-columns:1fr}.scOpt{padding:20px}}
+@media(prefers-reduced-motion:reduce){.sc,.scBox{transition:none}}
+/* Solar page sections */
+.solarCat .scGroups{margin-top:6px}
