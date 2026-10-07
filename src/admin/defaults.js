@@ -75,11 +75,10 @@ export const DEFAULTS = {
   blogs: BLOGS_RAW.map((b, i) => ({ id: 'blg-' + (i + 1), title: b.title, slug: slug(b.title), author: 'Green Energy Team', category: b.cat, shortDesc: b.desc, content: '<p>' + b.desc + '</p>', image: b.img, gallery: [], publishDate: b.date, tags: b.cat, seoTitle: '', seoDesc: '', link: b.to, status: P })),
 
   careers: [
-    ['Engineering & Design', 'System design, energy assessments and technical planning for renewable energy projects.'],
-    ['Installation & Site Operations', 'Project execution, installation, commissioning and on-site supervision.'],
-    ['Operations & Maintenance', 'Monitoring, servicing and keeping installed systems performing at their best.'],
-    ['Sales & Customer Engagement', 'Helping homes, businesses and industries find the right clean energy solution.']
-  ].map(([title, d], i) => ({ id: 'job-' + (i + 1), title, department: title, location: '', type: 'Full-time', experience: '', description: d, responsibilities: '', requirements: '', skills: '', apply: '/contact', lastDate: '', status: P })),
+    ['Solar Designer', 'Diploma / B.E. – Electrical / Civil / Mechanical', ['Prepare solar layouts and drawings', 'PV module and string configuration', 'Check site measurements and project data', 'Prepare SLD and BOQ', 'Coordinate with Electrical & Structural teams'], 'Responsible for solar design, layout, drawings and documentation.'],
+    ['Electrical Engineer', 'Diploma / B.E. – Electrical / EEE', ['Electrical design and calculations', 'Cable sizing, earthing and LPS', 'Prepare electrical BOQ', 'Check electrical materials', 'Coordinate with site and vendors', 'Installation, testing and commissioning follow-up'], 'Responsible for electrical design, execution and commissioning.'],
+    ['Structural Engineer', 'Diploma / B.E. – Civil / Structural Engineering', ['Solar mounting structure design', 'Structural load calculations', 'Prepare drawings and BOQ', 'Check materials and fabrication', 'Coordinate with vendors and site team', 'Installation and quality follow-up'], 'Responsible for structural design, fabrication and installation.']
+  ].map(([title, qualification, roles, d], i) => ({ id: 'job-' + (i + 1), title, department: 'Engineering', qualification, location: '', type: 'Full-time', experience: '', description: d, responsibilities: roles.join('\n'), requirements: '', skills: '', apply: '/contact', lastDate: '', status: P })),
 
   contact: {
     address: 'Chennai, Tamil Nadu, India', phone: '+91 98765 43210', email: 'info@greenenergy.com', whatsapp: '', mapUrl: '', hours: '',

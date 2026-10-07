@@ -96,3 +96,23 @@
 .gsHead>div:first-child{flex:1 1 380px;max-width:640px}.gsChips{flex:0 1 auto}
 @media(min-width:1101px){.gsHead{flex-wrap:nowrap}.gsChips{max-width:480px}}
 .subPage .gsSec .pgs{background:transparent;box-shadow:none;border:0;border-radius:0}
+
+
+/* compact card photos */
+.gsCard .gsImg{align-self:start;min-height:0;height:auto;aspect-ratio:1.4/1}
+.subPage .gsSec{padding-top:0}.subPage .gsSec .pgs{padding-top:32px}
+
+/* hero banner image (text in HTML kept for accessibility/SEO; the artwork already shows it on larger screens) */
+.subPage .subHero{position:relative;background:#021511;border-bottom:0;padding-top:68px}
+.subPage .subHeroImg{display:block;width:100%;height:auto;aspect-ratio:2048/684;object-fit:cover}
+.subPage .subHero .pgs{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media(max-width:700px){
+ .subPage .subHeroImg{aspect-ratio:1.3/1;object-position:100% 50%}
+ .subPage .subHero .pgs{position:static;width:auto;height:auto;margin:0;overflow:visible;clip:auto;white-space:normal;padding:22px 16px 28px;background:linear-gradient(180deg,#021511,#052a22)}
+ .subPage .subHero .pgs .pgHead,.subPage .subHero .pgs .pgHead *{color:#fff}
+ .subPage .subHero .pgs .pgHead em{color:#4ade80}
+ .subPage .subHero .pgs .pgHead p{color:rgba(255,255,255,.82)}
+ .subPage .subHero .pgs .pgEye{color:#4ade80}
+ .subPage .subStats div{background:rgba(255,255,255,.06);border-color:rgba(74,222,128,.35);box-shadow:none}
+ .subPage .subStats b{color:#4ade80}.subPage .subStats span{color:rgba(255,255,255,.8)}
+}

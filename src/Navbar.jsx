@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 import { T } from './content/T.js';
-import SubsidyMenu from './NavbarSubsidyMenu.jsx';
 const NAV_ITEMS = [
   { label: T("nav.001", "Home"), path: '/' },
   { label: T("nav.002", "About Us"), path: '/about' },
@@ -60,7 +59,6 @@ export default function Navbar({ onQuoteClick }) {
       <nav className={`desktop-nav ${mobileOpen ? 'mobile-open' : ''}`}>
         {NAV_ITEMS.map((item) => {
           const isActive = currentPath === item.path || (item.path !== '/' && currentPath.startsWith(item.path + '/')) || (currentPath === '/' && item.path === '/' && !window.location.hash);
-          if (item.path === '/subsidy') return <SubsidyMenu key={item.label} label={item.label} active={isActive} onGo={(p) => handleNavClick({ preventDefault() {} }, p)} />;
           return (
             <a
               key={item.label}

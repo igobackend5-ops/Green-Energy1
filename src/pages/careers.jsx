@@ -1,6 +1,7 @@
 import React from 'react';
 import { useCms } from '../admin/store.js';
 import { useReveal, Ic, Head, Sec, Cta, Check, Flow, go } from './common.jsx';
+export { CareersPage } from './careersPage.jsx';
 
 import { T } from '../content/T.js';
 /* NOTE: programme / role details below are general placeholders - replace with the
@@ -77,7 +78,7 @@ export function LearnershipsPage() {
   );
 }
 
-export function CareersPage() {
+export function CareersPageOld() {
   const ref = useReveal();
   const why = [
     [T("careers.051", "Meaningful work"), 'leaf', T("careers.052", "Contribute to solar, wind, biogas and water projects that deliver cleaner energy and a better environment.")],

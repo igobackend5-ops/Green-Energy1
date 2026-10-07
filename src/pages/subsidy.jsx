@@ -61,34 +61,9 @@ export function SubsidyPage({ onQuote }) {
   const clr = () => { setCat(null); window.history.replaceState(null, '', '/subsidy'); };
   return (
     <div ref={ref} className="pg subPage">
-      <div className="subHero"><div className="pgs"><div className="pgw subHeroIn"><Head eyebrow={T("subsidy.001", "SUBSIDY")} title={T("subsidy.002", "Government")} em={T("subsidy.003", "support & subsidy")} text={T("subsidy.004", "Schemes available for solar, biogas and related projects. Choose a project type to see what applies, then talk to us and we will help you apply.")} />
+      <div className="subHero"><img className="subHeroImg" src="/subsidy-hero.png" alt="" /><div className="pgs"><div className="pgw subHeroIn"><Head eyebrow={T("subsidy.001", "SUBSIDY")} title={T("subsidy.002", "Government")} em={T("subsidy.003", "support & subsidy")} text={T("subsidy.004", "Schemes available for solar, biogas and related projects. Choose a project type to see what applies, then talk to us and we will help you apply.")} />
         <div className="subStats"><div><b>{SCHEMES.length}</b><span>{T("subsidy.201", "Schemes")}</span></div><div><b>{GROUPS.length}</b><span>{T("subsidy.202", "Project types")}</span></div></div></div></div></div>
-      <div className="subBody"><Sec>
-        <div className="subTabs" role="tablist">
-          <button role="tab" aria-selected={g < 0} className={g < 0 ? 'on' : ''} onClick={() => setG(-1)}>{T("subsidy.005", "All projects")}<i>{SCHEMES.length}</i></button>
-          {GROUPS.map((n, i) => <button key={i} role="tab" aria-selected={g === i} className={g === i ? 'on' : ''} onClick={() => setG(i)}>{n}<i>{SCHEMES.filter((x) => x.grp === i).length}</i></button>)}
-        </div>
-        {cat && CN[cat] && <div className="subFilt"><span>{T("subsidy.406", "Showing")}: <b>{CN[cat]}</b></span><button onClick={clr}>{T("subsidy.407", "Show all schemes")}</button></div>}
-        {list.length === 0 && <div className="subEmpty"><p>{T("subsidy.408", "We have not listed a dedicated scheme for this category yet. Talk to our team and we will check what support is available for your project.")}</p><button className="pgBtn" onClick={onQuote}>{T("subsidy.009", "Talk to our team")}</button></div>}
-        <div className="subGrid">
-          {list.map((s) => (
-            <article className="subCard rv" key={s.n} role="button" tabIndex={0} onClick={() => setOpen(s.n)} onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), setOpen(s.n))}>
-              <div className="subTop"><span className="subNum">{String(s.n).padStart(2, '0')}</span><span className="subTag">{s.tag}</span></div>
-              <h3>{s.title}</h3>
-              <p className="subProj">{GROUPS[s.grp]}</p>
-              <dl>{s.fields.map(([k, v, hl]) => <div key={k} className={hl ? 'hl' : ''}><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
-              {s.note && <p className="subNote"><b>{T("subsidy.011", "Note")}:</b> {s.note}</p>}
-            <span className="subMore">{UI.view} →</span>
-            </article>
-          ))}
-        </div>
-        <p className="subDisc">{T("subsidy.006", "Always confirm current rates and eligibility with the official scheme or your state office before applying. Figures may change.")}</p>
-      </Sec></div>
       <section className="gsSec" id="gov-schemes"><div className="pgs"><div className="pgw">
-        <div className="gsHead">
-          <div><span className="gsEye">{T("subsidy.510", "Government Support")}</span><h2>{T("subsidy.511", "Subsidy & Government Schemes")}</h2><p>{T("subsidy.512", "Explore all available government subsidies, financial assistance, grants, and support schemes designed for farmers, businesses, and green initiatives.")}</p></div>
-          <div className="gsChips" role="tablist">{FILT.map(([k], i) => <button key={k} role="tab" aria-selected={gf === i} className={gf === i ? 'on' : ''} onClick={() => setGf(i)}>{FLAB[i]}</button>)}</div>
-        </div>
         <div className="gsGrid" key={gf}>
           {gl.map((c, i) => (
             <article className="gsCard rv" style={{ '--d': (i % 3) * 90 + 'ms' }} key={c.n} role="button" tabIndex={0} onClick={() => setOpen(c.n)} onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), setOpen(c.n))}>
