@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import './projectJourney.css';
 
+import { T } from './content/T.js';
 const S = { fill: 'none', stroke: 'currentColor', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round' };
 const Icon = {
   consult: (p) => (<svg viewBox="0 0 48 48" {...S} {...p}><path d="M13 7h22a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H25l-5 4v-4h-7a3 3 0 0 1-3-3v-8a3 3 0 0 1 3-3z" /><path d="M17 13h14M17 17h8" /><circle cx="12" cy="34" r="3" /><circle cx="24" cy="34" r="3" /><circle cx="36" cy="34" r="3" /><path d="M6 43c0-4 2.5-6 6-6s6 2 6 6M18 43c0-4 2.5-6 6-6s6 2 6 6M30 43c0-4 2.5-6 6-6s6 2 6 6" /></svg>),
@@ -15,14 +16,14 @@ const Icon = {
 };
 
 export const JOURNEY = [
-  { no: '01', icon: 'consult', title: 'Consultation & Planning', text: 'Understanding client needs, site conditions and sustainability goals to create the right solution.' },
-  { no: '02', icon: 'design', title: 'Design & Engineering', text: 'Creating efficient, reliable and customized solutions with the latest technology.' },
-  { no: '03', icon: 'approve', title: 'Approvals & Regulatory', text: 'Handling permits, clearances and compliance with all regulatory requirements.' },
-  { no: '04', icon: 'procure', title: 'Procurement & Supply Chain', text: 'Sourcing high-quality equipment and materials from trusted partners.' },
-  { no: '05', icon: 'install', title: 'Installation & Construction', text: 'Expert installation and construction by a skilled and experienced team.' },
-  { no: '06', icon: 'test', title: 'Testing & Commissioning', text: 'Rigorous testing to ensure optimal performance, safety and reliability.' },
-  { no: '07', icon: 'operate', title: 'Operation & Maintenance', text: 'Continuous monitoring and maintenance for long-term efficiency.' },
-  { no: '08', icon: 'support', title: 'Ongoing Support', text: 'Dedicated support to ensure uninterrupted and sustainable operations.' }
+  { no: '01', icon: 'consult', title: T("home.process.001", "Consultation & Planning"), text: T("home.process.002", "Understanding client needs, site conditions and sustainability goals to create the right solution.") },
+  { no: '02', icon: 'design', title: T("home.process.003", "Design & Engineering"), text: T("home.process.004", "Creating efficient, reliable and customized solutions with the latest technology.") },
+  { no: '03', icon: 'approve', title: T("home.process.005", "Approvals & Regulatory"), text: T("home.process.006", "Handling permits, clearances and compliance with all regulatory requirements.") },
+  { no: '04', icon: 'procure', title: T("home.process.007", "Procurement & Supply Chain"), text: T("home.process.008", "Sourcing high-quality equipment and materials from trusted partners.") },
+  { no: '05', icon: 'install', title: T("home.process.009", "Installation & Construction"), text: T("home.process.010", "Expert installation and construction by a skilled and experienced team.") },
+  { no: '06', icon: 'test', title: T("home.process.011", "Testing & Commissioning"), text: T("home.process.012", "Rigorous testing to ensure optimal performance, safety and reliability.") },
+  { no: '07', icon: 'operate', title: T("home.process.013", "Operation & Maintenance"), text: T("home.process.014", "Continuous monitoring and maintenance for long-term efficiency.") },
+  { no: '08', icon: 'support', title: T("home.process.015", "Ongoing Support"), text: T("home.process.016", "Dedicated support to ensure uninterrupted and sustainable operations.") }
 ];
 
 export default function ProjectJourney({ id = 'process' }) {
@@ -40,11 +41,11 @@ export default function ProjectJourney({ id = 'process' }) {
       <div className="pjInner">
         <header className="pjHead">
           <div className="pjHeadL">
-            <p className="pjEyebrow"><span /> OUR PROCESS <span /></p>
-            <h2 id="pjTitle">Our Complete <em>Project Journey</em></h2>
-            <p className="pjKicker">FROM VISION TO A SUSTAINABLE TOMORROW</p>
+            <p className="pjEyebrow"><span /> {T("home.process.017", "OUR PROCESS")} <span /></p>
+            <h2 id="pjTitle">{T("home.process.018", "Our Complete")} <em>{T("home.process.019", "Project Journey")}</em></h2>
+            <p className="pjKicker">{T("home.process.020", "FROM VISION TO A SUSTAINABLE TOMORROW")}</p>
           </div>
-          <p className="pjLead">The same structured process for Solar, Wind, Biogas and Water Treatment. From initial consultation to long-term support, we ensure a seamless and successful project delivery.</p>
+          <p className="pjLead">{T("home.process.021", "The same structured process for Solar, Wind, Biogas and Water Treatment. From initial consultation to long-term support, we ensure a seamless and successful project delivery.")}</p>
         </header>
         <ol className="pjSteps">
           {JOURNEY.map((s, i) => {

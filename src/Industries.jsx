@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import './industries.css';
 
+import { T } from './content/T.js';
 const S = { fill: 'none', stroke: 'currentColor', strokeWidth: 1.7, strokeLinecap: 'round', strokeLinejoin: 'round' };
 const Icon = {
   home: (p) => (<svg viewBox="0 0 24 24" {...S} {...p}><path d="M3.5 11.2 12 4l8.5 7.2" /><path d="M5.8 9.8V20h12.4V9.8" /><path d="M10 20v-5.4h4V20" /></svg>),
@@ -12,11 +13,11 @@ const Icon = {
 };
 
 export const INDUSTRIES = [
-  { key: 'residential', no: '01', icon: 'home', title: 'Residential', text: 'Homes, apartments and housing societies.', image: '/solutions/ind-residential.jpg', alt: 'Modern home with rooftop solar panels', pos: 'center' },
-  { key: 'commercial', no: '02', icon: 'building', title: 'Commercial', text: 'Offices, malls, hotels, hospitals and schools.', image: '/solutions/ind-commercial.jpg', alt: 'Modern glass commercial office building', pos: 'center' },
-  { key: 'industrial', no: '03', icon: 'factory', title: 'Industrial', text: 'Factories, manufacturing units and food processing plants.', image: '/solutions/ind-industrial.jpg', alt: 'Industrial processing plant with tall towers', pos: 'center' },
-  { key: 'agriculture', no: '04', icon: 'leaf', title: 'Agriculture & Dairy', text: 'Farms, dairies and agro-based businesses.', image: '/solutions/ind-agriculture.jpg', alt: 'Farmland with a tractor, grazing cows and silos', pos: 'center' },
-  { key: 'government', no: '05', icon: 'institution', title: 'Government & Institutions', text: 'Public sector bodies, educational and community institutions.', image: '/solutions/ind-government.jpg', alt: 'Large institutional government building', pos: 'center' }
+  { key: 'residential', no: '01', icon: 'home', title: T("home.industries.001", "Residential"), text: T("home.industries.002", "Homes, apartments and housing societies."), image: T("home.industries.003", "/solutions/ind-residential.jpg"), alt: T("home.industries.004", "Modern home with rooftop solar panels"), pos: 'center' },
+  { key: 'commercial', no: '02', icon: 'building', title: T("home.industries.005", "Commercial"), text: T("home.industries.006", "Offices, malls, hotels, hospitals and schools."), image: T("home.industries.007", "/solutions/ind-commercial.jpg"), alt: T("home.industries.008", "Modern glass commercial office building"), pos: 'center' },
+  { key: 'industrial', no: '03', icon: 'factory', title: T("home.industries.009", "Industrial"), text: T("home.industries.010", "Factories, manufacturing units and food processing plants."), image: T("home.industries.011", "/solutions/ind-industrial.jpg"), alt: T("home.industries.012", "Industrial processing plant with tall towers"), pos: 'center' },
+  { key: 'agriculture', no: '04', icon: 'leaf', title: T("home.industries.013", "Agriculture & Dairy"), text: T("home.industries.014", "Farms, dairies and agro-based businesses."), image: T("home.industries.015", "/solutions/ind-agriculture.jpg"), alt: T("home.industries.016", "Farmland with a tractor, grazing cows and silos"), pos: 'center' },
+  { key: 'government', no: '05', icon: 'institution', title: T("home.industries.017", "Government & Institutions"), text: T("home.industries.018", "Public sector bodies, educational and community institutions."), image: T("home.industries.019", "/solutions/ind-government.jpg"), alt: T("home.industries.020", "Large institutional government building"), pos: 'center' }
 ];
 
 function IndustryCard({ item, index, onSelect }) {
@@ -52,9 +53,9 @@ export default function Industries({ onSelect }) {
     <section id="industries" className="ind" ref={root} aria-labelledby="indTitle">
       <div className="indInner">
         <header className="indHead">
-          <p className="indEyebrow"><span /> INDUSTRIES WE SERVE <span /></p>
-          <h2 id="indTitle">Clean Energy &amp; Water Solutions for <em>Every Sector</em></h2>
-          <p className="indSub">Tailored solutions for different industries to build a cleaner, greener and more sustainable tomorrow.</p>
+          <p className="indEyebrow"><span /> {T("home.industries.021", "INDUSTRIES WE SERVE")} <span /></p>
+          <h2 id="indTitle">{T("home.industries.022", "Clean Energy & Water Solutions for")} <em>{T("home.industries.023", "Every Sector")}</em></h2>
+          <p className="indSub">{T("home.industries.024", "Tailored solutions for different industries to build a cleaner, greener and more sustainable tomorrow.")}</p>
         </header>
         <div className="indGrid">
           {INDUSTRIES.map((it, i) => <IndustryCard key={it.key} item={it} index={i} onSelect={onSelect} />)}

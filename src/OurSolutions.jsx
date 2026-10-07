@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import './ourSolutions.css';
 
+import { T } from './content/T.js';
 /* ---------- small inline icons (stroke icons, no external assets) ---------- */
 const S = { fill: 'none', stroke: 'currentColor', strokeWidth: 1.6, strokeLinecap: 'round', strokeLinejoin: 'round' };
 const Icon = {
@@ -16,39 +17,39 @@ const Icon = {
 
 /* ---------- data ---------- */
 const STRIP = [
-  { label: 'Cleaner Energy', icon: 'sprout' },
-  { label: 'Greener Communities', icon: 'leaves' },
-  { label: 'Smarter Solutions', icon: 'gear' },
-  { label: 'Brighter Tomorrow', icon: 'globe' }
+  { label: T("home.solutions.001", "Cleaner Energy"), icon: 'sprout' },
+  { label: T("home.solutions.002", "Greener Communities"), icon: 'leaves' },
+  { label: T("home.solutions.003", "Smarter Solutions"), icon: 'gear' },
+  { label: T("home.solutions.004", "Brighter Tomorrow"), icon: 'globe' }
 ];
 
 export const SOLUTIONS = [
   {
-    key: 'solar', no: '01', tag: 'SOLAR', icon: 'sun', title: ['Solar', 'Energy'],
-    text: 'Clean and reliable solar power solutions for homes, businesses and industries.',
-    cta: 'Explore Solar', image: '/solutions/solar.jpg', alt: 'Solar farm with photovoltaic panels, mountains and a warm sunset sky'
+    key: 'solar', no: '01', tag: T("home.solutions.005", "SOLAR"), icon: 'sun', title: [T("home.solutions.006", "Solar"), T("home.solutions.007", "Energy")],
+    text: T("home.solutions.008", "Clean and reliable solar power solutions for homes, businesses and industries."),
+    cta: T("home.solutions.009", "Explore Solar"), image: T("home.solutions.010", "/solutions/solar.jpg"), alt: T("home.solutions.011", "Solar farm with photovoltaic panels, mountains and a warm sunset sky")
   },
   {
-    key: 'wind', no: '02', tag: 'WIND', icon: 'wind', title: ['Wind', 'Energy'],
-    text: 'Harnessing natural wind resources to generate efficient and sustainable power.',
-    cta: 'Explore Wind', image: '/solutions/wind.jpg', alt: 'Wind turbines on green hills under a blue sky'
+    key: 'wind', no: '02', tag: T("home.solutions.012", "WIND"), icon: 'wind', title: [T("home.solutions.013", "Wind"), T("home.solutions.014", "Energy")],
+    text: T("home.solutions.015", "Harnessing natural wind resources to generate efficient and sustainable power."),
+    cta: T("home.solutions.016", "Explore Wind"), image: T("home.solutions.017", "/solutions/wind.jpg"), alt: T("home.solutions.018", "Wind turbines on green hills under a blue sky")
   },
   {
-    key: 'biogas', no: '03', tag: 'BIOGAS', icon: 'sprout', title: ['Biogas', 'Solutions'],
-    text: 'Converting organic waste into renewable energy while supporting a circular economy.',
-    cta: 'Explore Biogas', image: '/solutions/biogas.jpg', alt: 'Green biogas digesters on agricultural land'
+    key: 'biogas', no: '03', tag: T("home.solutions.019", "BIOGAS"), icon: 'sprout', title: [T("home.solutions.020", "Biogas"), T("home.solutions.021", "Solutions")],
+    text: T("home.solutions.022", "Converting organic waste into renewable energy while supporting a circular economy."),
+    cta: T("home.solutions.023", "Explore Biogas"), image: T("home.solutions.024", "/solutions/biogas.jpg"), alt: T("home.solutions.025", "Green biogas digesters on agricultural land")
   },
   {
-    key: 'water', no: '04', tag: 'WATER', icon: 'drop', title: ['Water', 'Treatment'],
-    text: 'Smart and sustainable water treatment solutions for cleaner water and healthier communities.',
-    cta: 'Explore Water', image: '/solutions/water.jpg', alt: 'Modern water treatment facility with clean blue water'
+    key: 'water', no: '04', tag: T("home.solutions.026", "WATER"), icon: 'drop', title: [T("home.solutions.027", "Water"), T("home.solutions.028", "Treatment")],
+    text: T("home.solutions.029", "Smart and sustainable water treatment solutions for cleaner water and healthier communities."),
+    cta: T("home.solutions.030", "Explore Water"), image: T("home.solutions.031", "/solutions/water.jpg"), alt: T("home.solutions.032", "Modern water treatment facility with clean blue water")
   }
 ];
 
 function SolutionCard({ item, index, onExplore }) {
   const I = Icon[item.icon];
   return (
-    <article className={`sCard sCard--${item.key}`} style={{ '--i': index }}>
+    <article className={`sCard sCard--${item.key}${item.key === 'wind' ? ' sCard--go' : ''}`} style={{ '--i': index }}{...(item.key === 'wind' ? { onClick: (e) => { if (!e.target.closest('.sBtn')) onExplore && onExplore(item.key); }, role: 'link', tabIndex: 0, onKeyDown: (e) => { if (e.key === 'Enter' && !e.target.closest('.sBtn')) onExplore && onExplore(item.key); } } : {})}>
       <div className="sPhoto">
         <img src={item.image} alt={item.alt} loading="lazy" decoding="async" draggable="false" />
       </div>
@@ -87,9 +88,9 @@ export default function OurSolutions({ onExplore }) {
       <div className="oSolBg" aria-hidden="true" />
       <div className="oSolInner">
         <header className="oSolHead rv" style={{ '--i': 0 }}>
-          <p className="oSolEyebrow"><span /> OUR SOLUTIONS <span /></p>
-          <h2 id="oSolTitle">One Partner. <em>Four Green Solutions.</em></h2>
-          <p className="oSolSub">Complete, end-to-end solutions for a cleaner planet and a more sustainable future.</p>
+          <p className="oSolEyebrow"><span /> {T("home.solutions.033", "OUR SOLUTIONS")} <span /></p>
+          <h2 id="oSolTitle">{T("home.solutions.034", "One Partner.")} <em>{T("home.solutions.035", "Four Green Solutions.")}</em></h2>
+          <p className="oSolSub">{T("home.solutions.036", "Complete, end-to-end solutions for a cleaner planet and a more sustainable future.")}</p>
         </header>
         <ul className="oSolStrip rv" style={{ '--i': 1 }}>
           {STRIP.map((s) => { const I = Icon[s.icon]; return (<li key={s.label}><I /><span>{s.label}</span></li>); })}

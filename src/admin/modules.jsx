@@ -183,12 +183,12 @@ export function HomeManager() {
   const move = (i, d) => { const j = i + d; if (j < 0 || j >= items.length) return; const n = [...items]; [n[i], n[j]] = [n[j], n[i]]; commit(n, 'Home section order updated'); };
   return (
     <div>
-      <PageHead title="Home Page" sub="Every section of the public Home page. Drag to reorder, switch off to hide.">
+      <PageHead title="Home Layout" sub="Show, hide and reorder the sections of the public Home page. To change the words and pictures inside a section, use Page Content.">
         <button className="admBtn ghost" onClick={restoreAll}><Icon n="undo" /> Restore all defaults</button>
         <a className="admBtn" href="/" target="_blank" rel="noreferrer"><Icon n="ext" /> View website</a>
       </PageHead>
       <div className="admList">
-        {items.map((s, i) => (
+        {items.map((s, i) => !s.linked ? null : (
           <div className={'admItem sec' + (dnd.over === i ? ' over' : '') + (s.enabled ? '' : ' off')} key={s.id} {...dnd.bind(i)}>
             <span className="admGrip" title="Drag to reorder"><Icon n="drag" /></span>
             <div className="admNum">{String(i + 1).padStart(2, '0')}</div>
@@ -202,7 +202,7 @@ export function HomeManager() {
             <div className="admActs">
               <button className="admIcoBtn" aria-label="Move up" onClick={() => move(i, -1)}><Icon n="up" size={16} /></button>
               <button className="admIcoBtn" aria-label="Move down" onClick={() => move(i, 1)}><Icon n="down" size={16} /></button>
-              <button className="admBtn sm" onClick={() => setEdit(s.id === 'hero' ? 'hero' : s)}><Icon n="edit" size={15} /> Edit</button>
+              <button className="admBtn sm" onClick={() => (s.id === 'hero' ? setEdit('hero') : nav('/admin/content'))}><Icon n="edit" size={15} /> {s.id === 'hero' ? 'Edit hero' : 'Edit text & images'}</button>
               <button className="admIcoBtn" title="Reset to default" aria-label="Reset to default" onClick={() => restoreOne(s)}><Icon n="undo" size={16} /></button>
               <button className="admIcoBtn danger" title="Delete" aria-label="Delete" onClick={() => remove(s)}><Icon n="trash" size={16} /></button>
             </div>

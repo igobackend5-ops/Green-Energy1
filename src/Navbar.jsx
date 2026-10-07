@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 
+import { T } from './content/T.js';
+import SubsidyMenu from './NavbarSubsidyMenu.jsx';
 const NAV_ITEMS = [
-  { label: 'Home', path: '/' },
-  { label: 'About Us', path: '/about' },
-  { label: 'Services', path: '/services' },
-  { label: 'Projects', path: '/projects' },
-  { label: 'Leadership', path: '/leadership' },
-  { label: 'Blogs', path: '/blogs' },
-  { label: 'FAQ', path: '/faq' },
-  { label: 'Careers', path: '/careers' },
-  { label: 'Contact Us', path: '/contact' },
+  { label: T("nav.001", "Home"), path: '/' },
+  { label: T("nav.002", "About Us"), path: '/about' },
+  { label: T("nav.003", "Services"), path: '/services' },
+  { label: T("nav.004", "Projects"), path: '/projects' },
+  { label: T("nav.010", "Subsidy"), path: '/subsidy' },
+  { label: T("nav.005", "Leadership"), path: '/leadership' },
+  { label: T("nav.006", "Blogs"), path: '/blogs' },
+  { label: T("nav.007", "FAQ"), path: '/faq' },
+  { label: T("nav.008", "Careers"), path: '/careers' },
+  { label: T("nav.009", "Contact Us"), path: '/contact' },
 ];
 
 export default function Navbar({ onQuoteClick }) {
@@ -51,12 +54,13 @@ export default function Navbar({ onQuoteClick }) {
   return (
     <header className={`nav ${scrolled ? 'scrolled' : ''}`}>
       <a className="logo logoImg" href="/" aria-label="Green Energy home" onClick={(e) => handleNavClick(e, '/')}>
-        <img src="/logo.png" alt="Green Energy" width="858" height="719" />
+        <img src="/logo.png" alt={T("nav.010", "Green Energy")} width="858" height="719" />
       </a>
 
       <nav className={`desktop-nav ${mobileOpen ? 'mobile-open' : ''}`}>
         {NAV_ITEMS.map((item) => {
           const isActive = currentPath === item.path || (item.path !== '/' && currentPath.startsWith(item.path + '/')) || (currentPath === '/' && item.path === '/' && !window.location.hash);
+          if (item.path === '/subsidy') return <SubsidyMenu key={item.label} label={item.label} active={isActive} onGo={(p) => handleNavClick({ preventDefault() {} }, p)} />;
           return (
             <a
               key={item.label}
@@ -70,14 +74,14 @@ export default function Navbar({ onQuoteClick }) {
         })}
         {mobileOpen && (
           <button className="cta small mobile-cta" onClick={() => { setMobileOpen(false); onQuoteClick(); }}>
-            Get a Smart Quote <b>→</b>
+            {T("nav.011", "Get a Smart Quote")} <b>→</b>
           </button>
         )}
       </nav>
 
       <div className="nav-right">
         <button className="cta small desktop-cta" onClick={onQuoteClick}>
-          Get a Smart Quote <b>→</b>
+          {T("nav.012", "Get a Smart Quote")} <b>→</b>
         </button>
         <button className="hamburger" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Menu">
           <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" strokeWidth="2.5" fill="none">

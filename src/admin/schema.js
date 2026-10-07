@@ -2,20 +2,19 @@ const T = (k, label, extra = {}) => ({ k, label, t: 'text', ...extra });
 const X = (k, label, t, extra = {}) => ({ k, label, t, ...extra });
 const STATUS = (opts = ['published', 'draft']) => X('status', 'Status', 'select', { opts: opts.map((o) => [o, o[0].toUpperCase() + o.slice(1)]) });
 
-export const NAV = [
-  ['dashboard', '/admin', 'Dashboard', 'dash'], ['home', '/admin/home', 'Home', 'home'], ['about', '/admin/about', 'About Us', 'info'], ['services', '/admin/services', 'Services', 'tool'],
-  ['projects', '/admin/projects', 'Projects', 'folder'], ['testimonials', '/admin/testimonials', 'Clients / Testimonials', 'quote'], ['partners', '/admin/partners', 'Partners', 'link'],
-  ['certificates', '/admin/certificates', 'Certificates', 'cert'], ['blogs', '/admin/blogs', 'Blogs', 'doc'], ['careers', '/admin/careers', 'Careers', 'brief'],
-  ['contact', '/admin/contact', 'Contact Us', 'mail'], ['faq', '/admin/faq', 'FAQ', 'help'], ['settings', '/admin/settings', 'Website Settings', 'gear']
-].map(([id, path, label, icon]) => ({ id, path, label, icon }));
+export const NAV_GROUPS = [
+  ['Overview', [['dashboard', '/admin', 'Dashboard', 'dash'], ['enquiries', '/admin/enquiries', 'Enquiries', 'inbox']]],
+  ['Website pages', [['content', '/admin/content', 'Page Content', 'layers'], ['home', '/admin/home', 'Home Layout', 'home']]],
+  ['Manage lists', [['projects', '/admin/projects', 'Projects', 'folder'], ['blogs', '/admin/blogs', 'Blogs', 'doc'], ['testimonials', '/admin/testimonials', 'Testimonials', 'quote'], ['partners', '/admin/partners', 'Partners', 'link'], ['certificates', '/admin/certificates', 'Certificates', 'cert'], ['careers', '/admin/careers', 'Job Openings', 'brief'], ['faq', '/admin/faq', 'FAQs', 'help'], ['leadership', '/admin/leadership', 'Leadership Team', 'users']]],
+  ['Site', [['contact', '/admin/contact', 'Contact Details', 'phone'], ['media', '/admin/media', 'Media Library', 'img'], ['users', '/admin/users', 'Users & Roles', 'lock'], ['settings', '/admin/settings', 'Settings', 'gear']]]
+].map(([g, items]) => [g, items.map(([id, path, label, icon]) => ({ id, path, label, icon }))]);
+export const NAV = NAV_GROUPS.flatMap(([, i]) => i);
 
 /* Collection managers */
 export const LISTS = {
   homeSectionsEdit: [T('heading', 'Section heading'), T('subheading', 'Subheading'), X('description', 'Description', 'textarea'), X('image', 'Section image', 'image', { rec: '1600 × 900 px' }), T('ctaText', 'CTA button text'), X('ctaLink', 'CTA button link', 'url')],
 
-  about: { coll: 'about', singular: 'Section', title: 'title', sub: ['heading'], img: 'image', fixed: false, fields: [T('title', 'Section name', { req: true }), T('heading', 'Heading'), X('description', 'Description', 'rich'), X('image', 'Image', 'image', { rec: '1200 × 800 px' }), X('gallery', 'Additional images', 'gallery', { rec: '1200 × 800 px' }), T('ctaText', 'CTA text'), X('ctaLink', 'CTA link', 'url'), STATUS()] },
 
-  services: { coll: 'services', singular: 'Service', title: 'title', sub: ['shortDesc'], img: 'heroImage', fields: [T('title', 'Service title', { req: true }), T('slug', 'URL slug', { help: 'Used in the page address, e.g. solar' }), X('shortDesc', 'Short description', 'textarea', { rows: 3 }), X('detailDesc', 'Detailed description', 'rich'), X('heroImage', 'Hero image', 'image', { rec: '1600 × 900 px' }), X('gallery', 'Service gallery', 'gallery', { rec: '1200 × 800 px' }), X('features', 'Features', 'lines'), X('benefits', 'Benefits', 'lines'), X('applications', 'Applications', 'lines'), X('industries', 'Industries served', 'lines'), T('ctaText', 'CTA text'), X('ctaLink', 'CTA link', 'url'), X('faq', 'Service FAQ', 'lines', { help: 'One per line:  Question | Answer' }), STATUS()] },
 
   projects: { coll: 'projects', singular: 'Project', title: 'title', sub: ['category', 'location'], img: 'image', fields: [T('title', 'Project title', { req: true }), X('category', 'Category', 'select', { opts: [['solar', 'Solar'], ['wind', 'Wind'], ['biogas', 'Biogas'], ['water', 'Water Treatment'], ['other', 'Other Renewable Energy']] }), T('location', 'Location'), T('client', 'Client name'), X('description', 'Project description', 'textarea'), T('capacity', 'Project capacity', { ph: 'e.g. 500 kW' }), X('projectStatus', 'Project status', 'select', { opts: ['Upcoming', 'Ongoing', 'Completed'] }), X('completion', 'Completion date', 'date'), X('image', 'Project image', 'image', { rec: '1200 × 800 px' }), X('gallery', 'Project gallery', 'gallery', { rec: '1200 × 800 px' }), X('highlights', 'Key highlights', 'lines'), X('technologies', 'Technologies used', 'lines'), T('ctaText', 'CTA text'), X('ctaLink', 'CTA link', 'url'), STATUS()] },
 

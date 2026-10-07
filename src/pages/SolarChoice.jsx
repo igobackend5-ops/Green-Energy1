@@ -3,6 +3,7 @@ import { Ic, go } from './common.jsx';
 import { SOLAR_PRODUCTS, SOLAR_PROJECTS, countItems } from './solarData.js';
 import './solarChoice.css';
 
+import { T } from '../content/T.js';
 /* open the Solar chooser from anywhere: openSolarChoice() or openSolarChoice('products' | 'projects') */
 export const openSolarChoice = (view) => dispatchEvent(new CustomEvent('igo:solar', { detail: { view } }));
 
@@ -48,31 +49,31 @@ export default function SolarChoice({ onQuote }) {
     <div className={'sc' + (shown ? ' on' : '')} onClick={(e) => e.target === e.currentTarget && close()}>
       <div className="scBox" role="dialog" aria-modal="true" aria-label={title}>
         <header className="scHead">
-          {view !== 'choose' && <button type="button" ref={back} className="scBack" onClick={() => setView('choose')} aria-label="Back"><Ic n="arrow" size={18} style={{ transform: 'rotate(180deg)' }} /> Back</button>}
-          <div><p className="scEye">SOLAR VERTICAL</p><h2>{title}</h2></div>
+          {view !== 'choose' && <button type="button" ref={back} className="scBack" onClick={() => setView('choose')} aria-label="Back"><Ic n="arrow" size={18} style={{ transform: 'rotate(180deg)' }} /> {T("solarchoice.001", "Back")}</button>}
+          <div><p className="scEye">{T("solarchoice.002", "SOLAR VERTICAL")}</p><h2>{title}</h2></div>
           <button type="button" className="scX" onClick={close} aria-label="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M18 6L6 18M6 6l12 12" /></svg></button>
         </header>
         <div className="scBody">
           {view === 'choose' && (
             <>
-              <p className="scLead">What would you like to explore?</p>
+              <p className="scLead">{T("solarchoice.003", "What would you like to explore?")}</p>
               <div className="scPick">
                 <button type="button" className="scOpt" onClick={() => setView('products')}>
-                  <span className="scOi"><Ic n="tool" size={30} /></span><b>Products</b>
-                  <small>{SOLAR_PRODUCTS.length} categories · {countItems(SOLAR_PRODUCTS)} products</small>
-                  <span className="scGo">View products <Ic n="arrow" size={16} /></span>
+                  <span className="scOi"><Ic n="tool" size={30} /></span><b>{T("solarchoice.004", "Products")}</b>
+                  <small>{SOLAR_PRODUCTS.length} {T("solarchoice.005", "categories ·")} {countItems(SOLAR_PRODUCTS)} {T("solarchoice.006", "products")}</small>
+                  <span className="scGo">{T("solarchoice.007", "View products")} <Ic n="arrow" size={16} /></span>
                 </button>
                 <button type="button" className="scOpt" onClick={() => setView('projects')}>
-                  <span className="scOi"><Ic n="sun" size={30} /></span><b>Projects</b>
-                  <small>{countItems(SOLAR_PROJECTS)} project solutions offered</small>
-                  <span className="scGo">View projects <Ic n="arrow" size={16} /></span>
+                  <span className="scOi"><Ic n="sun" size={30} /></span><b>{T("solarchoice.008", "Projects")}</b>
+                  <small>{countItems(SOLAR_PROJECTS)} {T("solarchoice.009", "project solutions offered")}</small>
+                  <span className="scGo">{T("solarchoice.010", "View projects")} <Ic n="arrow" size={16} /></span>
                 </button>
               </div>
-              <button type="button" className="scFull" onClick={() => { close(); go('/services/solar'); }}>Open the full Solar page <Ic n="arrow" size={16} /></button>
+              <button type="button" className="scFull" onClick={() => { close(); go('/services/solar'); }}>{T("solarchoice.011", "Open the full Solar page")} <Ic n="arrow" size={16} /></button>
             </>
           )}
-          {view === 'products' && <SolarProductsList cta="Request a product quote" onCta={quote} />}
-          {view === 'projects' && <SolarProjectsList cta="Discuss a solar project" onCta={quote} />}
+          {view === 'products' && <SolarProductsList cta={T("solarchoice.012", "Request a product quote")} onCta={quote} />}
+          {view === 'projects' && <SolarProjectsList cta={T("solarchoice.013", "Discuss a solar project")} onCta={quote} />}
         </div>
       </div>
     </div>

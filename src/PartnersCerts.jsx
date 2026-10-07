@@ -2,6 +2,7 @@ import React from 'react';
 import './partnersCerts.css';
 import { useCms } from './admin/store.js';
 
+import { T } from './content/T.js';
 /* Partner wordmarks are live text. To use an official logo file instead,
    drop it in /public/partners and add  src: '/partners/<file>'  to the entry. */
 const PARTNERS = [
@@ -56,14 +57,14 @@ export default function PartnersCerts({ showCerts = true }) {
     <section className="pc" id="partners" aria-label="Partners and certifications">
       <div className="pcP">
         <div className="pcBgP" aria-hidden="true">
-          <img className="pcMap" src="/partners/world-map.png" alt="" loading="lazy" />
-          <div className="pcScene"><img src="/partners/energy-landscape.jpg" alt="" loading="lazy" /></div>
+          <img className="pcMap" src={T("home.partners.001", "/partners/world-map.png")} alt="" loading="lazy" />
+          <div className="pcScene"><img src={T("home.partners.002", "/partners/energy-landscape.jpg")} alt="" loading="lazy" /></div>
         </div>
         <div className="pcWrap">
           <header className="pcHead">
-            <p className="pcEye"><span />OUR PARTNERS</p>
-            <h2><span className="d">Trusted Partners</span><span className="g">for a Cleaner Tomorrow</span></h2>
-            <p className="pcLead">We collaborate with global technology leaders to deliver{' '}<br />high-quality, reliable, and sustainable energy solutions.</p>
+            <p className="pcEye"><span />{T("home.partners.003", "OUR PARTNERS")}</p>
+            <h2><span className="d">{T("home.partners.004", "Trusted Partners")}</span><span className="g">{T("home.partners.005", "for a Cleaner Tomorrow")}</span></h2>
+            <p className="pcLead">{T("home.partners.006", "We collaborate with global technology leaders to deliver")}{' '}<br />{T("home.partners.007", "high-quality, reliable, and sustainable energy solutions.")}</p>
           </header>
           <ul className="pcLogos">
             {LIST.map((p) => (
@@ -77,9 +78,9 @@ export default function PartnersCerts({ showCerts = true }) {
       {showCerts && <div className="pcC">
         <div className="pcWrap pcCGrid">
           <header className="pcHead pcHeadC">
-            <p className="pcEye"><span />OUR CERTIFICATIONS</p>
-            <h2><span className="d">Certified for</span><span className="g">Quality &amp; Reliability</span></h2>
-            <p className="pcLead">Our solutions and processes comply with international{' '}<br />standards for quality, safety, and environmental responsibility.</p>
+            <p className="pcEye"><span />{T("home.partners.008", "OUR CERTIFICATIONS")}</p>
+            <h2><span className="d">{T("home.partners.009", "Certified for")}</span><span className="g">{T("home.partners.010", "Quality & Reliability")}</span></h2>
+            <p className="pcLead">{T("home.partners.011", "Our solutions and processes comply with international")}{' '}<br />{T("home.partners.012", "standards for quality, safety, and environmental responsibility.")}</p>
           </header>
           <div className="pcStage">
             <Bush /><Bush flip />

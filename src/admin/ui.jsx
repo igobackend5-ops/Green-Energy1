@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState, createContext, useContext } from 'react';
+import { uploadFile } from './api.js';
 
 /* ---------- toast + confirm context ---------- */
 const Ctx = createContext(null);
@@ -40,7 +41,7 @@ const IC = {
   logout: 'M9 4H5v16h4M16 8l4 4-4 4M20 12H9', menu: 'M4 6h16M4 12h16M4 18h16', x: 'M6 6l12 12M18 6L6 18', search: 'M11 4a7 7 0 100 14 7 7 0 000-14zM21 21l-5-5', bell: 'M6 16V11a6 6 0 0112 0v5l2 2H4zM10 20a2 2 0 004 0',
   plus: 'M12 5v14M5 12h14', edit: 'M4 20h4L19 9l-4-4L4 16zM13 7l4 4', trash: 'M5 7h14M10 7V4h4v3M7 7l1 13h8l1-13', copy: 'M9 9h11v11H9zM5 15V4h11', eye: 'M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 9a3 3 0 100 6 3 3 0 000-6z',
   drag: 'M9 6h.01M9 12h.01M9 18h.01M15 6h.01M15 12h.01M15 18h.01', check: 'M5 12.500l4.500 4.500L19 7.500', alert: 'M12 8v5M12 17h.01M12 3l10 18H2z', up: 'M6 14l6-6 6 6', down: 'M6 10l6 6 6-6', upload: 'M12 16V4M7 9l5-5 5 5M4 20h16',
-  undo: 'M9 14L4 9l5-5M4 9h10a6 6 0 010 12h-3', ext: 'M14 4h6v6M20 4l-9 9M18 14v6H4V6h6', globe: 'M12 3a9 9 0 100 18 9 9 0 000-18zM3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18', lock: 'M6 11h12v9H6zM8 11V8a4 4 0 018 0v3'
+  undo: 'M9 14L4 9l5-5M4 9h10a6 6 0 010 12h-3', ext: 'M14 4h6v6M20 4l-9 9M18 14v6H4V6h6', globe: 'M12 3a9 9 0 100 18 9 9 0 000-18zM3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18', lock: 'M6 11h12v9H6zM8 11V8a4 4 0 018 0v3', users: 'M9 11a3 3 0 100-6 3 3 0 000 6zM3 20c0-3 3-5 6-5s6 2 6 5M17 11a2.500 2.500 0 100-5M18 15c2 .5 3 2 3 5', inbox: 'M3 13l3-8h12l3 8v6H3zM3 13h5l1 3h6l1-3h5', img: 'M4 5h16v14H4zM4 16l5-5 4 4 3-3 4 4M9 9h.01', phone: 'M5 4h4l2 5-2.500 1.500a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z', list: 'M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01', layers: 'M12 3l9 5-9 5-9-5zM3 13l9 5 9-5'
 };
 export const Icon = ({ n, size = 18 }) => (<svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={IC[n] || IC.doc} /></svg>);
 
@@ -51,18 +52,21 @@ export const Toggle = ({ on, onChange, label }) => (
 );
 
 /* ---------- image / file field ---------- */
-const OK_IMG = ['image/jpeg', 'image/png', 'image/webp'];
-const MAX = 1.5 * 1024 * 1024;
+const OK_IMG = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+const MAX = 8 * 1024 * 1024;
 export function ImageField({ value, onChange, defaultValue = '', rec = '', accept = 'image', label }) {
   const { notify } = useAdmin();
   const ref = useRef(null);
   const types = accept === 'file' ? [...OK_IMG, 'application/pdf'] : OK_IMG;
-  const pick = (e) => {
+  const [busy, setBusy] = useState(false);
+  const pick = async (e) => {
     const f = e.target.files?.[0]; e.target.value = '';
     if (!f) return;
-    if (!types.includes(f.type)) { notify('Unsupported file. Use ' + (accept === 'file' ? 'JPG, PNG, WEBP or PDF.' : 'JPG, PNG or WEBP.'), 'err'); return; }
-    if (f.size > MAX) { notify('File is too large (' + (f.size / 1048576).toFixed(1) + ' MB). Maximum is 1.5 MB.', 'err'); return; }
-    const r = new FileReader(); r.onload = () => onChange(String(r.result)); r.onerror = () => notify('Could not read the file.', 'err'); r.readAsDataURL(f);
+    if (!types.includes(f.type)) { notify('Unsupported file. Use ' + (accept === 'file' ? 'JPG, PNG, WEBP, GIF or PDF.' : 'JPG, PNG, WEBP or GIF.'), 'err'); return; }
+    if (f.size > MAX) { notify('File is too large (' + (f.size / 1048576).toFixed(1) + ' MB). Maximum is 8 MB.', 'err'); return; }
+    setBusy(true);
+    try { onChange(await uploadFile(f)); notify('File uploaded.'); } catch (x) { notify('Upload failed: ' + x.message, 'err'); }
+    setBusy(false);
   };
   const isPdf = /^data:application\/pdf/.test(value || '') || /\.pdf$/i.test(value || '');
   return (
@@ -72,12 +76,12 @@ export function ImageField({ value, onChange, defaultValue = '', rec = '', accep
       </div>
       <div className="admImgSide">
         <div className="admRow wrap">
-          <button type="button" className="admBtn" onClick={() => ref.current.click()}><Icon n="upload" /> {value ? 'Replace' : 'Upload'}</button>
+          <button type="button" className="admBtn" onClick={() => ref.current.click()}><Icon n="upload" /> {busy ? 'Uploading…' : value ? 'Replace' : 'Upload'}</button>
           {value && <button type="button" className="admBtn ghost" onClick={() => onChange('')}><Icon n="trash" /> Remove</button>}
           {value && <a className="admBtn ghost" href={value} target="_blank" rel="noreferrer"><Icon n="eye" /> Preview</a>}
           <button type="button" className="admBtn ghost" onClick={() => onChange(defaultValue)} disabled={value === defaultValue}><Icon n="undo" /> Reset</button>
         </div>
-        <small>{rec && 'Recommended: ' + rec + '. '}JPG, PNG or WEBP{accept === 'file' ? ' or PDF' : ''}, max 1.5 MB. Shown at its original aspect ratio (no cropping).</small>
+        <small>{rec && 'Recommended: ' + rec + '. '}JPG, PNG or WEBP{accept === 'file' ? ' or PDF' : ''}, max 8 MB. Shown at its original aspect ratio (no cropping).</small>
         <input ref={ref} type="file" hidden accept={types.join(',')} onChange={pick} />
       </div>
     </div>
@@ -87,20 +91,20 @@ export function ImageField({ value, onChange, defaultValue = '', rec = '', accep
 export function GalleryField({ value = [], onChange, rec }) {
   const { notify } = useAdmin();
   const ref = useRef(null);
-  const add = (e) => {
+  const add = async (e) => {
     const files = [...(e.target.files || [])]; e.target.value = '';
-    files.forEach((f) => {
-      if (!OK_IMG.includes(f.type)) { notify(f.name + ': unsupported type.', 'err'); return; }
-      if (f.size > MAX) { notify(f.name + ': larger than 1.5 MB.', 'err'); return; }
-      const r = new FileReader(); r.onload = () => onChange((cur) => [...cur, String(r.result)]); r.readAsDataURL(f);
-    });
+    for (const f of files) {
+      if (!OK_IMG.includes(f.type)) { notify(f.name + ': unsupported type.', 'err'); continue; }
+      if (f.size > MAX) { notify(f.name + ': larger than 8 MB.', 'err'); continue; }
+      try { const u = await uploadFile(f); onChange((cur) => [...cur, u]); } catch (x) { notify(f.name + ': ' + x.message, 'err'); }
+    }
   };
   return (
     <div className="admGal">
       {value.map((u, i) => (<div className="admGalItem" key={i}><img src={u} alt="" /><button type="button" aria-label="Remove image" onClick={() => onChange(value.filter((_, j) => j !== i))}><Icon n="x" size={14} /></button></div>))}
       <button type="button" className="admGalAdd" onClick={() => ref.current.click()}><Icon n="plus" size={22} /><span>Add images</span></button>
       <input ref={ref} type="file" multiple hidden accept={OK_IMG.join(',')} onChange={add} />
-      {rec && <small className="admGalHint">Recommended: {rec}. JPG/PNG/WEBP, max 1.5 MB each.</small>}
+      {rec && <small className="admGalHint">Recommended: {rec}. JPG/PNG/WEBP, max 8 MB each.</small>}
     </div>
   );
 }

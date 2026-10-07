@@ -1,9 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import './fourElements.css';
 
+import { T } from './content/T.js';
 export const ELEMENTS_IMAGE = {
-  src: '/solutions/four-elements.jpg', width: 1983, height: 793,
-  alt: 'The Four Elements: Sun – Innovation, Wind – Agility, Earth – Responsibility, Water – Purity, around a glowing Earth. Guided by nature. Driven by purpose.'
+  src: T("home.elements.001", "/solutions/four-elements.jpg"), width: 1983, height: 793,
+  alt: T("home.elements.002", "The Four Elements: Sun – Innovation, Wind – Agility, Earth – Responsibility, Water – Purity, around a glowing Earth. Guided by nature. Driven by purpose.")
 };
 
 export default function FourElements({ id = 'about', image = ELEMENTS_IMAGE }) {

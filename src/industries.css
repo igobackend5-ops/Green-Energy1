@@ -82,3 +82,10 @@
 .iPhoto img { object-position: center 45%; }
 .iIcon { top: calc(100cqw / var(--ar)); }
 .iBody { padding-top: 42px; }
+
+/* ===== tighter cards: content-sized height, less empty space, less photo zoom ===== */
+.iCard { height: auto; --ar: 1.72; }
+@media (min-width: 1200px) and (max-width: 1499px) { .iCard { height: auto; --ar: 1.6; } }
+.iBody { padding: 40px 22px 18px; }
+.iFoot { gap: 8px; }
+.iCard:nth-child(-n+2) .iPhoto img { object-position: center 42% !important; }

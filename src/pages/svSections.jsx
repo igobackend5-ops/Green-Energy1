@@ -1,6 +1,7 @@
 import React from 'react';
 import { Ic, go } from './common.jsx';
 
+import { T } from '../content/T.js';
 const PH = { solar: '/solutions/solar.jpg', wind: '/solutions/wind.jpg', biogas: '/solutions/biogas.jpg', water: '/solutions/water.jpg' };
 
 /* small stroke icons for the matrix rows / feature strips */
@@ -47,28 +48,28 @@ const E2E = ({ n, size = 34 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{E2E_IC[n]}</svg>
 );
 const STEPS = [
-  ['Consultation', 'We understand your energy needs, goals and site requirements to recommend the best solution.', 'chat'],
-  ['Design & Planning', 'We create detailed designs and customized plans to maximize efficiency and long-term value.', 'doc'],
-  ['Engineering', 'Our experts handle technical engineering and system integration for optimal performance.', 'gear'],
-  ['Procurement', 'We source high-quality equipment and materials from trusted global suppliers.', 'cart'],
-  ['Installation', 'Our skilled team ensures safe, efficient and on-time installation at your site.', 'worker'],
-  ['Commissioning', 'We test, validate and fine-tune the system for peak performance.', 'bolt'],
-  ['Monitoring & Maintenance', 'We provide real-time monitoring and proactive maintenance for uninterrupted green energy.', 'chart'],
-  ['Customization', 'We tailor solutions based on your specific requirements and future growth plans.', 'sliders'],
-  ['After-sales Support', 'Reliable support and quick assistance whenever you need us.', 'headset'],
+  [T("services.sections.001", "Consultation"), T("services.sections.002", "We understand your energy needs, goals and site requirements to recommend the best solution."), 'chat'],
+  [T("services.sections.003", "Design & Planning"), T("services.sections.004", "We create detailed designs and customized plans to maximize efficiency and long-term value."), 'doc'],
+  [T("services.sections.005", "Engineering"), T("services.sections.006", "Our experts handle technical engineering and system integration for optimal performance."), 'gear'],
+  [T("services.sections.007", "Procurement"), T("services.sections.008", "We source high-quality equipment and materials from trusted global suppliers."), 'cart'],
+  [T("services.sections.009", "Installation"), T("services.sections.010", "Our skilled team ensures safe, efficient and on-time installation at your site."), 'worker'],
+  [T("services.sections.011", "Commissioning"), T("services.sections.012", "We test, validate and fine-tune the system for peak performance."), 'bolt'],
+  [T("services.sections.013", "Monitoring & Maintenance"), T("services.sections.014", "We provide real-time monitoring and proactive maintenance for uninterrupted green energy."), 'chart'],
+  [T("services.sections.015", "Customization"), T("services.sections.016", "We tailor solutions based on your specific requirements and future growth plans."), 'sliders'],
+  [T("services.sections.017", "After-sales Support"), T("services.sections.018", "Reliable support and quick assistance whenever you need us."), 'headset'],
 ];
 const E2E_GREEN = new Set([1, 4, 5, 8, 9]);
-const E2E_FOOT = [['leaf', 'Cleaner Energy'], ['globe', 'Sustainable Communities'], ['sun', 'A Greener Future']];
+const E2E_FOOT = [['leaf', T("services.sections.019", "Cleaner Energy")], ['globe', T("services.sections.020", "Sustainable Communities")], ['sun', T("services.sections.021", "A Greener Future")]];
 
 export function CapabilityMatrix() {
   return (
     <section className="e2e" aria-labelledby="e2eTitle">
-      <div className="e2eArt" aria-hidden="true"><img src="/services-scene.jpg" alt="" loading="lazy" /><span className="e2eScript">Clean Energy<br />Greener Tomorrow</span></div>
+      <div className="e2eArt" aria-hidden="true"><img src={T("services.sections.022", "/services-scene.jpg")} alt="" loading="lazy" /><span className="e2eScript">{T("services.sections.023", "Clean Energy")}<br />{T("services.sections.024", "Greener Tomorrow")}</span></div>
       <div className="e2eIn">
         <header className="e2eHead">
-          <p className="e2eEye"><span />YOUR SUSTAINABLE FUTURE, OUR COMMITMENT</p>
-          <h2 id="e2eTitle">End-to-End <em>Solutions</em></h2>
-          <p className="e2eLead">From concept to long-term support, we provide complete renewable energy solutions under one roof — designed for a cleaner, greener and more sustainable tomorrow.</p>
+          <p className="e2eEye"><span />{T("services.sections.025", "YOUR SUSTAINABLE FUTURE, OUR COMMITMENT")}</p>
+          <h2 id="e2eTitle">{T("services.sections.026", "End-to-End")} <em>{T("services.sections.027", "Solutions")}</em></h2>
+          <p className="e2eLead">{T("services.sections.028", "From concept to long-term support, we provide complete renewable energy solutions under one roof — designed for a cleaner, greener and more sustainable tomorrow.")}</p>
         </header>
         <ol className="e2eList">
           {STEPS.map(([t, d, ic], i) => {
@@ -92,12 +93,12 @@ export function CapabilityMatrix() {
 }
 
 /* ============================ HOW THEY WORK TOGETHER ============================ */
-const FEATS = [['leaf', 'Integrated Planning'], ['gear', 'Optimized Efficiency'], ['chart', 'Lower Lifecycle Cost'], ['infinity', 'Long-Term Sustainability']];
+const FEATS = [['leaf', T("services.sections.029", "Integrated Planning")], ['gear', T("services.sections.030", "Optimized Efficiency")], ['chart', T("services.sections.031", "Lower Lifecycle Cost")], ['infinity', T("services.sections.032", "Long-Term Sustainability")]];
 const NODES = [
-  { k: 'solar', ic: 'sun', t: 'Solar', s: 'Clean Power for Today', d: 'Utilize abundant solar energy to generate clean and reliable electricity for your operations.' },
-  { k: 'water', ic: 'drop', t: 'Water Treatment', s: 'Cleaner Water for Healthier Communities', d: 'Advanced treatment solutions for safe, reusable water and a cleaner environment.' },
-  { k: 'wind', ic: 'wind', t: 'Wind', s: 'Renewable Power for Tomorrow', d: 'Harness the power of wind to deliver scalable and sustainable energy solutions.' },
-  { k: 'biogas', ic: 'leaf', t: 'Biogas', s: 'Waste to Clean Energy', d: 'Convert organic waste into renewable biogas for a circular and greener economy.' },
+  { k: 'solar', ic: 'sun', t: T("services.sections.033", "Solar"), s: 'Clean Power for Today', d: T("services.sections.034", "Utilize abundant solar energy to generate clean and reliable electricity for your operations.") },
+  { k: 'water', ic: 'drop', t: T("services.sections.035", "Water Treatment"), s: 'Cleaner Water for Healthier Communities', d: T("services.sections.036", "Advanced treatment solutions for safe, reusable water and a cleaner environment.") },
+  { k: 'wind', ic: 'wind', t: T("services.sections.037", "Wind"), s: 'Renewable Power for Tomorrow', d: T("services.sections.038", "Harness the power of wind to deliver scalable and sustainable energy solutions.") },
+  { k: 'biogas', ic: 'leaf', t: T("services.sections.039", "Biogas"), s: 'Waste to Clean Energy', d: T("services.sections.040", "Convert organic waste into renewable biogas for a circular and greener economy.") },
 ];
 
 export function HowTogether({ onQuote }) {
@@ -105,15 +106,15 @@ export function HowTogether({ onQuote }) {
     <section className="ht" aria-labelledby="htTitle">
       <div className="htIn">
         <div className="htCopy">
-          <p className="htEye"><span />HOW THEY WORK TOGETHER</p>
-          <h2 id="htTitle">One Partner.<br /><span className="g1">Four Ways</span> to <span className="g2">Go Green.</span></h2>
-          <p className="htLead">Energy and water needs rarely come alone. By integrating solar, wind, biogas and water treatment, we design complete, future-ready solutions under one roof — so you get better efficiency, lower costs and a greener tomorrow.</p>
+          <p className="htEye"><span />{T("services.sections.041", "HOW THEY WORK TOGETHER")}</p>
+          <h2 id="htTitle">{T("services.sections.042", "One Partner.")}<br /><span className="g1">{T("services.sections.043", "Four Ways")}</span> {T("services.sections.044", "to")} <span className="g2">{T("services.sections.045", "Go Green.")}</span></h2>
+          <p className="htLead">{T("services.sections.046", "Energy and water needs rarely come alone. By integrating solar, wind, biogas and water treatment, we design complete, future-ready solutions under one roof — so you get better efficiency, lower costs and a greener tomorrow.")}</p>
           <ul className="htFeats">
             {FEATS.map(([ic, t]) => <li key={t}><span className="htFi"><Gi n={ic} size={24} /></span><b>{t}</b></li>)}
           </ul>
           <div className="htBtns">
-            <button type="button" className="pgBtn" onClick={onQuote}>Get a Smart Quote <Ic n="arrow" size={18} /></button>
-            <a className="htGhost" href="#htViz" onClick={(e) => { e.preventDefault(); document.getElementById('htViz')?.scrollIntoView({ behavior: 'smooth', block: 'center' }); }}><span className="htPlay"><Gi n="play" size={14} fill /></span>See How It Works</a>
+            <button type="button" className="pgBtn" onClick={onQuote}>{T("services.sections.047", "Get a Smart Quote")} <Ic n="arrow" size={18} /></button>
+            <a className="htGhost" href="#htViz" onClick={(e) => { e.preventDefault(); document.getElementById('htViz')?.scrollIntoView({ behavior: 'smooth', block: 'center' }); }}><span className="htPlay"><Gi n="play" size={14} fill /></span>{T("services.sections.048", "See How It Works")}</a>
           </div>
         </div>
 
@@ -123,7 +124,7 @@ export function HowTogether({ onQuote }) {
               <ellipse cx="53" cy="33" rx="31" ry="30" fill="none" stroke="rgba(63,159,69,.38)" strokeWidth=".4" />
               <ellipse cx="53" cy="33" rx="25" ry="24" fill="none" stroke="rgba(63,159,69,.6)" strokeWidth=".3" strokeDasharray="1.4 1.1" />
             </svg>
-            <div className="htCore"><Gi n="leaf" size={30} /><b>Integrated <br />Sustainable <br />Solutions</b><i /></div>
+            <div className="htCore"><Gi n="leaf" size={30} /><b>{T("services.sections.049", "Integrated")} <br />{T("services.sections.050", "Sustainable")} <br />{T("services.sections.051", "Solutions")}</b><i /></div>
             {NODES.map((n) => (
               <div className={'htNode n-' + n.k} key={n.k}>
                 <div className="htCirc">
@@ -144,9 +145,9 @@ export function HowTogether({ onQuote }) {
 
 /* ============================ SMART TOOLS & ASSISTANCE ============================ */
 const TOOLS = [
-  { k: 'solar', ic: 'sun', img: '/solutions/solar.jpg', t: 'Solar Savings Calculator', soon: true, d: 'Estimate what solar could save you based on your location, usage and system size.', label: 'Go to Solar', style: 'fill' },
-  { k: 'water', ic: 'drop', img: '/solutions/water.jpg', t: 'Water Quality / RO Advisor', soon: true, d: 'Match a treatment approach to your water quality and application needs.', label: 'Go to Water Treatment', style: 'outline' },
-  { k: 'quote', ic: 'doc', img: '/solutions/wind.jpg', t: 'Smart Quote / Site Survey', d: 'Tell us about your site and requirement, and we will shape a solution around it.', label: 'Request a quote', style: 'fill' },
+  { k: 'solar', ic: 'sun', img: T("services.sections.052", "/solutions/solar.jpg"), t: T("services.sections.053", "Solar Savings Calculator"), soon: true, d: T("services.sections.054", "Estimate what solar could save you based on your location, usage and system size."), label: T("services.sections.055", "Go to Solar"), style: 'fill' },
+  { k: 'water', ic: 'drop', img: T("services.sections.056", "/solutions/water.jpg"), t: T("services.sections.057", "Water Quality / RO Advisor"), soon: true, d: T("services.sections.058", "Match a treatment approach to your water quality and application needs."), label: T("services.sections.059", "Go to Water Treatment"), style: 'outline' },
+  { k: 'quote', ic: 'doc', img: T("services.sections.060", "/solutions/wind.jpg"), t: T("services.sections.061", "Smart Quote / Site Survey"), d: T("services.sections.062", "Tell us about your site and requirement, and we will shape a solution around it."), label: T("services.sections.063", "Request a quote"), style: 'fill' },
 ];
 const Tick = () => <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#2f9c3c" /><path d="M7 12.5l3.2 3.2L17 8.8" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" /></svg>;
 
@@ -158,29 +159,29 @@ export function SmartTools({ onQuote }) {
       <svg className="stWave" viewBox="0 0 1000 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 80V52C160 22 330 20 520 44s340 16 480-14v50z" fill="#1e7b39" opacity=".18" /><path d="M0 80V64c180-26 360-22 540-2s320 12 460-10v28z" fill="#1e7b39" opacity=".32" /></svg>
       <div className="stIn">
         <header className="stHead">
-          <p className="stEye"><span />SMART TOOLS &amp; ASSISTANCE<span /></p>
-          <h2 id="stTitle">Plan before you <em>commit</em></h2>
-          <p>Use our smart tools to understand your requirements, estimate benefits and get expert guidance before you make a commitment.</p>
+          <p className="stEye"><span />{T("services.sections.064", "SMART TOOLS & ASSISTANCE")}<span /></p>
+          <h2 id="stTitle">{T("services.sections.065", "Plan before you")} <em>{T("services.sections.066", "commit")}</em></h2>
+          <p>{T("services.sections.067", "Use our smart tools to understand your requirements, estimate benefits and get expert guidance before you make a commitment.")}</p>
         </header>
         <div className="stGrid">
           {TOOLS.map((c, i) => (
             <article className="stCard rv" key={c.k} style={{ '--d': i * 110 + 'ms' }}>
               <div className="stPh"><img src={c.img} alt="" loading="lazy" /></div>
               {c.k === 'solar' && (
-                <aside className="stMini m-solar"><b><Gi n="coins" size={15} /> Estimated Savings</b>
-                  <span className="stBars" aria-hidden="true"><i /><i /><i /><i /><i /></span><small>Save up to 40–70%</small></aside>
+                <aside className="stMini m-solar"><b><Gi n="coins" size={15} /> {T("services.sections.068", "Estimated Savings")}</b>
+                  <span className="stBars" aria-hidden="true"><i /><i /><i /><i /><i /></span><small>{T("services.sections.069", "Save up to 40–70%")}</small></aside>
               )}
               {c.k === 'water' && (
-                <aside className="stMini m-water"><b><Ic n="drop" size={15} /> Find the Right Solution</b>
-                  <ul><li><Tick />Water Quality</li><li><Tick />Capacity</li><li><Tick />Treatment Type</li></ul></aside>
+                <aside className="stMini m-water"><b><Ic n="drop" size={15} /> {T("services.sections.070", "Find the Right Solution")}</b>
+                  <ul><li><Tick />{T("services.sections.071", "Water Quality")}</li><li><Tick />{T("services.sections.072", "Capacity")}</li><li><Tick />{T("services.sections.073", "Treatment Type")}</li></ul></aside>
               )}
               {c.k === 'quote' && (
                 <aside className="stMini m-quote"><ul>
-                  <li><Gi n="clock" size={17} />Quick &amp; Easy</li><li><Gi n="users" size={17} />Expert Guidance</li><li><Gi n="doc" size={17} />Tailored Solutions</li></ul></aside>
+                  <li><Gi n="clock" size={17} />{T("services.sections.074", "Quick & Easy")}</li><li><Gi n="users" size={17} />{T("services.sections.075", "Expert Guidance")}</li><li><Gi n="doc" size={17} />{T("services.sections.076", "Tailored Solutions")}</li></ul></aside>
               )}
               <span className="stIc"><Ic n={c.ic} size={34} /></span>
               <div className="stBody">
-                {c.soon && <span className="stSoon">COMING SOON</span>}
+                {c.soon && <span className="stSoon">{T("services.sections.077", "COMING SOON")}</span>}
                 <h3>{c.t}</h3>
                 <p>{c.d}</p>
                 <button type="button" className={'stBtn ' + c.style} onClick={act[c.k]}>{c.label} <Ic n="arrow" size={18} /></button>
@@ -196,11 +197,11 @@ export function SmartTools({ onQuote }) {
 
 /* ============================ SOLAR: COMPLETE SOLAR SOLUTIONS ============================ */
 const SOL_STEPS = [
-  ['01', 'sun', 'Solar Design & Consultation', 'Site assessment, energy-needs analysis, and system design for the best performance and savings.'],
-  ['02', 'tools', 'Installation & Commissioning', 'Professional installation, testing, and commissioning of solar systems.'],
-  ['03', 'shield', 'Maintenance & AMC', 'Regular servicing, monitoring, and annual maintenance contracts.'],
-  ['04', 'doc', 'Government Subsidy & Documentation Assistance', 'Help with applicable subsidies, approvals, and paperwork.'],
-  ['05', 'grid', 'Customized Solar Solutions', "Systems tailored to each customer's site, energy needs, and budget."],
+  ['01', 'sun', T("services.sections.078", "Solar Design & Consultation"), T("services.sections.079", "Site assessment, energy-needs analysis, and system design for the best performance and savings.")],
+  ['02', 'tools', T("services.sections.080", "Installation & Commissioning"), T("services.sections.081", "Professional installation, testing, and commissioning of solar systems.")],
+  ['03', 'shield', T("services.sections.082", "Maintenance & AMC"), T("services.sections.083", "Regular servicing, monitoring, and annual maintenance contracts.")],
+  ['04', 'doc', T("services.sections.084", "Government Subsidy & Documentation Assistance"), T("services.sections.085", "Help with applicable subsidies, approvals, and paperwork.")],
+  ['05', 'grid', T("services.sections.086", "Customized Solar Solutions"), T("services.sections.087", "Systems tailored to each customer's site, energy needs, and budget.")],
 ];
 
 export function SolarComplete({ onQuote }) {
@@ -209,16 +210,16 @@ export function SolarComplete({ onQuote }) {
       <svg width="0" height="0" style={{ position: 'absolute' }} aria-hidden="true"><defs><clipPath id="slClip" clipPathUnits="objectBoundingBox"><path d="M0,0 H1 V0.985 C0.82,1 0.62,0.97 0.44,0.93 C0.22,0.88 0.1,0.45 0,0 Z" /></clipPath></defs></svg>
       <i className="slLeaf a" aria-hidden="true" /><i className="slLeaf b" aria-hidden="true" /><i className="slLeaf c" aria-hidden="true" />
       <div className="slVis" aria-hidden="true">
-          <img src="/solar-house.jpg" alt="" loading="lazy" />
+          <img src={T("services.sections.088", "/solar-house.jpg")} alt="" loading="lazy" />
         </div>
       <div className="slTop">
         <div className="slCopy">
-          <p className="slEye"><span />COMPLETE SOLAR SOLUTIONS</p>
-          <h2 id="slTitle">Everything solar,<br /><em>under one <span className="slU">roof<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8c40-6 100-7 196-3" fill="none" stroke="#f2b705" strokeWidth="3" strokeLinecap="round" /></svg></span></em></h2>
-          <p className="slLead">From design to long-term support, we provide end-to-end solar solutions tailored to your needs.</p>
+          <p className="slEye"><span />{T("services.sections.089", "COMPLETE SOLAR SOLUTIONS")}</p>
+          <h2 id="slTitle">{T("services.sections.090", "Everything solar,")}<br /><em>{T("services.sections.091", "under one")} <span className="slU">{T("services.sections.092", "roof")}<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8c40-6 100-7 196-3" fill="none" stroke="#f2b705" strokeWidth="3" strokeLinecap="round" /></svg></span></em></h2>
+          <p className="slLead">{T("services.sections.093", "From design to long-term support, we provide end-to-end solar solutions tailored to your needs.")}</p>
           <div className="slCta">
-            <button type="button" className="slBtn" onClick={onQuote}>Get a Free Consultation <span><Ic n="arrow" size={16} /></span></button>
-            <div className="slProof"><span className="slAv" aria-hidden="true"><i><Gi n="person" size={16} /></i><i><Gi n="person" size={16} /></i><i><Gi n="person" size={16} /></i></span><div><b>500+</b><small>Happy Customers</small></div></div>
+            <button type="button" className="slBtn" onClick={onQuote}>{T("services.sections.094", "Get a Free Consultation")} <span><Ic n="arrow" size={16} /></span></button>
+            <div className="slProof"><span className="slAv" aria-hidden="true"><i><Gi n="person" size={16} /></i><i><Gi n="person" size={16} /></i><i><Gi n="person" size={16} /></i></span><div><b>500+</b><small>{T("services.sections.095", "Happy Customers")}</small></div></div>
           </div>
         </div>
       </div>

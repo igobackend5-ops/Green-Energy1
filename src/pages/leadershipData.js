@@ -408,20 +408,22 @@ export const LEADERS = [
  {
   "tier": 4,
   "row": 4,
-  "name": "Mr. Hariharan",
-  "role": "SMO, IGO R&D & New Projects",
-  "img": "/leadership/hari-haran-k.webp",
+  "name": "Mr. Hari Haran K",
+  "role": "Head – IGO Green Energy",
+  "img": "/leadership/hari-haran-k-head.webp",
   "fullName": "Mr. Hari Haran K",
-  "title": "New Projects & R&D — Core Manager",
-  "desc": "Core Manager for New Projects & R&D at IGO Group, leading and overseeing the planning and execution of all new projects from concept through delivery. Develops project plans, timelines, resource allocation, and execution strategies, providing technical and engineering leadership across design and decision-making. Manages material selection, procurement, and vendor coordination while monitoring project budgets, costs, and overall financial performance — ensuring timely execution, quality standards, and site coordination across every new initiative. Identifies project challenges, implements effective technical solutions, and coordinates closely with internal departments, clients, vendors, and contractors to verify progress, quality, and deliverables against approved plans and standards.",
+  "title": "Head – Green Energy | IGO Groups",
+  "desc": "Driven by a strong passion for engineering, renewable energy and sustainable development, Hari Haran K leads IGO Green Energy with responsibility for its technical direction, system design standards, project development and strategic growth. With an engineering foundation connected to agriculture and allied technologies, he brings a multidisciplinary perspective across energy, agriculture, water and sustainable engineering. His specialized training in solar energy systems and wind-solar hybrid systems underpins a design-led approach: every system is sized from measured load and resource data, specified against recognised standards, and verified at commissioning. At IGO Green Energy, he oversees the development and integration of four key verticals: Solar Energy, Wind Energy, Biogas & Bioenergy, and Water & RO Solutions (details below). His focus is on technical excellence, appropriate technology selection, standards-compliant execution, stage-wise quality checks and long-term system performance, while continuously evaluating emerging technologies and their practical field applications.",
   "bullets": [
-   "Role: Core Manager — New Projects & R&D, IGO Group",
-   "Focus: New Project Development and Strategy; Innovation; Engineering Management; Project Cost Management; Execution Excellence; Project Risk and Quality Management.",
-   "Project Planning & Execution: Leading and driving new project planning and execution.",
-   "Technical & Engineering Leadership: Providing technical and engineering leadership across design and decision-making.",
-   "Vendor & Material Coordination: Overseeing material selection and vendor coordination.",
-   "Cost & Quality Management: Optimizing project costs and ensuring quality, timely delivery.",
-   "Stakeholder Coordination: Resolving technical challenges and coordinating with clients, vendors, and contractors."
+     "Role: Head – Green Energy, IGO Groups.",
+   "Responsibilities: Technical direction, system design standards, project development and strategic growth.",
+   "Scope: Oversees four verticals – Solar, Wind, Biogas & Bioenergy, and Water & RO.",
+   "Working Approach: Standards-compliant execution, stage-wise quality checks, long-term system performance, and evaluating new technologies.",
+   "Solar Energy: Solar PV systems (on-grid, hybrid and off-grid), solar water pumping, solar fencing and solar lighting. Systems are engineered through load and site analysis, yield and loss assessment, array and string design, inverter and battery selection, structural design, and protection and earthing.",
+     "Wind Energy: Wind and wind-solar hybrid solutions for suitable sites, based on wind resource assessment, turbine selection, and hybrid controller and storage integration for reliable supply.",
+     "Biogas & Bioenergy: Anaerobic digestion systems based on cattle dung, kitchen waste and agricultural residues, with digester sizing from feedstock quantity and gas end-use, and recovery of digested slurry as manure.",
+     "Water & RO Solutions: Water purification and RO systems for residential, commercial and agricultural needs, designed from source water analysis, pre-treatment requirements and membrane selection, with solar-powered options where suitable.",
+     "Leadership Vision: “Bringing engineering, innovation and sustainability together to build dependable solutions for a cleaner and smarter future.”"
   ]
  },
  {

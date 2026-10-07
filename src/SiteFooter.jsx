@@ -2,23 +2,26 @@ import React, { useState } from 'react';
 import { useCms } from './admin/store.js';
 import './siteFooter.css';
 
+import { T } from './content/T.js';
+import { submitEnquiry } from './admin/api.js';
+import { HONEY } from './useEnquiry.js';
 /* Edit link targets here. A `to` starting with "/" navigates inside the site;
    entries without a `to` are placeholders (no page exists yet). */
 const QUICK = [
-  { t: 'Home', to: '/' }, { t: 'About Us', to: '/about' }, { t: 'Our Solutions', to: '/services' },
-  { t: 'Projects', to: '/projects' }, { t: 'Blog', to: '/blogs' }
+  { t: T("footer.001", "Home"), to: '/' }, { t: T("footer.002", "About Us"), to: '/about' }, { t: T("footer.003", "Our Solutions"), to: '/services' },
+  { t: T("footer.004", "Projects"), to: '/projects' }, { t: T("footer.005", "Blog"), to: '/blogs' }
 ];
 const SOLUTIONS = [
-  { t: 'Solar Energy', to: '/services/solar' }, { t: 'Wind Energy', to: '/services/wind' },
-  { t: 'Bio Gas', to: '/services/biogas' }, { t: 'Water Treatment', to: '/services/water' }
+  { t: T("footer.006", "Solar Energy"), to: '/services/solar' }, { t: T("footer.007", "Wind Energy"), to: '/services/wind' },
+  { t: T("footer.008", "Bio Gas"), to: '/services/biogas' }, { t: T("footer.009", "Water Treatment"), to: '/services/water' }
 ];
 const SUPPORT = [
-  { t: 'FAQ', to: '/faq' }, { t: 'Careers', to: '/careers' }, { t: 'Downloads' }, { t: 'Privacy Policy' }, { t: 'Terms & Conditions' }
+  { t: T("footer.010", "FAQ"), to: '/faq' }, { t: T("footer.011", "Careers"), to: '/careers' }, { t: T("footer.012", "Downloads") }, { t: T("footer.013", "Privacy Policy"), to: '/privacy-policy' }, { t: T("footer.014", "Terms & Conditions"), to: '/terms' }
 ];
-const LEGAL = [{ t: 'Terms & Conditions' }, { t: 'Privacy Policy' }, { t: 'Sitemap' }];
+const LEGAL = [{ t: T("footer.015", "Terms & Conditions"), to: '/terms' }, { t: T("footer.016", "Privacy Policy"), to: '/privacy-policy' }, { t: T("footer.017", "Sitemap"), to: '/sitemap' }];
 const SOCIAL = [
-  { id: 'fb', label: 'Facebook', href: '' }, { id: 'in', label: 'LinkedIn', href: '' },
-  { id: 'ig', label: 'Instagram', href: '' }, { id: 'yt', label: 'YouTube', href: '' }
+  { id: 'fb', label: T("footer.018", "Facebook"), href: '' }, { id: 'in', label: T("footer.019", "LinkedIn"), href: '' },
+  { id: 'ig', label: T("footer.020", "Instagram"), href: '' }, { id: 'yt', label: T("footer.021", "YouTube"), href: '' }
 ];
 
 const S = { fill: 'none', stroke: 'currentColor', strokeWidth: 1.8, strokeLinecap: 'round', strokeLinejoin: 'round' };
@@ -50,10 +53,11 @@ export default function SiteFooter({ onNav }) {
       <a href={l.to || '#'} onClick={(e) => { e.preventDefault(); if (l.to && onNav) onNav(l.to); }}>{l.t}</a>
     </li>
   );
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
     if (!/^\S+@\S+\.\S+$/.test(email.trim())) { setMsg('Please enter a valid email address.'); return; }
-    setMsg('Thank you for subscribing!'); setEmail('');
+    try { await submitEnquiry({ type: 'newsletter', email: email.trim(), message: 'Footer newsletter sign-up', website: e.currentTarget.website.value }); setMsg('Thank you for subscribing!'); setEmail(''); }
+    catch (x) { setMsg(x.message || 'Could not subscribe. Please try again.'); }
   };
   return (
     <div className="sf" role="contentinfo">
@@ -69,7 +73,7 @@ export default function SiteFooter({ onNav }) {
         <div className="sfGrid">
           <div className="sfCol sfBrand">
             <a className="sfLogo" href="/" onClick={(e) => { e.preventDefault(); onNav && onNav('/'); }} aria-label="Green Energy home">
-              <img className="sfLogoImg" src="/logo.png" alt="Green Energy" width="858" height="719" />
+              <img className="sfLogoImg" src="/logo.png" alt={T("footer.022", "Green Energy")} width="858" height="719" />
             </a>
             <p className="sfAbout">{st.footerText}</p>
             <ul className="sfSocial">
@@ -78,11 +82,11 @@ export default function SiteFooter({ onNav }) {
               ))}
             </ul>
           </div>
-          <nav className="sfCol" aria-label="Quick links"><h3>Quick Links</h3><ul>{QUICK.map(link)}</ul></nav>
-          <nav className="sfCol" aria-label="Our solutions"><h3>Our Solutions</h3><ul>{SOLUTIONS.map(link)}</ul></nav>
-          <nav className="sfCol" aria-label="Support"><h3>Support</h3><ul>{SUPPORT.map(link)}</ul></nav>
+          <nav className="sfCol" aria-label="Quick links"><h3>{T("footer.023", "Quick Links")}</h3><ul>{QUICK.map(link)}</ul></nav>
+          <nav className="sfCol" aria-label="Our solutions"><h3>{T("footer.024", "Our Solutions")}</h3><ul>{SOLUTIONS.map(link)}</ul></nav>
+          <nav className="sfCol" aria-label="Support"><h3>{T("footer.025", "Support")}</h3><ul>{SUPPORT.map(link)}</ul></nav>
           <div className="sfCol sfContact">
-            <h3>Contact Us</h3>
+            <h3>{T("footer.026", "Contact Us")}</h3>
             <ul>
               <li><span className="sfCi"><Phone /></span>{ct.phone ? <a href={'tel:' + tel}>{ct.phone}</a> : null}</li>
               <li><span className="sfCi"><Mail /></span>{ct.email ? <a href={'mailto:' + ct.email}>{ct.email}</a> : null}</li>
@@ -90,21 +94,22 @@ export default function SiteFooter({ onNav }) {
             </ul>
           </div>
           <div className="sfCol sfNews">
-            <h3>Stay Updated</h3>
-            <p>Get the latest news, insights, and{' '}<br />renewable energy updates.</p>
+            <h3>{T("footer.027", "Stay Updated")}</h3>
+            <p>{T("footer.028", "Get the latest news, insights, and")}{' '}<br />{T("footer.029", "renewable energy updates.")}</p>
             <form onSubmit={submit} noValidate>
-              <input type="email" value={email} onChange={(e) => { setEmail(e.target.value); setMsg(''); }} placeholder="Enter your email address" aria-label="Email address" />
+              <input type="email" value={email} onChange={(e) => { setEmail(e.target.value); setMsg(''); }} placeholder={T("footer.030", "Enter your email address")} aria-label="Email address" />
+              <input {...HONEY} />
               <button type="submit" aria-label="Subscribe"><Arrow /></button>
             </form>
             <small className="sfMsg" role="status">{msg}</small>
           </div>
         </div>
       </div>
-      <div className="sfScene" aria-hidden="true"><img src="/footer-landscape.jpg" alt="" loading="lazy" /></div>
+      <div className="sfScene" aria-hidden="true"><img src={T("footer.031", "/footer-landscape.jpg")} alt="" loading="lazy" /></div>
       <div className="sfBar">
         <div className="sfWrap sfBarIn">
           <span>{st.copyright}</span>
-          <ul>{LEGAL.map((l, i) => (<li key={l.t}><a href="#" onClick={(e) => e.preventDefault()}>{l.t}</a>{i < LEGAL.length - 1 && <em aria-hidden="true">|</em>}</li>))}</ul>
+          <ul>{LEGAL.map((l, i) => (<li key={l.t}><a href={l.to || '#'} onClick={(e) => { e.preventDefault(); if (l.to && onNav) onNav(l.to); }}>{l.t}</a>{i < LEGAL.length - 1 && <em aria-hidden="true">|</em>}</li>))}</ul>
         </div>
       </div>
     </div>

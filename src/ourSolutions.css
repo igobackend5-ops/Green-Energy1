@@ -145,3 +145,6 @@
   .oSolStrip li { justify-content: flex-start; padding: 4px 8px; border-left: 0 !important; font-size: 11px; }
   .oSolStrip svg { width: 22px; }
 }
+
+.sCard--go{cursor:pointer;transition:transform .35s ease,box-shadow .35s ease,outline-color .35s}
+.sCard--go:hover,.sCard--go:focus-visible{transform:translateY(-6px) scale(1.015);box-shadow:0 0 0 2px rgba(80,255,130,.7),0 18px 44px rgba(40,200,100,.3);outline:0}

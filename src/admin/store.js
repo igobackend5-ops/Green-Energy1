@@ -1,39 +1,54 @@
 /* ---------------------------------------------------------------------------
-   CMS data layer.
-   All admin + public-site reads/writes go through `cms` below. Today it is backed
-   by localStorage; to move to Firebase, re-implement ONLY the adapter functions
-   (load / persist / remoteSubscribe) – no screen needs to change.
+   CMS data layer, backed by the Green Energy SQL server (/api/content).
+   The website calls loadContent() once before it renders; admin edits are saved
+   straight to the database with cms.set(). Missing keys fall back to DEFAULTS, so
+   the site still renders if the server is offline.
 --------------------------------------------------------------------------- */
 import { useSyncExternalStore } from 'react';
 import { DEFAULTS } from './defaults.js';
+import { api } from './api.js';
 
-const KEY = 'ge_cms_v1';
 const subs = new Set();
 const NOLOG = [];
-let state = load();
-
-/* ---- adapter (swap for Firestore) ---- */
-function load() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch { return {}; } }
-function persist(next) { localStorage.setItem(KEY, JSON.stringify(next)); }
-function remoteSubscribe(cb) { const f = (e) => { if (e.key === KEY || e.key === null) cb(); }; addEventListener('storage', f); return () => removeEventListener('storage', f); }
-/* -------------------------------------- */
+let state = {};
+let logs = NOLOG;
+let status = { online: true, saving: 0, error: '' };
+const errSubs = new Set();
 
 const emit = () => subs.forEach((f) => f());
-remoteSubscribe(() => { state = load(); emit(); });
+const fail = (msg) => { status = { ...status, error: msg }; errSubs.forEach((f) => f(msg)); };
+
+export async function loadContent() {
+  const ac = new AbortController(); const t = setTimeout(() => ac.abort(), 3500);
+  try { state = (await api('/content', { signal: ac.signal })) || {}; status = { ...status, online: true }; }
+  catch { state = {}; status = { ...status, online: false }; }
+  clearTimeout(t); emit();
+}
 
 export const cms = {
   get: (k) => (k in state ? state[k] : DEFAULTS[k]),
   getDefault: (k) => DEFAULTS[k],
   isModified: (k) => k in state,
-  set(k, v) { const next = { ...state, [k]: v }; persist(next); state = next; emit(); },
-  reset(k) { const { [k]: _x, ...rest } = state; persist(rest); state = rest; emit(); },
-  subscribe(fn) { subs.add(fn); return () => subs.delete(fn); },
-  log(what, status = 'Saved') {
-    const l = (state.__log || []).slice(0, 29);
-    const next = { ...state, __log: [{ when: new Date().toISOString(), what, status, admin: 'Admin' }, ...l] };
-    try { persist(next); state = next; emit(); } catch { /* log is best-effort */ }
+  /* Optimistic: UI updates at once, the save is sent to the server; a failure raises onError. */
+  set(k, v) {
+    state = { ...state, [k]: v }; emit();
+    status.saving++;
+    return api('/content/' + k, { method: 'PUT', body: { value: v } })
+      .catch((e) => { fail('Could not save to the server: ' + e.message); throw e; })
+      .finally(() => { status.saving--; });
   },
-  logs: () => state.__log || NOLOG
+  reset(k) {
+    const { [k]: _x, ...rest } = state; state = rest; emit();
+    return api('/content/' + k, { method: 'DELETE' }).catch((e) => fail('Could not reset on the server: ' + e.message));
+  },
+  subscribe(fn) { subs.add(fn); return () => subs.delete(fn); },
+  onError(fn) { errSubs.add(fn); return () => errSubs.delete(fn); },
+  log(what, st = 'Saved') {
+    api('/activity', { method: 'POST', body: { what, status: st } }).then(() => cms.loadLogs()).catch(() => {});
+  },
+  async loadLogs() { try { logs = (await api('/activity')).map((l) => ({ what: l.what, status: l.status, admin: l.admin, when: l.when.replace(' ', 'T') + 'Z' })); emit(); } catch { /* ignore */ } },
+  logs: () => logs,
+  status: () => status
 };
 
 export function useCms(k) {

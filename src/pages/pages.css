@@ -604,3 +604,5 @@
 .svIc svg{display:block;shape-rendering:geometricPrecision}
 @media(min-width:861px) and (max-width:1100px){.svVis{width:60%}}
 @media(max-width:860px){.svVis{width:100%}}
+
+.capCard .capGap{display:block;height:100px}

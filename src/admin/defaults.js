@@ -1,3 +1,4 @@
+import { LEADERS } from '../pages/leadershipData.js';
 import { FAQ_DEFAULT } from './faqDefault.js';
 import { BLOGS_RAW } from './blogsDefault.js';
 
@@ -30,6 +31,7 @@ export const HOME_SECTIONS = [
 
 export const DEFAULTS = {
   homeSections: HOME_SECTIONS,
+  leadership: LEADERS,
 
   hero: {
     heading: 'Energy That Respects the Earth. Solutions That Reward You.',

@@ -1,4 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { T } from '../content/T.js';
+import { useCms } from '../admin/store.js';
 import { LEADERS } from './leadershipData.js';
 import { LEAD_HTML, LEAD_SPRITE } from './leadershipMarkup.js';
 import './leadership.css';
@@ -6,10 +8,29 @@ import './leadership.css';
 /* Faithful port of https://igogroups.in/leadership. The markup (leadershipMarkup.js) and styles (leadership.css)
    come from that page; names/roles/photos come from the igo-group-website repository. Profile pop-up text
    (leadershipData.js) is the same text the original page passes to its openModal(). */
+const esc = (v) => String(v ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+function patchHtml(html, leaders) {
+  let h = html;
+  const rep = (a, b) => { if (a !== b) h = h.split(a).join(b); };
+  rep('src="/leadership/leadership-core-managers.webp"', 'src="' + esc(T('leadership.001', '/leadership/leadership-core-managers.webp')) + '"');
+  rep('>OUR LEADERSHIP<', '>' + esc(T('leadership.002', 'OUR LEADERSHIP')) + '<');
+  rep('<h1>The Minds Behind IGO</h1>', '<h1>' + esc(T('leadership.003', 'The Minds Behind IGO')) + '</h1>');
+  rep("<p>Meet the leaders driving India's fastest-growing farming ecosystem — from executive vision to department excellence.</p>", '<p>' + esc(T('leadership.004', "Meet the leaders driving India's fastest-growing farming ecosystem — from executive vision to department excellence.")) + '</p>');
+  rep('<h2>IGO Group of Companies</h2>', '<h2>' + esc(T('leadership.005', 'IGO Group of Companies')) + '</h2>');
+  rep('>Hierarchy Chart<', '>' + esc(T('leadership.006', 'Hierarchy Chart')) + '<');
+  (leaders || []).forEach((l, i) => {
+    const d = LEADERS[i]; if (!d || JSON.stringify([l.img, l.name, l.role]) === JSON.stringify([d.img, d.name, d.role])) return;
+    h = h.replace(new RegExp('(<div class="org-node" data-i="' + i + '"[^>]*>\\s*<img class="org-avatar" src=")[^"]*(" alt=")[^"]*(")([^>]*>\\s*<p class="org-name">)[^<]*(</p>\\s*<p class="org-role">)[^<]*(</p>)'),
+      (_m, a, b, c, d2, e, f) => a + esc(l.img) + b + esc(l.name) + c + d2 + esc(l.name) + e + esc(l.role) + f);
+  });
+  return h;
+}
 const feat = (t) => { const i = t.indexOf(':'); return i > -1 ? [t.slice(0, i).trim(), t.slice(i + 1).trim()] : [null, t]; };
 
 export function LeadershipPage() {
   const root = useRef(null);
+  const leaders = useCms('leadership') || LEADERS;
+  const html = useMemo(() => patchHtml(LEAD_HTML, leaders), [leaders]);
   const [open, setOpen] = useState(null);
   const [shown, setShown] = useState(false);
   const close = () => { setShown(false); setZoom(null); setTimeout(() => setOpen(null), 260); };
@@ -36,16 +57,16 @@ export function LeadershipPage() {
   const pick = (e) => {
     const n = e.target.closest('.org-node'); if (!n || !root.current.contains(n)) return;
     if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
-    e.preventDefault(); setOpen(LEADERS[+n.dataset.i]); requestAnimationFrame(() => requestAnimationFrame(() => setShown(true)));
+    e.preventDefault(); setOpen(leaders[+n.dataset.i] || LEADERS[+n.dataset.i]); requestAnimationFrame(() => requestAnimationFrame(() => setShown(true)));
   };
 
   return (
     <div ref={root} className="igoLead" onClick={pick} onKeyDown={pick}>
       <span dangerouslySetInnerHTML={{ __html: LEAD_SPRITE }} />
-      <div dangerouslySetInnerHTML={{ __html: LEAD_HTML }} />
+      <div dangerouslySetInnerHTML={{ __html: html }} />
       <section className="content-section" style={{ paddingTop: 0 }}>
         <div className="container" style={{ textAlign: 'center' }}>
-          <p style={{ maxWidth: 640, margin: '0 auto 1.1rem', color: 'var(--muted)' }}>A diversified farming-tech conglomerate connecting farms, food, fintech and technology across India.</p>
+          <p style={{ maxWidth: 640, margin: '0 auto 1.1rem', color: 'var(--muted)' }}>{T('leadership.007', 'A diversified farming-tech conglomerate connecting farms, food, fintech and technology across India.')}</p>
           <p style={{ color: 'var(--muted)', fontSize: '.95rem' }}><strong style={{ color: 'var(--forest)', letterSpacing: '.08em', textTransform: 'uppercase', fontSize: '.8rem' }}>Head Office</strong><br />No. 17, Kovalan Street,<br />2nd Main Road, Uthandi Kanathur,<br />Chennai – 600119, India</p>
         </div>
       </section>
