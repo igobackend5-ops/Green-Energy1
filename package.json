@@ -1,10 +1,20 @@
 {
-  "name": "live-green-root",
+  "name": "igo-green-energy",
+  "private": true,
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
-    "dev": "cd \"igo-green-energy-website (1)\\igo-green-energy\" && npm run dev",
-    "dev:all": "cd \"igo-green-energy-website (1)\\igo-green-energy\" && npm run dev:all",
-    "install": "cd \"igo-green-energy-website (1)\\igo-green-energy\" && npm install",
-    "build": "cd \"igo-green-energy-website (1)\\igo-green-energy\" && npm run build"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@react-three/drei": "^10.7.9",
+    "@react-three/fiber": "^9.8.1",
+    "@vitejs/plugin-react": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "three": "^0.186.1",
+    "vite": "latest"
   }
 }
