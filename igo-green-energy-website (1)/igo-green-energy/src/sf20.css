@@ -1,0 +1,69 @@
+/* ===== Home: Site footer ===== */
+.sf{position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(180deg,#07301f 0%,#04180f 45%,#031209 100%);color:#e8f1ea;font-family:inherit}
+.sfWave{position:absolute;top:0;left:0;width:100%;height:clamp(60px,7vw,130px);display:block;z-index:0;pointer-events:none}
+.sfWrap{position:relative;z-index:1;width:100%;max-width:2000px;margin:0 auto;padding:0 5.2vw;box-sizing:border-box}
+.sf>.sfWrap{padding-top:clamp(70px,6.4vw,130px)}
+.sfGrid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1.1fr 1.45fr 1.55fr;align-items:start}
+.sfCol{padding:0 clamp(12px,1.3vw,30px);min-width:0}
+.sfCol+.sfCol{border-left:1px solid rgba(190,230,150,.28);min-height:clamp(150px,13vw,250px)}
+.sfBrand{padding-left:0}.sfNews{padding-right:0}
+.sfCol h3{margin:0 0 clamp(14px,1.3vw,24px);font-size:clamp(1.05rem,1.3vw,1.5rem);font-weight:700;color:#fff;letter-spacing:0}
+.sfCol ul{list-style:none;margin:0;padding:0}
+.sfCol li{margin:0 0 clamp(8px,.8vw,13px)}
+.sfCol a{color:#dbe7de;text-decoration:none;font-size:clamp(.88rem,1vw,1.15rem);transition:color .2s,transform .2s;display:inline-block;white-space:nowrap}
+.sfCol nav a:hover,.sfCol ul a:hover{color:#9cf06a;transform:translateX(4px)}
+.sfCol .sfLogo{display:flex;align-items:center;gap:clamp(10px,.9vw,18px);margin-bottom:clamp(14px,1.4vw,26px);text-decoration:none}
+.sfLogo:hover{transform:none}
+.sfLeaf{flex:none;width:clamp(44px,3.9vw,76px);display:block}
+.sfLeaf svg{width:100%;height:auto;display:block}
+.sfName{display:flex;flex-direction:column}
+.sfName b{white-space:nowrap;font-size:clamp(1.3rem,1.85vw,2.3rem);font-weight:800;letter-spacing:.01em;color:#fff;line-height:1.05}
+.sfName b i{font-style:normal;color:#9cf06a}
+.sfName small{margin-top:4px;font-size:clamp(.78rem,.9vw,1.05rem);color:#d6e4d9}
+.sfAbout{margin:0 0 clamp(16px,1.6vw,28px);font-size:clamp(.9rem,1.05vw,1.2rem);line-height:1.6;color:#e1ece4}
+.sfSocial{display:flex!important;gap:clamp(10px,.9vw,16px)}
+.sfSocial li{margin:0}
+.sfSocial a{width:clamp(38px,2.7vw,52px);height:clamp(38px,2.7vw,52px);border:1.5px solid rgba(255,255,255,.7);border-radius:50%;display:grid;place-items:center;color:#fff;transition:background .2s,color .2s,border-color .2s,transform .2s}
+.sfSocial a:hover{background:#9cf06a;color:#06231a;border-color:#9cf06a;transform:translateY(-3px)}
+.sfSocial svg{width:46%;height:46%}
+.sfContact li{display:flex;align-items:center;gap:clamp(10px,.9vw,16px);margin-bottom:clamp(12px,1.2vw,20px)}
+.sfCi{flex:none;width:clamp(22px,1.7vw,32px);color:#7be05a;display:grid;place-items:center}
+.sfCi svg{width:100%;height:auto}
+.sfContact span{white-space:nowrap;color:#dbe7de;font-size:clamp(.88rem,1vw,1.15rem)}
+.sfNews p{margin:0 0 clamp(14px,1.3vw,24px);color:#dbe7de;font-size:clamp(.9rem,1.05vw,1.2rem);line-height:1.55}
+.sfNews form{display:flex;align-items:center;background:#fff;border-radius:999px;padding:4px;height:clamp(46px,3.3vw,62px);box-sizing:border-box;max-width:560px}
+.sfNews input{flex:1;min-width:0;border:0;outline:0;background:transparent;padding:0 clamp(14px,1.2vw,22px);font-size:clamp(.85rem,.95vw,1.05rem);color:#14303d}
+.sfNews input::placeholder{color:#6b7c88}
+.sfNews button{flex:none;width:clamp(42px,3vw,56px);height:100%;aspect-ratio:1;border-radius:50%;background:#9cf06a;display:grid;place-items:center;color:#06231a;transition:background .2s,transform .2s}
+.sfNews button:hover{background:#b6f78a;transform:scale(1.06)}
+.sfNews button svg{width:46%;height:46%;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.sfNews form:focus-within{box-shadow:0 0 0 3px rgba(156,240,106,.55)}
+.sfMsg{display:block;min-height:1.3em;margin-top:8px;color:#9cf06a;font-size:.85rem}
+.sfScene{position:relative;z-index:0;margin-top:clamp(-30px,-1.5vw,-10px);line-height:0;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 40%);mask-image:linear-gradient(to bottom,transparent 0,#000 40%)}
+.sfScene img{width:100%;height:auto;min-height:150px;object-fit:cover;object-position:center;display:block}
+.sfBar{position:relative;z-index:1;background:#04170f;border-top:1.5px solid rgba(156,240,106,.5)}
+.sfBarIn{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px 24px;padding-top:clamp(16px,1.6vw,28px);padding-bottom:clamp(16px,1.6vw,28px);font-size:clamp(.8rem,.95vw,1.1rem);color:#e3ece6}
+.sfBarIn ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;align-items:center}
+.sfBarIn li{display:flex;align-items:center}
+.sfBarIn a{color:#e3ece6;text-decoration:none;transition:color .2s}.sfBarIn a:hover{color:#9cf06a}
+.sfBarIn em{font-style:normal;margin:0 clamp(12px,1.3vw,24px);color:rgba(255,255,255,.6)}
+@media(max-width:1199px){
+  .sfGrid{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:34px}
+  .sfBrand{grid-column:1/-1}
+  .sfCol+.sfCol{border-left:0;min-height:0;padding:0 14px 0 0}
+  .sfContact{grid-column:1/2}.sfNews{grid-column:2/4}
+  .sfAbout br{display:none}
+  .sf>.sfWrap{padding-top:clamp(60px,9vw,90px)}
+}
+@media(max-width:700px){
+  .sfGrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sfContact,.sfNews{grid-column:1/-1}
+  .sfNews p br{display:none}
+  .sfBarIn{flex-direction:column;align-items:flex-start}
+  .sfWrap{padding:0 20px}
+  .sfScene img{min-height:110px}
+}
+
+/* official logo, shown on a white tile for contrast on the dark footer */
+.sfCol .sfLogo{display:inline-block;background:#fff;border-radius:16px;padding:clamp(8px,.8vw,14px) clamp(14px,1.3vw,24px);box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.sfLogoImg{display:block;height:clamp(70px,6.6vw,120px);width:auto}

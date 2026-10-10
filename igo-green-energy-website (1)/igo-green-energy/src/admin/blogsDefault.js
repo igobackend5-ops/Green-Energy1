@@ -1,0 +1,6 @@
+export const BLOGS_RAW = [
+    { cat: 'Solar', img: '/solutions/solar.jpg', date: '2026-09-28', title: 'How Solar Energy Can Reduce Your Electricity Costs', desc: 'Solar panels turn sunlight into electricity, reducing how much power you draw from the grid. Learn how homes and businesses cut monthly bills and build long-term energy savings.', to: '/services/solar' },
+    { cat: 'Wind', img: '/solutions/wind.jpg', date: '2026-09-21', title: 'Why Wind Energy Matters for a Sustainable Future', desc: 'Wind turbines convert moving air into clean electricity without burning fuel. See how wind power helps reduce dependence on conventional energy sources.', to: '/services/wind' },
+    { cat: 'Biogas', img: '/solutions/biogas.jpg', date: '2026-09-14', title: 'Turning Organic Waste into Clean Energy with Biogas', desc: 'Organic waste breaks down without oxygen to produce biogas for cooking, heat and power. Discover how it supports cleaner energy and a circular economy.', to: '/services/biogas' },
+    { cat: 'Water Treatment', img: '/solutions/water.jpg', date: '2026-09-07', title: 'Smart Water Treatment for a Cleaner Tomorrow', desc: 'Treatment makes water safe, and reuse keeps it in circulation. Explore why cleaner water systems and sustainable management matter for communities and industry.', to: '/services/water' },
+  ];
