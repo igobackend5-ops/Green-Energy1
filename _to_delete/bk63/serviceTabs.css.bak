@@ -1,0 +1,16 @@
+.stabsWrap{background:#fff;padding:28px 5vw 8px!important;max-width:none}
+.stabs{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.stab{display:flex;align-items:center;justify-content:center;gap:10px;min-width:0;padding:16px 12px;border-radius:14px;border:1.5px solid #bfe0c4;background:#fff;color:#14522f;font:600 16px/1.2 inherit;font-family:inherit;cursor:pointer;transition:background .2s,color .2s,border-color .2s,transform .2s,box-shadow .2s}
+.stab svg{flex:none}
+.stab span{min-width:0;overflow-wrap:anywhere;text-align:center}
+.stab:hover{border-color:#1e7b39;transform:translateY(-2px);box-shadow:0 8px 18px rgba(30,123,57,.14)}
+.stab.on{background:#1e7b39;border-color:#1e7b39;color:#fff;box-shadow:0 8px 18px rgba(30,123,57,.25)}
+.stab:focus-visible{outline:3px solid #8fd09b;outline-offset:2px}
+.stabSec{max-width:100%;overflow-x:hidden}
+.stabIntro{max-width:1180px;margin:0 auto;padding:56px 5vw 0;text-align:center}
+.stabIntro h2{margin:0 0 10px;color:#14522f;font-size:clamp(26px,3.4vw,38px)}
+.stabIntro p{margin:0 auto;max-width:720px;color:#46564a}
+.pgEmbed{min-height:0!important;padding-top:0!important}
+@media(max-width:900px){.stabs{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:420px){.stabs{gap:10px}.stab{padding:14px 8px;font-size:15px;gap:8px}}
+@media(prefers-reduced-motion:reduce){.stab{transition:none}.stab:hover{transform:none}}

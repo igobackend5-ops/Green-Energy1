@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Solar Vertical – Preview (not part of the website)</title>
+<style>
+:root{--g:#1e7b39;--dk:#0b3d13;--lt:#eef7ea;--ln:#cfe3c8;--mut:#4d6358}
+*{box-sizing:border-box}body{margin:0;font-family:'DM Sans',system-ui,sans-serif;color:#0e1f17;background:#fff}
+.note{background:#0b3d13;color:#d8f5b8;text-align:center;padding:10px 16px;font-size:13px;letter-spacing:.04em}
+section{padding:72px 5vw}.w{max-width:1240px;margin:0 auto}
+.eye{display:flex;align-items:center;gap:12px;font-size:12px;letter-spacing:.25em;font-weight:700;color:var(--g);margin:0 0 12px}.eye:before{content:"";width:34px;height:2px;background:var(--g)}
+h2{font-size:clamp(28px,3.4vw,46px);line-height:1.1;margin:0 0 12px;color:var(--dk);letter-spacing:-.02em}h2 em{font-style:normal;color:#3f9a34}
+.lead{color:var(--mut);max-width:640px;line-height:1.6;margin:0 0 40px}
+/* tree */
+.tree{display:flex;flex-direction:column;align-items:center}
+.node{padding:16px 34px;border-radius:999px;font-weight:800;font-size:1.15rem;text-align:center}
+.root{background:radial-gradient(circle at 30% 25%,#1c6b3d,#0b3a22);color:#fff;box-shadow:0 10px 26px rgba(11,61,19,.3)}
+.l1{background:var(--lt);border:2px solid var(--ln);color:var(--dk)}
+.vl{width:2px;height:28px;background:var(--ln)}
+.row2{display:grid;grid-template-columns:1.6fr 1fr;gap:28px;width:100%;position:relative;padding-top:28px;margin-top:0}
+.row2:before{content:"";position:absolute;top:0;left:25%;right:20%;height:2px;background:var(--ln)}
+.branch{display:flex;flex-direction:column;align-items:center;position:relative}
+.branch:before{content:"";position:absolute;top:-28px;height:28px;width:2px;background:var(--ln)}
+.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;width:100%;position:relative;padding-top:28px}
+.cats:before{content:"";position:absolute;top:0;left:16.6%;right:16.6%;height:2px;background:var(--ln)}
+.cat{background:#fff;border:1px solid #dbe6dc;border-left:4px solid var(--g);border-radius:20px;padding:22px;box-shadow:0 8px 22px rgba(11,61,19,.07);position:relative}
+.cat:before{content:"";position:absolute;top:-28px;left:50%;height:28px;width:2px;background:var(--ln)}
+.cat h3{margin:0 0 4px;font-size:1.15rem;color:var(--dk)}.cat small{color:var(--g);font-weight:700;letter-spacing:.08em;font-size:11px}
+.cat ol{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:8px;counter-reset:n}
+.cat li{counter-increment:n;display:flex;gap:10px;align-items:center;font-size:.92rem;padding:9px 12px;background:var(--lt);border-radius:12px}
+.cat li:before{content:counter(n);flex:none;width:24px;height:24px;border-radius:50%;background:var(--g);color:#fff;font-size:12px;font-weight:700;display:grid;place-items:center}
+.proj{background:repeating-linear-gradient(135deg,#fafcf8,#fafcf8 10px,#f3f9ef 10px,#f3f9ef 20px);border:2px dashed var(--ln);border-radius:20px;padding:28px;text-align:center;color:var(--mut);width:100%}
+.proj b{display:block;color:var(--dk);font-size:1.15rem;margin-bottom:6px}
+/* tabs */
+.alt{background:#f6faf3}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+.tab{border:1px solid #cfe3c8;background:#fff;color:var(--dk);font:700 15px inherit;padding:12px 22px;border-radius:999px;cursor:pointer;font-family:inherit}
+.tab.on{background:var(--g);color:#fff;border-color:var(--g)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.card{background:#fff;border:1px solid #dbe6dc;border-radius:20px;overflow:hidden;box-shadow:0 8px 22px rgba(11,61,19,.06)}
+.ph{aspect-ratio:4/3;background:linear-gradient(135deg,#e4f3dd,#f4faf1);display:grid;place-items:center;color:#7fb36f;font-size:12px;letter-spacing:.1em}
+.card div.b{padding:16px 18px 20px}.card h4{margin:0 0 6px;font-size:1.02rem;color:var(--dk)}.card p{margin:0 0 12px;font-size:.85rem;color:var(--mut)}
+.card a{font-weight:700;font-size:.85rem;color:var(--g);text-decoration:none}
+.cta{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap}.btn{background:#b8f45b;color:#0b3d13;font-weight:700;padding:14px 26px;border-radius:999px;text-decoration:none}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}.row2{grid-template-columns:1fr}.row2:before{display:none}.branch:before{display:none}.cats{grid-template-columns:1fr}.cats:before,.cat:before{display:none}}
+@media(max-width:560px){section{padding:48px 5vw}.grid{grid-template-columns:1fr}}
+</style></head><body>
+<div class="note">PREVIEW ONLY — mock-up for review. Not part of the Green Energy website code. Product photos and Projects content are placeholders.</div>
+
+<section><div class="w">
+<p class="eye">SOLAR VERTICAL</p>
+<h2>One Solar Vertical. <em>Products &amp; Projects.</em></h2>
+<p class="lead">Section 1 — overview tree (matches the team's hand sketch). Sits on the Solar page right after the hero.</p>
+<div class="tree">
+ <div class="node root">Solar Vertical</div><div class="vl"></div>
+ <div class="row2">
+  <div class="branch"><div class="node l1">Products</div><div class="vl"></div>
+   <div class="cats">
+    <div class="cat"><small>CATEGORY 1</small><h3>Solar Agriculture Products</h3><ol><li>Solar Water Pumps</li><li>Solar Irrigation Pumps</li><li>Solar Pump Controllers</li><li>Solar Sprayers</li><li>Solar Agriculture Fencing</li><li>Solar Farm Monitoring Systems</li></ol></div>
+    <div class="cat"><small>CATEGORY 2</small><h3>Solar Security Products</h3><ol><li>Solar CCTV Cameras</li><li>Solar CCTV Poles</li><li>Solar Camera + Light Systems</li><li>Solar Security Lights</li><li>Solar Electric Fence Systems</li></ol></div>
+    <div class="cat"><small>CATEGORY 3</small><h3>Solar Lighting Products</h3><ol><li>Solar Street Lights</li><li>Solar Flood Lights</li><li>Solar Garden Lights</li><li>Solar Home Lighting Systems</li><li>Solar Wall Lights</li><li>Solar High-Mast Lights</li><li>Solar Warning Lights</li></ol></div>
+   </div></div>
+  <div class="branch"><div class="node l1">Projects</div><div class="vl"></div>
+   <div class="proj"><b>Solar Projects</b>Sub-categories to be confirmed by the team (the sketch is unclear here).</div></div>
+ </div>
+</div></div></section>
+
+<section class="alt"><div class="w">
+<p class="eye">SOLAR PRODUCTS</p>
+<h2>Explore the <em>product range</em></h2>
+<p class="lead">Section 2 — browsable catalogue with three tabs. 18 products in total (6 + 5 + 7). Each card can later link to its own detail page.</p>
+<div class="tabs" id="tabs"></div><div class="grid" id="grid"></div>
+<div class="cta"><a class="btn" href="#">Request a Product Quote →</a></div>
+</div></section>
+
+<script>
+const D={'Solar Agriculture Products':['Solar Water Pumps','Solar Irrigation Pumps','Solar Pump Controllers','Solar Sprayers','Solar Agriculture Fencing','Solar Farm Monitoring Systems'],
+'Solar Security Products':['Solar CCTV Cameras','Solar CCTV Poles','Solar Camera + Light Systems','Solar Security Lights','Solar Electric Fence Systems'],
+'Solar Lighting Products':['Solar Street Lights','Solar Flood Lights','Solar Garden Lights','Solar Home Lighting Systems','Solar Wall Lights','Solar High-Mast Lights','Solar Warning Lights']};
+const tabs=document.getElementById('tabs'),grid=document.getElementById('grid');let cur=Object.keys(D)[0];
+function draw(){tabs.innerHTML=Object.keys(D).map(k=>`<button class="tab ${k==cur?'on':''}" data-k="${k}">${k} (${D[k].length})</button>`).join('');
+grid.innerHTML=D[cur].map(n=>`<article class="card"><div class="ph">PRODUCT PHOTO</div><div class="b"><h4>${n}</h4><p>Short description to be supplied by the team.</p><a href="#">Enquire →</a></div></article>`).join('')}
+tabs.onclick=e=>{const k=e.target.dataset.k;if(k){cur=k;draw()}};draw();
+</script></body></html>
