@@ -74,11 +74,7 @@ export default function HeroBanner() {
           }} 
         />
         
-        {/* Floating overlays if they are not baked into the image */}
-        <div className="f1" style={{position:'absolute', top:'15%', right:'55%', zIndex:2}}><img src="/hero/label-solar.png" alt="Solar" style={{height:'80px', width:'auto', objectFit:'contain'}} onError={(e)=>e.target.style.display='none'}/></div>
-        <div className="f2" style={{position:'absolute', top:'10%', right:'5%', zIndex:2}}><img src="/hero/label-wind.png" alt="Wind" style={{height:'80px', width:'auto', objectFit:'contain'}} onError={(e)=>e.target.style.display='none'}/></div>
-        <div className="f3" style={{position:'absolute', bottom:'15%', right:'60%', zIndex:2}}><img src="/hero/label-biogas.png" alt="Biogas" style={{height:'80px', width:'auto', objectFit:'contain'}} onError={(e)=>e.target.style.display='none'}/></div>
-        <div className="f4" style={{position:'absolute', bottom:'10%', right:'5%', zIndex:2}}><img src="/hero/label-water.png" alt="Water" style={{height:'80px', width:'auto', objectFit:'contain'}} onError={(e)=>e.target.style.display='none'}/></div>
+        {/* Floating overlays are baked into the image */}
       </div>
     </section>
   );
