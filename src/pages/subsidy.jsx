@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useReveal, Head, Sec, go } from './common.jsx';
 import { T } from '../content/T.js';
 import './subsidy.css';
+import { SubsidyTabs } from './subsidyTabs.jsx';
 
 const GROUPS = [T("subsidy.012", "Residential Rooftop Project"), T("subsidy.013", "Commercial and Institutional Project"), T("subsidy.014", "Agri Land Solar and Pumping Project"), T("subsidy.015", "Fencing, Estate and Nursery Project"), T("subsidy.016", "Biogas (future)")];
 const SCHEMES = [
@@ -57,12 +58,13 @@ export function SubsidyPage({ onQuote }) {
   const CAT = { solar: [0, 1], wind: [], biogas: [4], water: [], agri: [2, 3] };
   const CN = { solar: T("subsidy.401", "Solar Subsidy"), wind: T("subsidy.402", "Wind Subsidy"), biogas: T("subsidy.403", "Biogas Subsidy"), water: T("subsidy.404", "Water Treatment Subsidy"), agri: T("subsidy.405", "Agriculture Subsidy") };
   const list = SCHEMES.filter((s) => (g < 0 || s.grp === g) && (!cat || !CAT[cat] || CAT[cat].includes(s.grp)));
-  const gl = SCHEMES.filter((x) => !FILT[gf][1] || FILT[gf][1].includes(x.grp));
+  const gl = SCHEMES.filter((x) => (!FILT[gf][1] || FILT[gf][1].includes(x.grp)) && (!cat || !CAT[cat] || CAT[cat].includes(x.grp)));
   const clr = () => { setCat(null); window.history.replaceState(null, '', '/subsidy'); };
   return (
     <div ref={ref} className="pg subPage">
       <div className="subHero"><img className="subHeroImg" src="/subsidy-hero.png" alt="" /><div className="pgs"><div className="pgw subHeroIn"><Head eyebrow={T("subsidy.001", "SUBSIDY")} title={T("subsidy.002", "Government")} em={T("subsidy.003", "support & subsidy")} text={T("subsidy.004", "Schemes available for solar, biogas and related projects. Choose a project type to see what applies, then talk to us and we will help you apply.")} />
         <div className="subStats"><div><b>{SCHEMES.length}</b><span>{T("subsidy.201", "Schemes")}</span></div><div><b>{GROUPS.length}</b><span>{T("subsidy.202", "Project types")}</span></div></div></div></div></div>
+      <SubsidyTabs active={cat || 'solar'} onSelect={(k) => { setCat(k); setG(-1); }} />
       <section className="gsSec" id="gov-schemes"><div className="pgs"><div className="pgw">
         <div className="gsGrid" key={gf}>
           {gl.map((c, i) => (

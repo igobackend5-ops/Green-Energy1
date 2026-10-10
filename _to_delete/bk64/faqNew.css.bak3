@@ -1,0 +1,37 @@
+.pg.pgFaq section.fqxSec{position:relative;padding:56px 5vw 70px;overflow:hidden;background:linear-gradient(180deg,#fff,#f6fbf7)}
+.pg.pgFaq section.fqxSec:before,.pg.pgFaq section.fqxSec:after{content:"";position:absolute;border-radius:50%;pointer-events:none;z-index:0}.pg.pgFaq section.fqxSec:before{width:520px;height:520px;left:-200px;top:-120px;background:radial-gradient(circle,rgba(110,200,130,.22),transparent 70%)}.pg.pgFaq section.fqxSec:after{width:560px;height:560px;right:-220px;bottom:-160px;background:radial-gradient(circle,rgba(110,200,130,.2),transparent 70%)}
+.fqxSec>*{position:relative;z-index:1}
+.fqxHead{text-align:center;max-width:900px;margin:0 auto}
+.fqxEye{display:inline-flex;align-items:center;gap:12px;margin:0 0 14px;font-size:13px;font-weight:700;letter-spacing:.28em;color:#1f7a3a}.fqxEye:before,.fqxEye:after{content:"";width:26px;height:2px;background:#1f7a3a;opacity:.7}
+.fqxHead h1{margin:0;font-size:clamp(28px,3.6vw,42px);line-height:1.15;color:#12401f;font-weight:800}.fqxHead h1 em{font-style:normal;color:#1f9a4a}
+.fqxSub{margin:16px auto 0;max-width:560px;color:#5b6f62;font-size:16px;line-height:1.7}
+.fqxTabs{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;max-width:1240px;margin:34px auto 34px}
+.fqxTabs button{display:inline-flex;align-items:center;gap:9px;padding:12px 22px;border-radius:999px;border:1px solid #d6e6da;background:#fff;color:#2a4a37;font:600 14.5px inherit;font-family:inherit;cursor:pointer;transition:background .25s,color .25s,transform .25s,box-shadow .25s,border-color .25s}
+.fqxTabs button svg{color:#1f7a3a}
+.fqxTabs button:hover{transform:translateY(-2px);border-color:#8cc79c;box-shadow:0 8px 18px rgba(30,100,60,.12)}
+.fqxTabs button.on{background:#1f7a3a;border-color:#1f7a3a;color:#fff;box-shadow:0 10px 22px rgba(31,122,58,.28)}.fqxTabs button.on svg{color:#fff}
+.fqxTabs button:focus-visible,.fqxItem>button:focus-visible{outline:3px solid rgba(31,122,58,.4);outline-offset:2px}
+.fqxGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;max-width:1240px;margin:0 auto;align-items:start}
+.fqxCol{display:grid;gap:14px;min-width:0}
+.fqxItem{background:#fff;border:1px solid #e1ece4;border-radius:18px;box-shadow:0 3px 10px rgba(30,100,60,.05);transition:background .3s,border-color .3s,box-shadow .3s;min-width:0}
+.fqxItem:hover{border-color:#b9dac3}
+.fqxItem.on{background:linear-gradient(180deg,#f1faf3,#e8f6ec);border-color:#9fd2ae;box-shadow:0 10px 26px rgba(30,100,60,.12)}
+.fqxItem>button{width:100%;display:flex;align-items:center;gap:16px;padding:14px 20px 14px 16px;background:none;border:0;text-align:left;font-family:inherit;cursor:pointer;color:#12331f}
+.fqxIc{flex:none;display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:#e6f3e9;color:#1f7a3a}
+.fqxItem.on .fqxIc{background:#d4ecda}
+.fqxQ{flex:1;font-weight:700;font-size:16px;line-height:1.4;overflow-wrap:anywhere}
+.fqxCh{flex:none;display:grid;place-items:center;color:#12331f;transform:rotate(90deg);transition:transform .3s}
+.fqxItem.on .fqxCh{transform:rotate(-90deg)}
+.fqxBody{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease}.fqxItem.on .fqxBody{grid-template-rows:1fr}
+.fqxBody>div{overflow:hidden}.fqxBody p{margin:0;padding:0 24px 22px 84px;color:#58705f;font-size:15px;line-height:1.75;overflow-wrap:anywhere}
+@media(max-width:900px){.fqxGrid{grid-template-columns:1fr;gap:14px}}
+@media(max-width:560px){.fqxEye{letter-spacing:.14em;font-size:12px}.fqxEye:before,.fqxEye:after{width:14px}.pg.pgFaq section.fqxSec{padding:100px 16px 48px}.fqxTabs{gap:8px}.fqxTabs button{padding:10px 15px;font-size:13.5px}.fqxIc{width:42px;height:42px}.fqxItem>button{padding:12px 14px;gap:12px}.fqxQ{font-size:15px}.fqxBody p{padding:0 18px 18px 18px}}
+@media(prefers-reduced-motion:reduce){.fqxItem,.fqxBody,.fqxCh,.fqxTabs button{transition:none}}
+
+.pg.pgFaq section.fqxBanner{margin:0!important;padding:78px 0 0!important;max-width:none!important;line-height:0;background:#eef8f0}
+.fqxBanner img{display:block;width:100%;height:auto;aspect-ratio:2048/768;max-height:560px;object-fit:cover;object-position:left center}
+@media(max-width:900px){.fqxBanner img{aspect-ratio:16/9}}
+@media(max-width:560px){.pg.pgFaq section.fqxBanner{padding-top:68px!important}.fqxBanner img{aspect-ratio:4/3}.pg.pgFaq section.fqxSec{padding-top:40px}}
+.contactGrid:not(:has(.cInfo)){grid-template-columns:minmax(0,1fr)}
+.contactGrid:not(:has(.cInfo)) .cForm{max-width:860px;width:100%;margin:0 auto}
+.pg.pgContact{background:#EEF6E8}

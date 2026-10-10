@@ -27,9 +27,9 @@ const I = {
 const go = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
 export const LEGACY = [
-  { icon: 'people', title: T("about.001", "iGo Group"), text: [T("about.002", "A proven"), T("about.003", "foundation")] },
+  { icon: 'people', title: T("about.001", "IGO Group"), text: [T("about.002", "A proven"), T("about.003", "foundation")] },
   { icon: 'shield', title: T("about.004", "Trust\nQuality\nCommitment"), text: [T("about.005", "Values that"), T("about.006", "drive us")] },
-  { icon: 'leaf', title: T("about.007", "iGo Green Energy"), text: [T("about.008", "A new chapter"), T("about.009", "for a sustainable"), T("about.010", "tomorrow")] },
+  { icon: 'leaf', title: T("about.007", "IGO Green Energy"), text: [T("about.008", "A new chapter"), T("about.009", "for a sustainable"), T("about.010", "tomorrow")] },
   { icon: 'gear', title: T("about.011", "Solar • Wind • Biogas\nWater Treatment"), text: [T("about.012", "Integrated solutions"), T("about.013", "for a cleaner, greener"), T("about.014", "future")] }
 ];
 export const SOLUTIONS = [
@@ -78,42 +78,12 @@ export default function AboutPage({ onQuote, onContact }) {
     <div className="ab" ref={root}>
       {/* 1. HERO */}
       <section className="abHero" aria-labelledby="abH1">
-        <img className="abHeroImg" src={T("about.063", "/about/a3-office.jpg")} width="1795" height="876" alt={T("about.064", "iGo Green Energy office building with rooftop solar panels and biogas plant")} />
+        <img className="abHeroImg" src={T("about.063", "/about/a3-office.jpg")} width="1795" height="876" alt={T("about.064", "IGO Green Energy office building with rooftop solar panels and biogas plant")} />
         <div className="abWrap abHeroIn">
           <div className="abHeroCopy abRv">
             <p className="abEyebrow">{T("about.065", "ABOUT US")}</p>
             <h1 id="abH1">{T("about.066", "A Cleaner")}<br />{T("about.067", "Tomorrow,")}<br /><em>{T("about.068", "Built Today")}</em></h1>
-            <p className="abLead">{T("about.069", "At iGo Green Energy, we are committed to delivering integrated renewable energy and water treatment solutions that create a cleaner, healthier and more sustainable future for communities, industries and the planet.")}</p>
-            <button type="button" className="abBtn" onClick={() => go('abLegacy')}>{T("about.070", "Our Journey")} <I.arrow /></button>
-          </div>
-        </div>
-      </section>
-
-      {/* 2. WHO WE ARE */}
-      <section className="abSplit abWho">
-        <img className="abSplitImg" src={T("about.071", "/about/u-who.jpg")} alt={T("about.072", "Engineers inspecting a solar and wind energy site")} loading="lazy" />
-        <div className="abWrap abSplitIn">
-          <div className="abSplitCopy abRv">
-            <p className="abEyebrow abLine">{T("about.073", "WHO WE ARE")} <span /></p>
-            <h2>{T("about.074", "Building a")}<br />{T("about.075", "Sustainable Future")}<br />{T("about.076", "Together")}</h2>
-            <p className="abBody">{T("about.077", "iGo Green Energy is a trusted provider of integrated renewable energy and water treatment solutions. We combine technology, innovation and domain expertise to help homes, businesses, industries and institutions transition towards a cleaner and greener future.")}</p>
-            <p className="abBody">{T("about.078", "With a strong foundation, a passion for sustainability and a customer-first approach, we deliver practical, reliable and long-term solutions that create real value for people and the environment.")}</p>
-            <button type="button" className="abBtn abBtnGhost" onClick={() => go('abFounder')}>{T("about.079", "More About Us")} <I.arrow /></button>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. FOUNDER */}
-      <section className="abFounder" id="abFounder">
-        <img className="abFounderImg" src={T("about.080", "/about/u-founder.jpg")} alt={T("about.081", "Dr. John Yesudas, Founder and CEO of iGo Group of Companies")} loading="lazy" />
-        <img className="abFounderBg" src={T("about.082", "/about/a2-founderbg.jpg")} alt="" aria-hidden="true" loading="lazy" />
-        <div className="abWrap abFounderIn">
-          <div className="abFounderCopy abRv">
-            <p className="abEyebrow abLine">{T("about.083", "OUR FOUNDER")} <span /></p>
-            <h2>{T("about.084", "A Vision Led by Its Founder")}</h2>
-            <blockquote><I.quote className="abQ" /><p>{T("about.085", "Progress means nothing if it costs the planet.")}<br />{T("about.086", "Our goal is to power growth in a way that leaves")}<br />{T("about.087", "the world better than we found it.")}</p></blockquote>
-            <p className="abWho"><b>{T("about.088", "Dr. John Yesudas")}</b><span>{T("about.089", "Founder & CEO")}</span><span>{T("about.090", "iGo Group of Companies")}</span></p>
-            <p className="abBody">{T("about.091", "Under the leadership of Dr. John Yesudas, the iGo Group has earned a reputation for trust, quality and commitment. That legacy carries forward, bringing the same values into the renewable energy sector with a focus on innovation, sustainability and long-term impact.")}</p>
+            <p className="abLead">{T("about.069", "At IGO Green Energy, we are committed to delivering integrated renewable energy and water treatment solutions that create a cleaner, healthier and more sustainable future for communities, industries and the planet.")}</p>
           </div>
         </div>
       </section>
@@ -124,8 +94,8 @@ export default function AboutPage({ onQuote, onContact }) {
         <div className="abWrap abLegacyIn">
           <div className="abRv">
             <p className="abEyebrow abLine abLight">{T("about.092", "OUR LEGACY")} <span /></p>
-            <h2>{T("about.093", "From the iGo Group")}<br />{T("about.094", "to iGo Green Energy")}</h2>
-            <p className="abLegacyP">{T("about.095", "With a strong foundation across multiple industries, the iGo Group has always believed in creating long-term value for society. iGo Green Energy is the next chapter in this journey, focused on clean energy, cleaner water and a greener future.")}</p>
+            <h2>{T("about.093", "From the IGO Group")}<br />{T("about.094", "to IGO Green Energy")}</h2>
+            <p className="abLegacyP">{T("about.095", "With a strong foundation across multiple industries, the IGO Group has always believed in creating long-term value for society. IGO Green Energy is the next chapter in this journey, focused on clean energy, cleaner water and a greener future.")}</p>
           </div>
           <ol className="abStages">
             {LEGACY.map((s, i) => { const Ic = I[s.icon]; return (
@@ -137,6 +107,50 @@ export default function AboutPage({ onQuote, onContact }) {
               </li>
             ); })}
           </ol>
+        </div>
+      </section>
+
+      {/* 7. MISSION + VISION */}
+      <section className="abBlock abMV">
+        <div className="abWrap abMVGrid">
+          <article className="abMVCard abMission abRv">
+            <img src={T("about.099", "/about/u-mission.jpg")} alt="" aria-hidden="true" loading="lazy" />
+            <span className="abIc abIcFill"><I.target /></span>
+            <div><p className="abEyebrow">{T("about.100", "OUR MISSION")}</p><h3>{T("about.101", "Our Mission")}</h3><p>{T("about.102", "To deliver innovative and reliable renewable energy and water treatment solutions that improve lives and protect the environment.")}</p></div>
+          </article>
+          <article className="abMVCard abVision abRv" style={{ '--d': '.12s' }}>
+            <img src={T("about.103", "/about/u-vision.jpg")} alt="" aria-hidden="true" loading="lazy" />
+            <span className="abIc abIcFill abIcBlue"><I.eye /></span>
+            <div><p className="abEyebrow">{T("about.104", "OUR VISION")}</p><h3>{T("about.105", "Our Vision")}</h3><p>{T("about.106", "To be a global leader in sustainable energy and water management, creating a cleaner, greener and healthier future for all.")}</p></div>
+          </article>
+        </div>
+      </section>
+
+      {/* 3. FOUNDER */}
+      <section className="abFounder" id="abFounder">
+        <img className="abFounderImg" src={T("about.080", "/about/u-founder.jpg")} alt={T("about.081", "Dr. John Yesudas, Founder and CEO of IGO Group of Companies")} loading="lazy" />
+        <img className="abFounderBg" src={T("about.082", "/about/a2-founderbg.jpg")} alt="" aria-hidden="true" loading="lazy" />
+        <div className="abWrap abFounderIn">
+          <div className="abFounderCopy abRv">
+            <p className="abEyebrow abLine">{T("about.083", "OUR FOUNDER")} <span /></p>
+            <h2>{T("about.084", "A Vision Led by Its Founder")}</h2>
+            <blockquote><I.quote className="abQ" /><p>{T("about.085", "Progress means nothing if it costs the planet.")}<br />{T("about.086", "Our goal is to power growth in a way that leaves")}<br />{T("about.087", "the world better than we found it.")}</p></blockquote>
+            <p className="abWho"><b>{T("about.088", "Dr. John Yesudas")}</b><span>{T("about.089", "Founder & CEO")}</span><span>{T("about.090", "IGO Group of Companies")}</span></p>
+            <p className="abBody">{T("about.091", "Under the leadership of Dr. John Yesudas, the IGO Group has earned a reputation for trust, quality and commitment. That legacy carries forward, bringing the same values into the renewable energy sector with a focus on innovation, sustainability and long-term impact.")}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. WHO WE ARE */}
+      <section className="abSplit abWho">
+        <img className="abSplitImg" src={T("about.071", "/about/u-who.jpg")} alt={T("about.072", "Engineers inspecting a solar and wind energy site")} loading="lazy" />
+        <div className="abWrap abSplitIn">
+          <div className="abSplitCopy abRv">
+            <p className="abEyebrow abLine">{T("about.073", "WHO WE ARE")} <span /></p>
+            <h2>{T("about.074", "Building a")}<br />{T("about.075", "Sustainable Future")}<br />{T("about.076", "Together")}</h2>
+            <p className="abBody">{T("about.077", "IGO Green Energy is a trusted provider of integrated renewable energy and water treatment solutions. We combine technology, innovation and domain expertise to help homes, businesses, industries and institutions transition towards a cleaner and greener future.")}</p>
+            <p className="abBody">{T("about.078", "With a strong foundation, a passion for sustainability and a customer-first approach, we deliver practical, reliable and long-term solutions that create real value for people and the environment.")}</p>
+          </div>
         </div>
       </section>
 
@@ -161,27 +175,11 @@ export default function AboutPage({ onQuote, onContact }) {
         </div>
       </section>
 
-      {/* 7. MISSION + VISION */}
-      <section className="abBlock abMV">
-        <div className="abWrap abMVGrid">
-          <article className="abMVCard abMission abRv">
-            <img src={T("about.099", "/about/u-mission.jpg")} alt="" aria-hidden="true" loading="lazy" />
-            <span className="abIc abIcFill"><I.target /></span>
-            <div><p className="abEyebrow">{T("about.100", "OUR MISSION")}</p><h3>{T("about.101", "Our Mission")}</h3><p>{T("about.102", "To deliver innovative and reliable renewable energy and water treatment solutions that improve lives and protect the environment.")}</p></div>
-          </article>
-          <article className="abMVCard abVision abRv" style={{ '--d': '.12s' }}>
-            <img src={T("about.103", "/about/u-vision.jpg")} alt="" aria-hidden="true" loading="lazy" />
-            <span className="abIc abIcFill abIcBlue"><I.eye /></span>
-            <div><p className="abEyebrow">{T("about.104", "OUR VISION")}</p><h3>{T("about.105", "Our Vision")}</h3><p>{T("about.106", "To be a global leader in sustainable energy and water management, creating a cleaner, greener and healthier future for all.")}</p></div>
-          </article>
-        </div>
-      </section>
-
       {/* 6. WHY */}
       <section className="abBlock abWhy">
         <div className="abWrap abWhyGrid">
           <div className="abRv">
-            <p className="abEyebrow abLine">{T("about.107", "WHY iGO GREEN ENERGY")} <span /></p>
+            <p className="abEyebrow abLine">{T("about.107", "WHY IGO GREEN ENERGY")} <span /></p>
             <h2>{T("about.108", "More Than Solutions.")}<br />{T("about.109", "A Long-Term Partner.")}</h2>
             <p className="abBody">{T("about.110", "We go beyond installation. We deliver complete, reliable and customized solutions with continuous support, helping you reduce costs, improve efficiency and achieve a lasting positive impact.")}</p>
           </div>
@@ -223,7 +221,7 @@ export default function AboutPage({ onQuote, onContact }) {
             <h2 id="abCtaT">{T("about.117", "We Don’t Just Install Systems.")}</h2>
             <p className="abBody">{T("about.118", "We build relationships that last and a future that is cleaner, greener and brighter for the next generation.")}</p>
           </div>
-          <p className="abScript" aria-label="Go Green. Go Smart. Go iGo."><span>{T("about.119", "Go Green.")}</span><span>{T("about.120", "Go Smart,")}</span><span>{T("about.121", "Go iGo.")}</span><I.leaf className="abScriptLeaf" /></p>
+          <p className="abScript" aria-label="Go Green. Go Smart. Go IGO."><span>{T("about.119", "Go Green.")}</span><span>{T("about.120", "Go Smart,")}</span><span>{T("about.121", "Go IGO.")}</span><I.leaf className="abScriptLeaf" /></p>
         </div>
       </section>
     </div>

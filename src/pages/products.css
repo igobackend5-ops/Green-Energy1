@@ -1,0 +1,48 @@
+.prxPage{--g:#1f7a3a;--gd:#0f5a2a;--ink:#0e2a1a;--mut:#4b5f53;background:#fff;color:var(--ink);overflow-x:hidden}
+.prxPage *{box-sizing:border-box}
+.pg.prxPage section{padding:0}
+.prxW{max-width:1180px;margin:0 auto;padding:0 24px}
+.prxHero{padding:128px 0 56px!important;background:radial-gradient(900px 380px at 85% -10%,rgba(255,236,160,.45),transparent 70%),linear-gradient(180deg,#e9f6ec,#f7fbf7)}
+.prxEye{display:flex;align-items:center;gap:12px;font-size:12.5px;font-weight:700;letter-spacing:.16em;color:var(--g);margin:0 0 14px}.prxEye span{width:34px;height:2px;background:var(--g)}
+.prxHero h1{font-size:clamp(38px,5.4vw,66px);line-height:1.05;font-weight:800;margin:0;letter-spacing:-1.5px;color:var(--ink)}.prxHero h1 em{font-style:normal;color:var(--g)}
+.prxSub{max-width:640px;font-size:clamp(15px,1.5vw,18px);line-height:1.65;color:var(--mut);margin:18px 0 26px}
+.prxChips{display:flex;flex-wrap:wrap;gap:10px}
+.prxChips button{border:1px solid #cfe3d3;background:#fff;color:var(--gd);font:600 13.5px inherit;font-family:inherit;border-radius:999px;padding:9px 20px;cursor:pointer;transition:background .2s,color .2s,transform .2s}
+.prxChips button:hover{background:var(--gd);color:#fff;transform:translateY(-1px)}
+.prxCat{padding:64px 0!important;scroll-margin-top:84px}
+.prxCat.a{background:#F5F0E6}
+.prxCat.b{background:#f2f8f3}
+.prxHead{margin-bottom:30px;padding-left:18px;border-left:4px solid var(--g)}
+.prxHead h2{font-size:clamp(24px,2.8vw,34px);font-weight:800;margin:0;color:var(--ink);letter-spacing:-.5px}
+.prxHead p{margin:6px 0 0;color:var(--mut);font-size:15.5px}
+.prxGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.prxCard{display:flex;flex-direction:column;background:#fff;border:1px solid #e0ebe3;border-radius:20px;overflow:hidden;box-shadow:0 8px 24px rgba(15,90,42,.07);transition:transform .25s,box-shadow .25s}
+.prxCard:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(15,90,42,.15)}
+.prxImg{aspect-ratio:3/2;display:grid;place-items:center;overflow:hidden;background:linear-gradient(145deg,#1a8d47,#0d5a2b)}
+.prxCat.b .prxImg{background:linear-gradient(145deg,#0f6a5a,#093f3a)}
+.prxCat.c .prxImg{background:linear-gradient(145deg,#e0a40f,#9a6a06)}
+.prxImg svg{width:78%;height:auto;max-height:86%;transition:transform .4s;filter:drop-shadow(0 6px 10px rgba(0,0,0,.18))}
+.prxImg img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.prxCard:hover .prxImg svg,.prxCard:hover .prxImg img{transform:scale(1.06)}
+.prxBody{display:flex;flex-direction:column;flex:1;padding:20px 22px 22px}
+.prxBody h3{font-size:19px;font-weight:700;margin:0 0 8px;color:var(--ink);font-family:inherit}
+.prxBody p{margin:0 0 18px;font-size:14.5px;line-height:1.6;color:var(--mut)}
+.prxBtn{margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;gap:8px;background:var(--gd);color:#fff;border:0;border-radius:999px;padding:10px 20px;font:700 13.5px inherit;font-family:inherit;cursor:pointer;transition:background .2s}
+.prxBtn svg{transition:transform .25s}.prxBtn:hover{background:var(--g)}.prxCard:hover .prxBtn svg{transform:translateX(4px)}
+.prxBtn:focus-visible,.prxChips button:focus-visible{outline:3px solid rgba(31,122,58,.4);outline-offset:2px}
+@media(max-width:1000px){.prxGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.prxW{padding:0 16px}.prxHero{padding:108px 0 40px!important}.prxCat{padding:44px 0!important}.prxGrid{grid-template-columns:1fr;gap:18px}.prxHead{padding-left:14px}}
+@media(prefers-reduced-motion:reduce){.prxCard,.prxImg svg,.prxImg img,.prxBtn svg{transition:none}}
+
+.prxImg img[src$='solar-water-pumps.jpg']{object-position:center 35%}
+
+.prxBanner{margin:0;padding:78px 0 0!important;line-height:0;background:#fff}
+.prxBanner img{display:block;width:100%;height:auto;aspect-ratio:2.7/1;max-height:600px;object-fit:cover;object-position:left 28%}
+.prxSr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.prxChipBar{padding:22px 0 8px!important;background:#fff}
+@media(max-width:900px){.prxBanner img{aspect-ratio:3/2}}
+@media(max-width:560px){.prxBanner{padding-top:68px!important}.prxBanner img{aspect-ratio:4/3}}
+.prxChips button{display:inline-flex;align-items:center;gap:8px}
+.prxChips button.on{background:var(--gd);border-color:var(--gd);color:#fff}
+.prxEmpty{margin:0;padding:56px 20px;text-align:center;border:1px dashed #cfe3d3;border-radius:16px;background:#f6fbf6;color:var(--gd);font-weight:600}
+@media(max-width:520px){.prxChips{display:grid;grid-template-columns:1fr 1fr}.prxChips button{justify-content:center;padding:10px 8px}}

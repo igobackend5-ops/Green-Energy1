@@ -1,7 +1,10 @@
 import React from 'react';
+import { SolarServices } from './solarServices.jsx';
+import { ServiceTabs } from './serviceTabs.jsx';
+import { SolarCustomers } from './solarCustomers.jsx';
 import { WindHero } from './windHero.jsx';
 import { WindSolutions } from './windSolutions.jsx';
-import { CapabilityMatrix, HowTogether, SmartTools, SolarComplete } from './svSections.jsx';
+import { CapabilityMatrix, SmartTools, SolarComplete } from './svSections.jsx';
 import { SolarProductsList, SolarProjectsList, openSolarChoice } from './SolarChoice.jsx';
 import { Link, go, useReveal, Ic, Head, Sec, ServiceHero, Cta, ToolCard, Check, Flow, Turbine } from './common.jsx';
 
@@ -11,10 +14,10 @@ const soonTool = (onQuote) => onQuote;
 
 /* ============================== SERVICES ============================== */
 const CARDS = [
-  { k: 'solar', ic: 'sun', t: T("services.001", "Solar Energy"), d: T("services.002", "Complete end-to-end solar for homes, businesses and industries, from design and consultation to AMC."), cap: T("services.003", "1 kW to 5 MW and above") },
-  { k: 'wind', ic: 'wind', t: T("services.004", "Wind Energy"), d: T("services.005", "Consultation, feasibility, turbine installation, turnkey EPC and O&M for small and utility-scale wind."), cap: T("services.006", "Up to 100 kW · 1 MW to 3 MW and above") },
-  { k: 'biogas', ic: 'leaf', t: T("services.007", "Biogas Solutions"), d: T("services.008", "Plants that convert organic waste into clean cooking gas, electricity and organic manure."), cap: T("services.009", "1 m³/day to large-scale CBG") },
-  { k: 'water', ic: 'drop', t: T("services.010", "Water Treatment"), d: T("services.011", "Reverse Osmosis and demineralization systems, delivered as new plants or turnkey EPC."), cap: T("services.012", "Medium-scale, 10–100 KLD") },
+  { k: 'solar', ic: 'sun', t: T("services.001", "Solar Services"), d: T("services.002", "Complete end-to-end solar for homes, businesses and industries, from design and consultation to AMC."), cap: T("services.003", "1 kW to 5 MW and above") },
+  { k: 'wind', ic: 'wind', t: T("services.004", "Wind Services"), d: T("services.005", "Consultation, feasibility, turbine installation, turnkey EPC and O&M for small and utility-scale wind."), cap: T("services.006", "Up to 100 kW · 1 MW to 3 MW and above") },
+  { k: 'biogas', ic: 'leaf', t: T("services.007", "Bio Gas Services"), d: T("services.008", "Plants that convert organic waste into clean cooking gas, electricity and organic manure."), cap: T("services.009", "1 m³/day to large-scale CBG") },
+  { k: 'water', ic: 'drop', t: T("services.010", "Water Treatment Services"), d: T("services.011", "Reverse Osmosis and demineralization systems, delivered as new plants or turnkey EPC."), cap: T("services.012", "Medium-scale, 10–100 KLD") },
 ];
 const CAPS = [T("services.013", "Consultation"), T("services.014", "Design"), T("services.015", "Engineering"), T("services.016", "Installation"), T("services.017", "Commissioning"), T("services.018", "Maintenance / O&M"), T("services.019", "Customization"), T("services.020", "After-sales support")];
 /* 1 offered, 0 not specified in client answers, 2 terms to be finalised */
@@ -43,7 +46,7 @@ export function ServicesPage({ onQuote }) {
           <div className="svCopy">
             <p className="svEye"><span />{T("services.022", "OUR SERVICES")}</p>
             <h1>{T("services.023", "Integrated Clean Energy &")} <em>{T("services.024", "Water Solutions")}</em></h1>
-            <p className="svLead">{T("services.025", "iGo Green Energy provides end-to-end renewable energy and water treatment solutions — solar, wind, biogas and water treatment — delivered by one partner from consultation to long-term support.")}</p>
+            <p className="svLead">{T("services.025", "IGO Green Energy provides end-to-end renewable energy and water treatment solutions — solar, wind, biogas and water treatment — delivered by one partner from consultation to long-term support.")}</p>
             <ul className="svHL">
               {[['sun', 'Solar', 'Clean Power for Today'], ['wind', 'Wind', 'Renewable Power for Tomorrow'], ['leaf', 'Biogas', 'Waste to Clean Energy'], ['drop', 'Water Treatment', 'Clean Water for Healthier Communities']].map(([ic, t, d], i) => (
                 <li key={t} style={{ '--i': i }}><span className="svIc"><Ic n={ic} size={26} /></span><b>{t}</b><small>{d}</small></li>
@@ -51,29 +54,15 @@ export function ServicesPage({ onQuote }) {
             </ul>
             <div className="svBtns">
               <button className="pgBtn" onClick={onQuote}>{T("services.026", "Get a Smart Quote")} <Ic n="arrow" size={18} /></button>
-              <a className="svGhost" href="#overview" onClick={(e) => { e.preventDefault(); document.getElementById('overview')?.scrollIntoView({ behavior: 'smooth' }); }}>{T("services.027", "Explore Our Services")} <Ic n="arrow" size={18} /></a>
             </div>
           </div>
         </div>
       </div>
 
-      <Sec id="overview">
-        <Head eyebrow={T("services.028", "FOUR SERVICE VERTICALS")} title={T("services.029", "Choose the solution")} em={T("services.030", "you need")} center />
-        <div className="svcGrid">
-          {CARDS.map((c, i) => (
-            <article key={c.k} className="svcCard rv" style={{ '--d': i * 70 + 'ms' }}>
-              <div className="svcImg"><img src={IMG[c.k]} alt={c.t} loading="lazy" /><span><Ic n={c.ic} size={22} /></span></div>
-              <div className="svcBody"><h3>{c.t}</h3><p>{c.d}</p>
-                <div className="svcCap"><small>{T("services.031", "KEY CAPABILITY")}</small><b>{c.cap}</b></div>
-                {c.k === 'solar'
-                  ? <a href="/services/solar" className="pgLink" onClick={(e) => { e.preventDefault(); openSolarChoice(); }}>{T("services.032", "Explore Service")} <Ic n="arrow" size={16} /></a>
-                  : <Link to={'/services/' + c.k} className="pgLink">{T("services.033", "Explore Service")} <Ic n="arrow" size={16} /></Link>}</div>
-            </article>
-          ))}
-        </div>
-      </Sec>
 
-      <HowTogether onQuote={onQuote} />
+      <ServiceTabs cards={CARDS}>
+        {{ solar: <SolarServices />, wind: <WindPage embed onQuote={onQuote} />, biogas: <BiogasPage embed onQuote={onQuote} />, water: <WaterPage embed onQuote={onQuote} /> }}
+      </ServiceTabs>
 
       <CapabilityMatrix />
 
@@ -107,14 +96,13 @@ export function SolarPage({ onQuote, noHero }) {
 
       <SolarComplete onQuote={onQuote} />
 
-      <Sec cls="alt"><Head eyebrow={T("services.092", "BY CUSTOMER TYPE")} title={T("services.093", "Solar for")} em={T("services.094", "every kind of customer")} />
-        <div className="cardGrid g3">{segs.map(([t, ic, d]) => <div className="segCard rv" key={t}><span className="iIc lg"><Ic n={ic} size={28} /></span><h3>{t}</h3><p>{d}</p></div>)}</div></Sec>
+      <SolarCustomers items={segs} onQuote={onQuote} />
 
       <Sec><Head eyebrow={T("services.095", "SYSTEM TYPES")} title={T("services.096", "On-grid, off-grid")} em={T("services.097", "or hybrid")} />
         <div className="cardGrid g3">{types.map(([t, d], i) => <div className="typeCard rv" key={t}><i className="flowLine" /><b>{String(i + 1).padStart(2, '0')}</b><h3>{t}</h3><p>{d}</p></div>)}</div></Sec>
 
       <Sec cls="alt"><div className="twoCol">
-        <div><Head eyebrow={T("services.098", "SOLAR EQUIPMENT")} title={T("services.099", "Tier-1 certified")} em={T("services.100", "equipment")} text={T("services.101", "iGo Green Energy uses Tier-1 certified equipment from leading manufacturers, selected for efficiency, durability, and long-term performance.")} /></div>
+        <div><Head eyebrow={T("services.098", "SOLAR EQUIPMENT")} title={T("services.099", "Tier-1 certified")} em={T("services.100", "equipment")} text={T("services.101", "IGO Green Energy uses Tier-1 certified equipment from leading manufacturers, selected for efficiency, durability, and long-term performance.")} /></div>
         <Check cols={1} items={['Solar panels', 'Inverters', 'Batteries', 'Mounting and electrical components']} />
       </div></Sec>
 
@@ -148,11 +136,11 @@ const WIND_STEPS = [
   { t: T("services.133", "Installation and Commissioning"), d: T("services.134", "Turbine erection, testing, and grid synchronization.") },
   { t: T("services.135", "Handover and O&M"), d: T("services.136", "Training, performance monitoring, and long-term maintenance.") },
 ];
-export function WindPage({ onQuote }) {
+export function WindPage({ onQuote, embed }) {
   const ref = useReveal();
   return (
-    <div ref={ref} className="pg th-wind">
-      <WindHero />
+    <div ref={ref} className={"pg th-wind" + (embed ? " pgEmbed" : "")}>
+      {!embed && <WindHero />}
 
       <WindSolutions />
 
@@ -179,20 +167,20 @@ export function WindPage({ onQuote }) {
 
       <Sec cls="alt"><div className="coverage rv"><Ic n="pin" size={34} /><div><p className="pgEye">{T("services.172", "COVERAGE")}</p><h2>{T("services.173", "Pan-India")} <em>{T("services.174", "wind projects")}</em></h2><p>{T("services.175", "We serve wind energy projects across India, in all states with good wind potential. Project locations are selected after a detailed wind resource and site assessment.")}</p></div></div></Sec>
 
-      <Sec><Cta eyebrow={T("services.176", "WIND ENERGY")} title={T("services.177", "Request a Wind Project")} em={T("services.178", "Consultation")} label={T("services.179", "Request a Consultation")} onClick={onQuote} tone="wind" /></Sec>
+      {!embed && <Sec><Cta eyebrow={T("services.176", "WIND ENERGY")} title={T("services.177", "Request a Wind Project")} em={T("services.178", "Consultation")} label={T("services.179", "Request a Consultation")} onClick={onQuote} tone="wind" /></Sec>}
     </div>
   );
 }
 
 /* ============================== BIOGAS ============================== */
-export function BiogasPage({ onQuote }) {
+export function BiogasPage({ onQuote, embed }) {
   const ref = useReveal();
   return (
-    <div ref={ref} className="pg th-bio">
-      <ServiceHero eyebrow={T("services.180", "BIOGAS SOLUTIONS")} title={T("services.181", "Turn Organic Waste into")} em={T("services.182", "Clean Energy")} fx="fxBio" img={IMG.biogas} alt={T("services.183", "Green organic landscape")} onQuote={onQuote}
-        text={T("services.184", "We transform organic waste into clean fuel and lasting value, so waste becomes a resource.")} />
+    <div ref={ref} className={"pg th-bio" + (embed ? " pgEmbed" : "")}>
+      {!embed && <ServiceHero eyebrow={T("services.180", "BIOGAS SOLUTIONS")} title={T("services.181", "Turn Organic Waste into")} em={T("services.182", "Clean Energy")} fx="fxBio" img={IMG.biogas} alt={T("services.183", "Green organic landscape")} onQuote={onQuote}
+        text={T("services.184", "We transform organic waste into clean fuel and lasting value, so waste becomes a resource.")} />}
 
-      <Sec><Head eyebrow={T("services.185", "OUR BIOGAS SOLUTION")} title={T("services.186", "Biogas plants for")} em={T("services.187", "every scale")} text={T("services.188", "iGo Green Energy turns organic waste into clean energy with biogas solutions for every scale.")} />
+      <Sec><Head eyebrow={T("services.185", "OUR BIOGAS SOLUTION")} title={T("services.186", "Biogas plants for")} em={T("services.187", "every scale")} text={T("services.188", "IGO Green Energy turns organic waste into clean energy with biogas solutions for every scale.")} />
         <div className="cardGrid g4">{[['Household and Domestic', 'Compact plants that convert kitchen and farm waste into cooking gas.'], ['Commercial', 'For hotels, canteens, restaurants, and institutions, cutting fuel costs and managing food waste.'], ['Industrial and Agricultural', 'For dairies, farms, and food industries, converting large volumes of organic waste into energy.'], ['Municipal and Organic Waste-to-Energy', 'For communities and local bodies, turning organic waste into a valuable resource.']].map(([t, d]) => <div className="pCard rv" key={t}><span className="iIc"><Ic n="leaf" /></span><h3>{t}</h3><p>{d}</p></div>)}</div></Sec>
 
       <Sec cls="alt"><Head eyebrow={T("services.189", "WASTE-TO-VALUE")} title={T("services.190", "A wide range of")} em={T("services.191", "organic feedstock")} text={T("services.192", "The best feedstock mix is selected for each project based on availability and plant design.")} />
@@ -217,21 +205,21 @@ export function BiogasPage({ onQuote }) {
 
       <Sec cls="alt"><div className="coverage rv"><Ic n="doc" size={34} /><div><p className="pgEye">{T("services.211", "PROJECTS & VISUALS")}</p><h2>{T("services.212", "Completed project details are")} <em>{T("services.213", "confidential")}</em></h2><p>{T("services.214", "Details of completed biogas projects cannot be shared. Images shown on this page are stock visuals; project images and videos will follow when available.")}</p></div></div></Sec>
 
-      <Sec><Cta eyebrow={T("services.215", "BIOGAS")} title={T("services.216", "Plan your")} em={T("services.217", "biogas plant")} label={T("services.218", "Get a Smart Quote")} onClick={onQuote} tone="bio" /></Sec>
+      {!embed && <Sec><Cta eyebrow={T("services.215", "BIOGAS")} title={T("services.216", "Plan your")} em={T("services.217", "biogas plant")} label={T("services.218", "Get a Smart Quote")} onClick={onQuote} tone="bio" /></Sec>}
     </div>
   );
 }
 
 /* ============================== WATER ============================== */
-export function WaterPage({ onQuote }) {
+export function WaterPage({ onQuote, embed }) {
   const ref = useReveal();
   return (
-    <div ref={ref} className="pg th-water">
-      <ServiceHero eyebrow={T("services.219", "WATER TREATMENT")} title={T("services.220", "Safe, Reusable,")} em={T("services.221", "Efficient Water")} fx="fxWater" img={IMG.water} alt={T("services.222", "Clean flowing water")} onQuote={onQuote}
-        text={T("services.223", "Water systems that protect communities, industries, and the environment.")} />
+    <div ref={ref} className={"pg th-water" + (embed ? " pgEmbed" : "")}>
+      {!embed && <ServiceHero eyebrow={T("services.219", "WATER TREATMENT")} title={T("services.220", "Safe, Reusable,")} em={T("services.221", "Efficient Water")} fx="fxWater" img={IMG.water} alt={T("services.222", "Clean flowing water")} onQuote={onQuote}
+        text={T("services.223", "Water systems that protect communities, industries, and the environment.")} />}
 
       <Sec><div className="twoCol">
-        <div><Head eyebrow={T("services.224", "OVERVIEW")} title={T("services.225", "Water treatment,")} em={T("services.226", "engineered for you")} text={T("services.227", "iGo Green Energy delivers safe, reusable, efficient water systems for industries, institutions and communities, designed, installed, commissioned and maintained by one team.")} /></div>
+        <div><Head eyebrow={T("services.224", "OVERVIEW")} title={T("services.225", "Water treatment,")} em={T("services.226", "engineered for you")} text={T("services.227", "IGO Green Energy delivers safe, reusable, efficient water systems for industries, institutions and communities, designed, installed, commissioned and maintained by one team.")} /></div>
         <div className="statRow rv"><div><small>{T("services.228", "SOLUTIONS")}</small><b>{T("services.229", "RO & Demineralization")}</b></div><div><small>{T("services.230", "PROJECT SCALE")}</small><b>{T("services.231", "10–100 KLD")}</b></div></div>
       </div></Sec>
 
@@ -266,7 +254,7 @@ export function WaterPage({ onQuote }) {
         <ToolCard icon="doc" title={T("services.264", "Smart Quote / Site Survey")} text={T("services.265", "Start with a site visit and feasibility review.")} label={T("services.266", "Request a site survey")} onClick={onQuote} />
       </div></Sec>
 
-      <Sec cls="alt"><Cta eyebrow={T("services.267", "WATER TREATMENT")} title={T("services.268", "Get a")} em={T("services.269", "Smart Quote")} label={T("services.270", "Get a Smart Quote")} onClick={onQuote} tone="water" /></Sec>
+      {!embed && <Sec cls="alt"><Cta eyebrow={T("services.267", "WATER TREATMENT")} title={T("services.268", "Get a")} em={T("services.269", "Smart Quote")} label={T("services.270", "Get a Smart Quote")} onClick={onQuote} tone="water" /></Sec>}
     </div>
   );
 }

@@ -5,7 +5,7 @@ import { useEnquiry, HONEY } from '../useEnquiry.js';
 import './extra.css';
 
 import { T } from '../content/T.js';
-const BRAND = 'iGo Green Energy';
+const BRAND = 'IGO Green Energy';
 const Shell = ({ title, intro, children }) => {
   const ref = useReveal();
   return (
@@ -19,7 +19,7 @@ const Block = ({ h, children }) => <section className="lgBlock"><h3>{h}</h3>{chi
 export function PrivacyPage() {
   const c = useCms('contact') || {};
   return (
-    <Shell title={T("legal.002", "Privacy Policy")} intro={T("legal.117", "How iGo Green Energy collects, uses and protects the information you share with us.")}>
+    <Shell title={T("legal.002", "Privacy Policy")} intro={T("legal.117", "How IGO Green Energy collects, uses and protects the information you share with us.")}>
       <Block h={T("legal.101", "1. Information we collect")}><p>{T("legal.003", "When you submit a quote request, contact form, callback request, career enquiry or newsletter sign-up, we collect the details you enter, such as your name, phone number, email address, company, location and message. We also record the page you submitted the form from.")}</p></Block>
       <Block h={T("legal.102", "2. How we use it")}><p>{T("legal.004", "We use your details to respond to your enquiry, prepare quotations, arrange site surveys, provide support, and, if you subscribed, send updates about our solutions. We do not sell your personal information.")}</p></Block>
       <Block h={T("legal.103", "3. Who can see it")}><p>{T("legal.005", "Enquiries are visible only to authorised")} {BRAND} {T("legal.006", "staff through our admin system. We may share information with installation partners or service providers strictly to fulfil your request, or where required by law.")}</p></Block>
@@ -35,7 +35,7 @@ export function PrivacyPage() {
 export function TermsPage() {
   const c = useCms('contact') || {};
   return (
-    <Shell title={T("legal.012", "Terms & Conditions")} intro={T("legal.118", "Please read these terms before using the iGo Green Energy website.")}>
+    <Shell title={T("legal.012", "Terms & Conditions")} intro={T("legal.118", "Please read these terms before using the IGO Green Energy website.")}>
       <Block h={T("legal.109", "1. Use of this website")}><p>{T("legal.013", "The information on this website is provided for general guidance about our solar, wind, biogas and water treatment solutions. By using the site you agree to use it lawfully and not to misuse or interfere with it.")}</p></Block>
       <Block h={T("legal.110", "2. Quotations and estimates")}><p>{T("legal.014", "Any estimate, calculator result or indicative figure shown on this website is for information only and is not an offer or a guarantee of savings, output or performance. Final design, pricing and timelines are confirmed in a written quotation after a site assessment.")}</p></Block>
       <Block h={T("legal.111", "3. Products and services")}><p>{T("legal.015", "Specifications, images and descriptions may change without notice. Services are supplied under the terms of the written agreement or purchase order agreed with")} {BRAND}.</p></Block>

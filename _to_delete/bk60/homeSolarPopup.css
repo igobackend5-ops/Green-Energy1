@@ -1,0 +1,15 @@
+.hspOv{position:fixed;inset:0;z-index:100000;display:grid;place-items:center;padding:20px;background:rgba(6,30,16,.55);backdrop-filter:blur(4px);animation:hspF .22s ease both}
+.hspBox{position:relative;width:min(560px,100%);max-height:calc(100dvh - 40px);overflow:auto;background:#fff;border-radius:22px;padding:34px 30px 30px;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.35);border:1px solid #d6e6da;animation:hspU .3s ease both}
+.hspX{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;border:1px solid #d6e6da;background:#fff;color:#12401f;display:grid;place-items:center;cursor:pointer}
+.hspX:hover{background:#eef6f0}
+.hspRing{display:inline-grid;place-items:center;width:64px;height:64px;border-radius:50%;background:#e6f3e9;color:#1f7a3a;margin-bottom:12px}
+.hspBox h2{margin:0 0 22px;font-size:clamp(24px,3.4vw,30px);color:#12401f}
+.hspPick{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.hspOpt{display:flex;flex-direction:column;align-items:center;gap:10px;padding:22px 14px;border-radius:16px;border:1.5px solid #cfe3d4;background:#f7fbf8;color:#12401f;font-family:inherit;cursor:pointer;transition:transform .25s,box-shadow .25s,border-color .25s,background .25s}
+.hspOpt:hover,.hspOpt:focus-visible{transform:translateY(-4px);border-color:#1f7a3a;background:#fff;box-shadow:0 12px 28px rgba(30,100,60,.18);outline:0}
+.hspOi{display:grid;place-items:center;width:58px;height:58px;border-radius:16px;background:#1f7a3a;color:#fff}
+.hspOpt b{font-size:20px}
+.hspGo{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:#1f7a3a}
+@keyframes hspF{from{opacity:0}to{opacity:1}}@keyframes hspU{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+@media(max-width:520px){.hspBox{padding:30px 18px 22px}.hspPick{grid-template-columns:1fr}.hspOpt{flex-direction:row;justify-content:flex-start;text-align:left;padding:14px}.hspOi{width:48px;height:48px;flex:none}.hspOpt b{flex:1}.hspGo{font-size:0}.hspGo svg{width:18px;height:18px}}
+@media(prefers-reduced-motion:reduce){.hspOv,.hspBox{animation:none}.hspOpt{transition:none}}
