@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { db, UPLOAD_DIR } from './db.js';
 import { attachUser, requireAuth, requireAdmin, rateLimit, hashPassword, verifyPassword, makeToken, setSessionCookie, clearSessionCookie, seedAdmin } from './auth.js';
 import { notifyEnquiry } from './mail.js';
+import { registerCareers } from './careers.js';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -122,7 +123,7 @@ api.patch('/enquiries/:id', requireAuth, (req, res) => {
   const id = Number(req.params.id); const { status, notes } = req.body || {};
   const cur = db.prepare('SELECT * FROM enquiries WHERE id=?').get(id);
   if (!cur) return res.status(404).json({ error: 'Not found.' });
-  const st = ['new', 'contacted', 'qualified', 'closed', 'spam'].includes(status) ? status : cur.status;
+  const st = ['new', 'contacted', 'qualified', 'closed', 'spam', 'reviewing', 'shortlisted', 'interview', 'selected', 'rejected'].includes(status) ? status : cur.status;
   const nt = notes === undefined ? cur.notes : clip(notes, 4000);
   db.prepare("UPDATE enquiries SET status=?, notes=?, updated_at=datetime('now') WHERE id=?").run(st, nt, id);
   if (st !== cur.status) audit(req.user, `Enquiry #${id} marked ${st}`);
@@ -188,6 +189,7 @@ api.delete('/users/:id', requireAuth, requireAdmin, (req, res) => {
   res.json({ ok: true });
 });
 
+registerCareers(api, { db, requireAuth, rateLimit, clip, notifyEnquiry });
 api.use((_req, res) => res.status(404).json({ error: 'Not found.' }));
 app.use('/api', api);
 const SITE_PATHS = ['/', '/about', '/services', '/services/solar', '/services/wind', '/services/biogas', '/services/water', '/projects', '/subsidy', '/blogs', '/leadership', '/faq', '/careers', '/learnerships', '/contact', '/privacy-policy', '/terms', '/sitemap'];

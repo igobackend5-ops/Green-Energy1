@@ -5,6 +5,7 @@ const NAV_ITEMS = [
   { label: T("nav.001", "Home"), path: '/' },
   { label: T("nav.002", "About Us"), path: '/about' },
   { label: T("nav.003", "Services"), path: '/services' },
+  { label: T("nav.011", "Products"), path: '/products' },
   { label: T("nav.004", "Projects"), path: '/projects' },
   { label: T("nav.010", "Subsidy"), path: '/subsidy' },
   { label: T("nav.005", "Leadership"), path: '/leadership' },

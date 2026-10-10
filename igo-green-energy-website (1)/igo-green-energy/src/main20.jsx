@@ -56,7 +56,7 @@ function App(){
 
   </>}
   </main>
-  {PAGE&&<footer><img className="ftLogo" src="/logo.png" alt="Green Energy" width="858" height="719"/><p>Go Green. Go Smart. Go iGo.</p><div><button onClick={()=>go('solutions')}>Solutions</button><button onClick={()=>go('contact')}>Contact</button></div></footer>}
+  {PAGE&&<footer><img className="ftLogo" src="/logo.png" alt="Green Energy" width="858" height="719"/><p>Go Green. Go Smart. Go IGO.</p><div><button onClick={()=>go('solutions')}>Solutions</button><button onClick={()=>go('contact')}>Contact</button></div></footer>}
   <ChatWidget/>
   {quote&&<div className="modal" onClick={()=>setQuote(false)}><div className="modalCard" onClick={e=>e.stopPropagation()}><button className="close" onClick={()=>setQuote(false)}>×</button><p className="eyebrow">SMART QUOTE</p><h2>Tell us what you're building.</h2><input placeholder="Your name"/><input placeholder="Phone / WhatsApp"/><select defaultValue=""><option value="" disabled>Select solution</option><option>Solar Energy</option><option>Wind Energy</option><option>Biogas Solutions</option><option>Water Treatment</option></select><textarea placeholder="Tell us about your requirement"/><button className="cta" onClick={()=>setQuote(false)}>Submit Enquiry →</button></div></div>}
  </div>

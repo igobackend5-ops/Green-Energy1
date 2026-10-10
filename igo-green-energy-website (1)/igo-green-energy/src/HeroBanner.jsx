@@ -11,7 +11,7 @@ export default function HeroBanner() {
         <img
           className="heroLayer"
           src={T("home.hero.001", "/hero/hero-static.jpg")}
-          alt={T("home.hero.002", "iGo Green Energy - solar, wind, biogas and water treatment around a renewable Earth")}
+          alt={T("home.hero.002", "IGO Green Energy - solar, wind, biogas and water treatment around a renewable Earth")}
           fetchpriority="high"
         />
       </div>

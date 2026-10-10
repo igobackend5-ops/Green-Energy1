@@ -422,7 +422,7 @@
 @media (max-width:560px){.tstHero img{aspect-ratio:3/2}}
 
 /* ===== BLOGS HERO (native banner image) ===== */
-.blgHero img{aspect-ratio:2048/768;object-position:left center}
+.blgHero img{aspect-ratio:2000/760;object-position:left center}
 @media (max-width:767px){.blgHero img{aspect-ratio:3/2}}
 @media (max-width:560px){.blgHero img{aspect-ratio:4/3}}
 

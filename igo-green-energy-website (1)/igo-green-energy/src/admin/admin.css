@@ -193,3 +193,4 @@
 @media(max-width:900px){.pcLayout{grid-template-columns:1fr}.pcSecs{position:static;max-height:none;grid-template-columns:1fr 1fr}
  .enqHead{display:none}.enqRow{grid-template-columns:1fr auto;gap:4px 10px}.enqRow>span:nth-child(1){grid-column:1/-1;color:var(--mut);font-size:12.5px}.enqRow>span:nth-child(4){grid-column:1/-1}
  .enqDl{grid-template-columns:1fr}.usrTable>div{grid-template-columns:1fr}.admBanner{margin:14px 16px 0}}
+.admBadge.enq-reviewing{background:#e1eefb;color:#1b5b9e}.admBadge.enq-shortlisted{background:#e3f4e7;color:#176530}.admBadge.enq-interview{background:#efe6fb;color:#5b2a9e}.admBadge.enq-selected{background:#d4f0dc;color:#0d5a26}.admBadge.enq-rejected{background:#fdecea;color:#a52e22}

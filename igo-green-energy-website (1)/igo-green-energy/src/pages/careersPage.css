@@ -86,3 +86,28 @@
 .crJobH{margin-top:4px}
 @media(max-width:1000px){.crJobs{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.crJobs{grid-template-columns:1fr}}
+
+/* current openings: expand / collapse */
+.crCur{cursor:pointer}.crCur .crBtn{cursor:pointer}
+.crChev{transition:transform .3s}.crTog.on .crChev{transform:rotate(180deg)}
+.crColl{display:grid;grid-template-rows:0fr;opacity:0;visibility:hidden;transition:grid-template-rows .45s ease,opacity .35s ease,visibility 0s linear .45s}
+.crColl.open{grid-template-rows:1fr;opacity:1;visibility:visible;transition:grid-template-rows .45s ease,opacity .35s ease .05s,visibility 0s}
+.crCollIn{overflow:hidden;min-height:0}
+.crCollIn .crJobs{padding-top:16px}
+.crNone{padding-top:16px;color:#4b5f53;font-size:14.5px}
+@media(prefers-reduced-motion:reduce){.crColl,.crColl.open,.crChev{transition:none}}
+
+/* conditional application form */
+.crApply.closed{grid-template-columns:minmax(0,520px);justify-content:center}
+.crFormHd{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
+.crFormHd h2{font-size:20px;color:var(--gd);margin:0}
+.crClose{width:32px;height:32px;border-radius:50%;border:1px solid var(--bd);background:#fff;color:var(--gd);font-size:20px;line-height:1;cursor:pointer}
+.crClose:hover{background:#eef6f0}
+.crErr{font-style:normal;font-size:10.5px;color:#b3261e;line-height:1.3}
+.crF.bad input,.crF.bad select,.crF.bad textarea,.crF.bad .crFile{border-color:#b3261e}
+.crChk{flex-wrap:wrap}.crChk.bad{color:#b3261e}
+.crForm{animation:crFormIn .35s ease both}
+@keyframes crFormIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.crForm{animation:none}}
+.crForm em.crErr,.crF em.crErr{color:#b3261e;font-style:normal}
+.crApply.closed .crSide{min-height:0}

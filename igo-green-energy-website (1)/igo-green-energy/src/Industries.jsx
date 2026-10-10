@@ -33,7 +33,6 @@ function IndustryCard({ item, index, onSelect }) {
         <h3>{item.title}</h3>
         <div className="iFoot">
           <p>{item.text}</p>
-          <button type="button" className="iArrow" aria-label={`Enquire about ${item.title}`} onClick={() => onSelect && onSelect(item.key)}><Icon.arrow /></button>
         </div>
       </div>
     </article>

@@ -29,7 +29,7 @@ export function ServicesPage({ onQuote }) {
           <div className="svCopy">
             <p className="svEye"><span />OUR SERVICES</p>
             <h1>Integrated Clean Energy &amp; <em>Water Solutions</em></h1>
-            <p className="svLead">iGo Green Energy provides end-to-end renewable energy and water treatment solutions — solar, wind, biogas and water treatment — delivered by one partner from consultation to long-term support.</p>
+            <p className="svLead">IGO Green Energy provides end-to-end renewable energy and water treatment solutions — solar, wind, biogas and water treatment — delivered by one partner from consultation to long-term support.</p>
             <ul className="svHL">
               {[['sun', 'Solar', 'Clean Power for Today'], ['wind', 'Wind', 'Renewable Power for Tomorrow'], ['leaf', 'Biogas', 'Waste to Clean Energy'], ['drop', 'Water Treatment', 'Clean Water for Healthier Communities']].map(([ic, t, d], i) => (
                 <li key={t} style={{ '--i': i }}><span className="svIc"><Ic n={ic} size={26} /></span><b>{t}</b><small>{d}</small></li>
@@ -98,7 +98,7 @@ export function SolarPage({ onQuote }) {
         <div className="cardGrid g3">{types.map(([t, d], i) => <div className="typeCard rv" key={t}><i className="flowLine" /><b>{String(i + 1).padStart(2, '0')}</b><h3>{t}</h3><p>{d}</p></div>)}</div></Sec>
 
       <Sec cls="alt"><div className="twoCol">
-        <div><Head eyebrow="SOLAR EQUIPMENT" title="Tier-1 certified" em="equipment" text="iGo Green Energy uses Tier-1 certified equipment from leading manufacturers, selected for efficiency, durability, and long-term performance." /></div>
+        <div><Head eyebrow="SOLAR EQUIPMENT" title="Tier-1 certified" em="equipment" text="IGO Green Energy uses Tier-1 certified equipment from leading manufacturers, selected for efficiency, durability, and long-term performance." /></div>
         <Check cols={1} items={['Solar panels', 'Inverters', 'Batteries', 'Mounting and electrical components']} />
       </div></Sec>
 
@@ -179,7 +179,7 @@ export function BiogasPage({ onQuote }) {
       <ServiceHero eyebrow="BIOGAS SOLUTIONS" title="Turn Organic Waste into" em="Clean Energy" fx="fxBio" img={IMG.biogas} alt="Green organic landscape" onQuote={onQuote}
         text="We transform organic waste into clean fuel and lasting value, so waste becomes a resource." />
 
-      <Sec><Head eyebrow="OUR BIOGAS SOLUTION" title="Biogas plants for" em="every scale" text="iGo Green Energy turns organic waste into clean energy with biogas solutions for every scale." />
+      <Sec><Head eyebrow="OUR BIOGAS SOLUTION" title="Biogas plants for" em="every scale" text="IGO Green Energy turns organic waste into clean energy with biogas solutions for every scale." />
         <div className="cardGrid g4">{[['Household and Domestic', 'Compact plants that convert kitchen and farm waste into cooking gas.'], ['Commercial', 'For hotels, canteens, restaurants, and institutions, cutting fuel costs and managing food waste.'], ['Industrial and Agricultural', 'For dairies, farms, and food industries, converting large volumes of organic waste into energy.'], ['Municipal and Organic Waste-to-Energy', 'For communities and local bodies, turning organic waste into a valuable resource.']].map(([t, d]) => <div className="pCard rv" key={t}><span className="iIc"><Ic n="leaf" /></span><h3>{t}</h3><p>{d}</p></div>)}</div></Sec>
 
       <Sec cls="alt"><Head eyebrow="WASTE-TO-VALUE" title="A wide range of" em="organic feedstock" text="The best feedstock mix is selected for each project based on availability and plant design." />
@@ -218,7 +218,7 @@ export function WaterPage({ onQuote }) {
         text="Water systems that protect communities, industries, and the environment." />
 
       <Sec><div className="twoCol">
-        <div><Head eyebrow="OVERVIEW" title="Water treatment," em="engineered for you" text="iGo Green Energy delivers safe, reusable, efficient water systems for industries, institutions and communities, designed, installed, commissioned and maintained by one team." /></div>
+        <div><Head eyebrow="OVERVIEW" title="Water treatment," em="engineered for you" text="IGO Green Energy delivers safe, reusable, efficient water systems for industries, institutions and communities, designed, installed, commissioned and maintained by one team." /></div>
         <div className="statRow rv"><div><small>SOLUTIONS</small><b>RO &amp; Demineralization</b></div><div><small>PROJECT SCALE</small><b>10–100 KLD</b></div></div>
       </div></Sec>
 

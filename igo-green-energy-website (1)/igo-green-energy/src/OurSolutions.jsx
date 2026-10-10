@@ -49,7 +49,7 @@ export const SOLUTIONS = [
 function SolutionCard({ item, index, onExplore }) {
   const I = Icon[item.icon];
   return (
-    <article className={`sCard sCard--${item.key}${item.key === 'wind' ? ' sCard--go' : ''}`} style={{ '--i': index }}{...(item.key === 'wind' ? { onClick: (e) => { if (!e.target.closest('.sBtn')) onExplore && onExplore(item.key); }, role: 'link', tabIndex: 0, onKeyDown: (e) => { if (e.key === 'Enter' && !e.target.closest('.sBtn')) onExplore && onExplore(item.key); } } : {})}>
+    <article className={`sCard sCard--${item.key}${item.key === 'wind' ? ' sCard--go' : ''}`} style={{ '--i': index }}{...(item.key === 'wind' || item.key === 'solar' ? { onClick: (e) => { if (!e.target.closest('.sBtn')) onExplore && onExplore(item.key); }, role: 'link', tabIndex: 0, ...(item.key === 'solar' ? { style: { '--i': index, cursor: 'pointer' } } : {}), onKeyDown: (e) => { if (e.key === 'Enter' && !e.target.closest('.sBtn')) onExplore && onExplore(item.key); } } : {})}>
       <div className="sPhoto">
         <img src={item.image} alt={item.alt} loading="lazy" decoding="async" draggable="false" />
       </div>

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useReveal } from './common.jsx';
 import { useCms } from '../admin/store.js';
+import { ResumeModal } from './careerResume.jsx';
 import { T } from '../content/T.js';
-import { submitEnquiry } from '../admin/api.js';
 import './careersPage.css';
 
 const jump = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -31,35 +31,15 @@ const Arr = () => <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="t
 const WHY = [['leaf', 'Meaningful Work'], ['gear', 'Real Project Exposure'], ['chart', 'Learning & Growth'], ['bulb', 'Innovation & R&D'], ['team', 'Supportive Team Culture'], ['star', 'Career Opportunities']];
 const OPP = [['gear', 'Engineering'], ['brief', 'Projects'], ['sales', 'Sales'], ['agri', 'Agriculture'], ['flask', 'R&D'], ['screen', 'Digital'], ['cog', 'Operations']];
 
-function Field({ label, req, children, cls = '' }) {
-  return <label className={'crF ' + cls}><span>{label}{req ? ' *' : ''}</span>{children}</label>;
-}
-
 export function CareersPage() {
   const ref = useReveal();
-  const [v, setV] = useState({});
-  const [files, setFiles] = useState({});
-  const [st, setSt] = useState({ s: 'idle', m: '' });
   const cj = useCms('careers');
   const jobs = (Array.isArray(cj) ? cj : []).filter((x) => x.status === 'published');
   const plain = (h) => String(h || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
-  const applyFor = (job) => { setV((c) => ({ ...c, pos: job.title, dept: job.department && OPP.some(([, t]) => t === job.department) ? job.department : c.dept })); jump('cr-form'); };
-  const set = (k) => (e) => setV((c) => ({ ...c, [k]: e.target.value }));
-  const submit = async (e) => {
-    e.preventDefault();
-    if (!v.ok) return setSt({ s: 'err', m: 'Please confirm the information provided is accurate.' });
-    setSt({ s: 'load', m: '' });
-    try {
-      await submitEnquiry({
-        type: 'career', name: v.name, email: v.email, phone: v.phone, subject: 'Career application: ' + (v.pos || ''),
-        message: v.msg || '',
-        extra: { city: v.city, qualification: v.qual, specialization: v.spec, graduation: v.year, position: v.pos, department: v.dept, level: v.lvl, experience: v.exp, resume: files.cv || '', portfolio: v.port || files.pf || '', skills: v.skills, preferred: v.pref },
-        website: v.website,
-      });
-      setSt({ s: 'ok', m: 'Thank you! Your application has been received. We will contact you soon.' });
-      setV({}); setFiles({}); e.target.reset();
-    } catch (err) { setSt({ s: 'err', m: err.message || 'Something went wrong. Please try again.' }); }
-  };
+  const [open, setOpen] = useState(false);
+  const [modal, setModal] = useState(null);   // null | { pos }
+  const openForm = (pos) => setModal({ pos: pos || '' });
+  const closeForm = useCallback(() => setModal(null), []);
   return (
     <div ref={ref} className="pg crPage">
       <section className="crHero">
@@ -68,7 +48,7 @@ export function CareersPage() {
           <p className="crEye">{T('careers.101', 'CAREERS AT GREEN ENERGY')}<i /></p>
           <h1>{T('careers.102', 'Build Your Career.')}<br />{T('careers.103', 'Power a Greener Future.')}</h1>
           <p className="crLead">{T('careers.104', 'Join Green Energy and grow with a team focused on renewable energy, innovation, engineering and sustainability.')}</p>
-          <button className="crBtn" onClick={() => jump('cr-openings')}>{T('careers.105', 'View Openings')} <Arr /></button>
+          <button className="crBtn" onClick={() => jump('cr-current')}>{T('careers.140', 'Join Our Team')} <Arr /></button>
         </div>
       </section>
 
@@ -93,16 +73,17 @@ export function CareersPage() {
       </div></section>
 
       <section id="cr-openings"><div className="crW crTwo">
-        <div className="crCard"><span className="crRing sm"><I n="brief" s={22} /></span>
+        <div className="crCard crCur" id="cr-current" onClick={() => setOpen((o) => !o)}><span className="crRing sm"><I n="brief" s={22} /></span>
           <div><h3>{T('careers.124', 'Current Openings')}</h3><p>{T('careers.125', 'Explore our latest vacancies and apply for the right position.')}</p>
-            <button className="crBtn sm" onClick={() => jump('cr-apply')}>{T('careers.105', 'View Openings')} <Arr /></button></div>
+            <button type="button" className={'crBtn sm crTog' + (open ? ' on' : '')} aria-expanded={open} aria-controls="cr-jobs">{open ? T('careers.141', 'Hide Openings') : T('careers.105', 'View Openings')} <svg className="crChev" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" /></svg></button></div>
           <span className="crDeco"><I n="doc" s={64} /></span></div>
         <div className="crCard"><span className="crRing sm"><I n="grad" s={22} /></span>
           <div><h3>{T('careers.126', 'Internships')}</h3><p>{T('careers.127', 'Gain practical experience in Solar, Engineering, Agriculture, R&D, Projects and Business.')}</p>
-            <button className="crBtn sm" onClick={() => jump('cr-apply')}>{T('careers.128', 'Apply for Internship')} <Arr /></button></div>
+            <button className="crBtn sm" onClick={() => openForm()}>{T('careers.128', 'Apply for Internship')} <Arr /></button></div>
           <span className="crDeco"><I n="leaf" s={64} /></span></div>
       </div>
-        {jobs.length > 0 && <div className="crW crJobs">
+        <div id="cr-jobs" className={'crColl' + (open ? ' open' : '')} aria-hidden={!open}><div className="crCollIn">
+        {jobs.length === 0 ? <p className="crW crNone">There are no open positions at the moment. Please check back soon.</p> : <div className="crW crJobs">
           {jobs.map((job, i) => (
             <article className="crJob" key={job.id || i}>
               <span className="crJobNo">{String(i + 1).padStart(2, '0')}</span>
@@ -110,10 +91,11 @@ export function CareersPage() {
               {job.qualification && <p className="crJobQ"><b>Qualification</b>{job.qualification}</p>}
               {job.responsibilities && <><b className="crJobH">Daily Job Roles</b><ul>{String(job.responsibilities).split('\n').map((r) => r.trim()).filter(Boolean).map((r) => <li key={r}>{r}</li>)}</ul></>}
               {plain(job.description) && <p className="crJobD"><b>JD</b>{plain(job.description)}</p>}
-              <button className="crBtn sm" onClick={() => applyFor(job)}>Apply Now <Arr /></button>
+              <button type="button" className="crBtn sm" tabIndex={open ? 0 : -1} onClick={() => openForm(job.title)}>Apply Now <Arr /></button>
             </article>
           ))}
         </div>}
+        </div></div>
       </section>
 
       <section><div className="crW"><div className="crLearn">
@@ -122,55 +104,13 @@ export function CareersPage() {
         <div className="crLearnT"><h2>{T('careers.129', 'Learning & Growth')}</h2><b>{T('careers.130', 'Learn Today. Lead Tomorrow.')}</b><p>{T('careers.131', 'Develop your technical, professional and leadership skills.')}</p></div>
       </div></div></section>
 
-      <section id="cr-apply" className="crApplySec"><div className="crW crApply">
+      <section id="cr-apply" className="crApplySec"><div className="crW crApply closed">
         <aside className="crSide">
           <div className="crSideTop"><span className="crRing sm"><I n="user" s={24} /></span><div><h3>{T('careers.132', 'Apply Now')}</h3><p>{T('careers.133', 'Ready to join Green Energy?')}</p></div></div>
-          <button className="crBtn sm" onClick={() => jump('cr-form')}>{T('careers.134', 'Submit Your Resume')} <Arr /></button>
-          <hr />
-          <p className="crQuote">{T('careers.135', 'Your Energy. Your Ideas.')}<br />{T('careers.136', 'Your Future.')}</p>
-          <img src="/careers/apply.jpg" alt="Solar panels with wind turbines" loading="lazy" />
+          <button className="crBtn sm" onClick={() => openForm()}>{T('careers.134', 'Submit Your Resume')} <Arr /></button>
         </aside>
-        <form className="crForm" id="cr-form" onSubmit={submit} noValidate={false}>
-          <h3><I n="user" s={18} /> {T('careers.137', 'Applicant Details')}</h3>
-          <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="crHp" onChange={set('website')} />
-          <h4>Personal Information</h4>
-          <div className="crG4">
-            <Field label="Full Name" req><input required value={v.name || ''} onChange={set('name')} /></Field>
-            <Field label="Email Address" req><input required type="email" value={v.email || ''} onChange={set('email')} /></Field>
-            <Field label="Mobile Number" req><input required type="tel" value={v.phone || ''} onChange={set('phone')} /></Field>
-            <Field label="Location / City" req><input required value={v.city || ''} onChange={set('city')} /></Field>
-          </div>
-          <h4>Education</h4>
-          <div className="crG3">
-            <Field label="Highest Qualification" req><select required value={v.qual || ''} onChange={set('qual')}><option value="" /><option>Diploma</option><option>ITI</option><option>Bachelor's Degree</option><option>Master's Degree</option><option>Other</option></select></Field>
-            <Field label="Specialization"><input value={v.spec || ''} onChange={set('spec')} /></Field>
-            <Field label="Year of Graduation"><input inputMode="numeric" value={v.year || ''} onChange={set('year')} /></Field>
-          </div>
-          <h4>Career Details</h4>
-          <div className="crG4">
-            <Field label="Position Applied For" req><input required value={v.pos || ''} onChange={set('pos')} /></Field>
-            <Field label="Department" req><select required value={v.dept || ''} onChange={set('dept')}><option value="" />{OPP.map(([, t]) => <option key={t}>{t}</option>)}</select></Field>
-            <Field label="Fresher / Experienced" req><select required value={v.lvl || ''} onChange={set('lvl')}><option value="">Select</option><option>Fresher</option><option>Experienced</option></select></Field>
-            <Field label="Total Experience"><input value={v.exp || ''} onChange={set('exp')} /></Field>
-          </div>
-          <h4>Documents</h4>
-          <div className="crG2">
-            <Field label="Upload Resume / CV" req><span className="crFile"><input required type="file" accept=".pdf,.doc,.docx" onChange={(e) => setFiles((c) => ({ ...c, cv: e.target.files[0]?.name }))} /></span></Field>
-            <Field label="Portfolio / LinkedIn (Optional)"><span className="crFile"><input type="file" onChange={(e) => setFiles((c) => ({ ...c, pf: e.target.files[0]?.name }))} /></span></Field>
-          </div>
-          <h4>Additional Information</h4>
-          <div className="crG3 last">
-            <Field label="Key Skills"><input placeholder="Enter your skills" value={v.skills || ''} onChange={set('skills')} /></Field>
-            <Field label="Preferred Location"><select value={v.pref || ''} onChange={set('pref')}><option value="">Select Location</option><option>Chennai</option><option>Coimbatore</option><option>Any location</option></select></Field>
-            <Field label="Short Message / Cover Note"><textarea rows={3} placeholder="Tell us about yourself..." value={v.msg || ''} onChange={set('msg')} /></Field>
-          </div>
-          <div className="crSub">
-            <label className="crChk"><input type="checkbox" checked={!!v.ok} onChange={(e) => setV((c) => ({ ...c, ok: e.target.checked }))} /> I confirm that the information provided is accurate.</label>
-            <button className="crBtn" type="submit" disabled={st.s === 'load'}>{st.s === 'load' ? 'Submitting…' : 'Submit Application'} <Arr /></button>
-          </div>
-          {st.m && <p className={'crMsg ' + st.s} role="status">{st.m}</p>}
-        </form>
       </div></section>
+      {modal && <ResumeModal position={modal.pos} onClose={closeForm} />}
     </div>
   );
 }

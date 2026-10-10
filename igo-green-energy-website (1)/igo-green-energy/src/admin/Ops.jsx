@@ -7,6 +7,7 @@ import { PageHead, nav, Form } from './modules.jsx';
 const fmt = (s) => { try { return new Date(String(s).replace(' ', 'T') + 'Z').toLocaleString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }); } catch { return s; } };
 export const TYPE_LABEL = { quote: 'Smart Quote', contact: 'Contact form', callback: 'Callback request', newsletter: 'Newsletter', career: 'Career application' };
 const STATUSES = ['new', 'contacted', 'qualified', 'closed', 'spam'];
+const CAREER_STATUSES = ['new', 'reviewing', 'shortlisted', 'interview', 'selected', 'rejected'];
 const STAT_CLS = { new: 'draft', contacted: 'scheduled', qualified: 'published', closed: 'closed', spam: 'closed' };
 const SBadge = ({ s }) => <span className={'admBadge enq-' + s}>{s[0].toUpperCase() + s.slice(1)}</span>;
 const csvCell = (v) => '"' + String(v ?? '').replace(/"/g, '""') + '"';
@@ -41,7 +42,7 @@ export function Enquiries({ user, initialType = 'all' }) {
       </PageHead>
       <div className="admCard enqBar">
         <div className="admTabs">{types.map((t) => <button key={t} className={type === t ? 'on' : ''} onClick={() => setType(t)}>{t === 'all' ? 'All' : TYPE_LABEL[t]}</button>)}</div>
-        <select value={status} onChange={(e) => setStatus(e.target.value)} aria-label="Filter by status"><option value="all">All statuses</option>{STATUSES.map((s) => <option key={s} value={s}>{s[0].toUpperCase() + s.slice(1)}</option>)}</select>
+        <select value={status} onChange={(e) => setStatus(e.target.value)} aria-label="Filter by status"><option value="all">All statuses</option>{(type === 'career' ? CAREER_STATUSES : STATUSES).map((s) => <option key={s} value={s}>{s[0].toUpperCase() + s.slice(1)}</option>)}</select>
         <label className="admSearch"><Icon n="search" /><input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search name, phone, email, message…" aria-label="Search enquiries" /></label>
       </div>
       {err && <div className="admErr" role="alert">{err}</div>}
@@ -67,7 +68,8 @@ export function Enquiries({ user, initialType = 'all' }) {
             <small className="admMute">Received {fmt(sel.created_at)}{sel.source ? ' · from ' + sel.source : ''}</small>
             <dl className="enqDl">
               {[['Name', sel.name], ['Phone', sel.phone && <a href={'tel:' + sel.phone}>{sel.phone}</a>], ['Email', sel.email && <a href={'mailto:' + sel.email}>{sel.email}</a>], ['Company', sel.company], ['Subject', sel.subject]].filter(([, v]) => v).map(([k, v]) => <div key={k}><dt>{k}</dt><dd>{v}</dd></div>)}
-              {Object.entries(sel.extra || {}).filter(([, v]) => v).map(([k, v]) => <div key={k}><dt>{k}</dt><dd>{v}</dd></div>)}
+              {Object.entries(sel.extra || {}).filter(([k, v]) => v && k !== 'resume_file' && k !== 'submission_id').map(([k, v]) => <div key={k}><dt>{k}</dt><dd>{v}</dd></div>)}
+              {sel.extra && sel.extra.resume_file && <div className="full"><dt>Resume</dt><dd><a className="admBtn sm" href={'/api/applications/' + sel.id + '/resume'}>Download resume</a></dd></div>}
               {sel.message && <div className="full"><dt>Message</dt><dd style={{ whiteSpace: 'pre-wrap' }}>{sel.message}</dd></div>}
             </dl>
             <div className="admRow wrap">
@@ -75,9 +77,9 @@ export function Enquiries({ user, initialType = 'all' }) {
               {sel.email && <a className="admBtn" href={'mailto:' + sel.email + '?subject=' + encodeURIComponent('Re: ' + (sel.subject || 'Your enquiry to Green Energy'))}><Icon n="mail" /> Reply by email</a>}
             </div>
             <div className="admField"><label>Status</label>
-              <div className="admTabs">{STATUSES.map((s) => <button key={s} className={sel.status === s ? 'on' : ''} onClick={() => upd(sel.id, { status: s })}>{s[0].toUpperCase() + s.slice(1)}</button>)}</div></div>
+              <div className="admTabs">{(sel.type === 'career' ? CAREER_STATUSES : STATUSES).map((s) => <button key={s} className={sel.status === s ? 'on' : ''} onClick={() => upd(sel.id, { status: s })}>{s[0].toUpperCase() + s.slice(1)}</button>)}</div></div>
             <NoteBox key={sel.id} value={sel.notes} onSave={(v) => upd(sel.id, { notes: v })} />
-            {user.role === 'admin' && <button className="admBtn danger" onClick={() => del(sel)}><Icon n="trash" /> Delete enquiry</button>}
+            {user.role === 'admin' && <button className="admBtn danger" onClick={() => del(sel)}><Icon n="trash" /> {sel.type === 'career' ? 'Delete application' : 'Delete enquiry'}</button>}
           </aside>
         </div>
       )}
