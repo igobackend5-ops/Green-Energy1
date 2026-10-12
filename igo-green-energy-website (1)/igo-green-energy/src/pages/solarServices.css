@@ -17,3 +17,10 @@
 @media(max-width:640px){.ssGrid{grid-template-columns:1fr;gap:18px}.ssCard:nth-child(5){max-width:none}.ssBody{padding:18px}}
 @media(prefers-reduced-motion:reduce){.ssCard,.ssImg img{transition:none}}
 .ssCard:nth-child(1) .ssImg img{object-position:50% 30%}.ssCard:nth-child(5) .ssImg img{object-position:60% 50%}
+
+/* Solar Services section background */
+.pgs.ssSec { background: #F4F6F8; }
+
+
+/* Solar Services card background */
+.ssSec .ssCard { background: #E8F3E9; }

@@ -27,7 +27,7 @@ export const SOLAR_GROUPS = [
   { id: 'agri', sub: 'Sustainable solar solutions to support modern and efficient farming.', title: 'Agricultural Solar Solutions', icon: 'leaf', items: [
     ['Solar Water Pump', 'Efficient pumping solutions for agriculture and irrigation.', { img: '/products/' + encodeURI('solar water pumps.jpg') }],
     ['Solar Irrigation System', 'Sustainable irrigation for better crop yield.', { img: '/products/' + encodeURI('solar irrigation pumps.jpg') }],
-    ['Solar Pump + Drip Irrigation', 'Smart water management for higher efficiency.', { img: '/projects/' + encodeURI('solar pump + drip irrigation system.jpg'), fit: true }],
+    ['Solar Pump + Drip Irrigation', 'Smart water management for higher efficiency.', { img: '/projects/' + encodeURI('solar pump drip irrigation system.jpg'), fit: true }],
     ['Solar Farm Power System', 'Clean energy for large-scale agricultural operations.', { img: '/products/' + encodeURI('solar farm monitoring.jpg') }] ] },
   { id: 'farm', sub: 'Advanced solar solutions for farm security and storage needs.', title: 'Solar-Powered Agricultural & Farm Solutions', icon: 'shield', items: [
     ['Solar Fencing', 'Secure your land with solar-powered fencing.', { img: '/products/' + encodeURI('solar agriculture fencing.jpg') }],
